@@ -49,11 +49,17 @@ exports.up = function(knex, Promise) {
             t.string('description');
             t.timestamps();
         })
-    ])
+    ]);
 }
 
 exports.down = function(knex, Promise) {
     return Promise.all([
-
-    ])
+        knex.schema.dropTable('requests'),
+        knex.schema.dropTable('request_types'),
+        knex.schema.dropTable('statuses'),
+        knex.schema.dropTable('nurses'),
+        knex.schema.dropTable('patients'),
+        knex.schema.dropTable('rooms'),
+        knex.schema.dropTable('beds')
+    ]);
 }
