@@ -5,6 +5,7 @@ const router  = express.Router();
 
 module.exports = (knex) => {
 
+  //Get a specific nurse by id
   router.get("/:id", (req, res) => {
     knex
       .select("*")
@@ -16,10 +17,11 @@ module.exports = (knex) => {
       });
   });
 
+  //Update a nurses status ie active: true -> active: false
   router.put("/:id", (req, res) => {
 
     function findNurse(){
-      knex
+      return knex
         .select("active")
         .from("nurses")
         .where("id", req.params.id)

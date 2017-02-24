@@ -5,6 +5,7 @@ const router  = express.Router();
 
 module.exports = (knex) => {
 
+  // Get all beds
   router.get("/:id", (req, res) => {
     knex
       .select("*")
