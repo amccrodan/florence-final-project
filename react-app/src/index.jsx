@@ -22,12 +22,12 @@ import Bed from './bed/bed.component.jsx'
 // );
 
 ReactDOM.render(
-    <Router history={browserHistory}>
-        <Route component={Main}>
-            <Route path="/" component={Home}/>
-            <Route path="/nurse" component={Nurse} />
-            <Route path="/bed" component={Bed}/>
-        </Route>
-    </Router>,
-    document.getElementById('react-root')
+  <Router history={browserHistory}>
+    <Route component={Main}>
+      <Route path="/" component={Home}/>
+      <Route path="/nurse" component={Nurse} />
+      <Route path="/bed" component={Bed}/>
+    </Route>
+  </Router>,
+  document.getElementById('react-root')
 );

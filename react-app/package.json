@@ -5,10 +5,12 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "node serverWebpackDev.js",
+    "build": "webpack",
+    "deploy": "node server.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Team Master Nurse",
   "license": "ISC",
   "dependencies": {
     "bulma": "^0.3.1",
