@@ -15,6 +15,7 @@ module.exports = (knex) => {
       .then((results) => {
         res.json(results);
       });
+    return router;
   });
 
   //Update a nurses status ie active: true -> active: false
@@ -37,14 +38,11 @@ module.exports = (knex) => {
       });
     }else{
       findNurse()
-      .update("active", false)
+      .update("active", true)
       .then((results) => {
         res.json(results);
       });
     }
-
-
+    return router;
   });
-
- return router;
 }
