@@ -19,12 +19,12 @@ exports.down = function(knex, Promise) {
         knex.schema.table('nurses', function(t) {
             t.dropColumn('first_name');
             t.dropColumn('last_name');
-            t.string('name').notNull();
+            t.string('name');
         }),
         knex.schema.table('patients', function(t) {
             t.dropColumn('first_name');
             t.dropColumn('last_name');
-            t.string('name').notNull();
+            t.string('name');
         })
     ]);
 };
