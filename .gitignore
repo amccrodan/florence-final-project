@@ -1,4 +1,2 @@
-api-server/node_modules
-react-app/node_modules
-websocket-server/node_modules
 .env
+node_modules
