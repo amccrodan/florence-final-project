@@ -1,6 +1,6 @@
 $(function () {
   $('.login').on('click', function(){
-    $('form').slideToggle();
+    $('.login-form').slideToggle();
     $(this).slideToggle();
   })
 })
