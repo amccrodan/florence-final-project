@@ -34,7 +34,7 @@ module.exports = (knex) => {
       .select("status")
       .from("requests")
       .where("id", req.params.id)
-      .update("status", req.params.status)
+      .update("status", req.body.status)
       .then((results) => {
         res.json(results);
       });
