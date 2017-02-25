@@ -2,15 +2,19 @@ var path = require('path');
 var webpack = require('webpack');
 
 module.exports = {
+  context: path.resolve(__dirname),
+  devServer: {
+    contentBase: path.resolve(__dirname),  // New
+  },
   devtool: 'eval',
   entry: [
     'webpack-dev-server/client?http://localhost:3000',
     './src/index.jsx'
   ],
   output: {
-    path: path.join(__dirname, 'dist'),
+    path: path.join(__dirname, 'build'),
     filename: 'bundle.js',
-    publicPath: '/build/'
+    publicPath: '/build'
   },
   module: {
     loaders: [
