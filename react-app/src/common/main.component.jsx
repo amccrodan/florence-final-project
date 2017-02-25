@@ -25,9 +25,19 @@ render(){
 	      <div className="column">
 	      </div>
 	    </div>
+
+	  <ul>
+	    <li>
 		  <a className="button is-large">
-    		<Link to="/nurse" activeClassName="active">Login</Link>
+    		<Link to="/nurse" activeClassName="active">Nurses</Link>
 		  </a>
+		</li>
+		<li>
+		  <a className="button is-large">
+			<Link to="/bed" activeClassName="active">Beds</Link>
+	  	  </a>
+	  	 </li>
+	  </ul>
 		<div className="container">
 		  {this.props.children}
 		</div>
