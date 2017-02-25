@@ -1,6 +1,8 @@
 var path = require('path');
 var webpack = require('webpack');
 
+var BUILD_DIR = path.resolve(__dirname, 'public');
+
 module.exports = {
   devtool: 'eval',
   entry: [
@@ -8,7 +10,7 @@ module.exports = {
     './src/index.jsx'
   ],
   output: {
-    path: path.join(__dirname, 'dist'),
+    path: BUILD_DIR,
     filename: 'bundle.js',
     publicPath: '/build/'
   },
@@ -21,7 +23,7 @@ module.exports = {
       },
       {
         test: /\.scss$/,
-        loaders: ["style", "css", "sass"]
+        loaders: ["style-loader", "css-loader", "sass-loader"]
       }
     ]
   }
