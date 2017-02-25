@@ -15,7 +15,6 @@ module.exports = (knex) => {
       .then((results) => {
         res.json(results);
       });
-    return router;
   });
 
   //Update a nurses status ie active: true -> active: false
@@ -43,7 +42,6 @@ module.exports = (knex) => {
         res.json(results);
       });
     }
-    return router;
   });
 
   router.post("/"), (req, res) => {
@@ -51,12 +49,12 @@ module.exports = (knex) => {
       first_name: req.body.first_name,
       last_name: req.body.last_name,
       image: req.body.image,
-      active: req.body.active
+      active: req.body.active,
       password: req.body.params
     })
     .then((results) => {
       res.json(results);
     });
-    return router;
   }
+  return router;
 }

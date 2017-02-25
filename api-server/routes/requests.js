@@ -13,7 +13,6 @@ module.exports = (knex) => {
       .then((results) => {
         res.json(results);
     });
-    return router;
   });
 
   //Get a specific request by id
@@ -25,7 +24,6 @@ module.exports = (knex) => {
       .then((results) => {
         res.json(results);
       });
-    return router;
   });
 
   //Update a request status ie. pending -> complete
@@ -38,6 +36,6 @@ module.exports = (knex) => {
       .then((results) => {
         res.json(results);
       });
-    return router;
   });
+  return router;
 }
