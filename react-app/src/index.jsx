@@ -10,7 +10,6 @@ import {Router, Route, IndexRoute, browserHistory} from 'react-router';
 
 
 import Main from './common/main.component.jsx'
-
 import Nurse from './nurse/nurse.component.jsx'
 import Bed from './bed/bed.component.jsx'
 

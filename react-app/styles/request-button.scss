@@ -14,9 +14,10 @@
 }
 
 .button.is-white:focus, .button.is-white.is-focused {
-  border-color: gray;
+  border-color: black;
   border-width: medium;
-  color: gray;
+  box-shadow: 0 0 6em rgba(255, 255, 255, 1.0);
+  color: black;
 }
 
 .custom-overlay {
