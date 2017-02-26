@@ -15,6 +15,17 @@ module.exports = (knex) => {
     });
   });
 
+  //Create a new request
+  router.post("/", (req, res) => {
+    knex("requests").insert({
+      bed_id: req.body.bed_id,
+      patient_id: req.body.patient_id,
+      status_id: 1,
+      request_type: req.body.request_type,
+      description: req.body.description
+    })
+  });
+
   //Get a specific request by id
   router.get("/:id", (req, res) => {
     knex
