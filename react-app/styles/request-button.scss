@@ -1,0 +1,25 @@
+.hero.is-light a, .hero.is-light strong{
+  color: floralwhite;
+}
+
+.big-circle {
+  background-color: rgba(0,0,0,0.5);
+  border-radius: 100%;
+  color: floralwhite;
+  font-size: 1.5em;
+  font-weight: bold;
+  height: 200px;
+  line-height: 200px;
+  text-align: center;
+  vertical-align: middle;
+  width: 200px;
+}
+
+.login-form {
+  display: none;
+}
+
+.nice-background {
+  background-image: url('https://images6.alphacoders.com/338/338596.jpg');
+  background-size: cover;
+}
