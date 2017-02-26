@@ -10,6 +10,7 @@ module.exports = (knex) => {
     knex
       .select("*")
       .from("beds")
+      .orderBy("id")
       .then((results) => {
         res.json(results);
     });
