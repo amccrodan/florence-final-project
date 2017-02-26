@@ -1,6 +1,8 @@
 var path = require('path');
 var webpack = require('webpack');
 
+var BUILD_DIR = path.resolve(__dirname, 'public');
+
 module.exports = {
   context: path.resolve(__dirname),
   devServer: {
@@ -25,7 +27,7 @@ module.exports = {
       },
       {
         test: /\.scss$/,
-        loaders: ["style", "css", "sass"]
+        loaders: ["style-loader", "css-loader", "sass-loader"]
       }
     ]
   }
