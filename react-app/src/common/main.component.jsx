@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import { Link } from 'react-router';
 
+import Login from './login.component.jsx'
+
 class Main extends Component {
 render(){
   return(
@@ -25,12 +27,17 @@ render(){
 	      <div className="column">
 	      </div>
 	    </div>
-		  <a className="button is-large">
-    		<Link to="/nurse" activeClassName="active">Login</Link>
-		  </a>
-		<div className="container">
-		  {this.props.children}
-		</div>
+
+	  <Login />
+
+		<a className="button is-large">
+    	  <Link to="/nurse" activeClassName="active">Nurses</Link>
+		</a>
+		<a className="button is-large">
+	  	  <Link to="/bed" activeClassName="active">Beds</Link>
+	  	</a>
+
+
 	</div>
 
     </div>
