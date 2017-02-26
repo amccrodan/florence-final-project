@@ -3,9 +3,7 @@
 }
 
 .big-circle {
-  background-color: rgba(0,0,0,0.5);
   border-radius: 100%;
-  color: floralwhite;
   font-size: 1.5em;
   font-weight: bold;
   height: 200px;
@@ -15,6 +13,17 @@
   width: 200px;
 }
 
+.button.is-white:focus, .button.is-white.is-focused {
+  border-color: gray;
+  border-width: medium;
+  color: gray;
+}
+
+.custom-overlay {
+  height: 100%;
+  position: absolute;
+  width: 100%;
+}
 .login-form {
   display: none;
 }
@@ -22,4 +31,5 @@
 .nice-background {
   background-image: url('https://images6.alphacoders.com/338/338596.jpg');
   background-size: cover;
+  opacity: .5
 }

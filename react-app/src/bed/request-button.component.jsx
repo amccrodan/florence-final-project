@@ -3,9 +3,10 @@ import React, { Component } from 'react';
 class RequestButton extends Component {
   render(){
     return (
-      <section className="hero is-light is-fullheight nice-background">
-
-        <div className="hero-body">
+      <section className="hero is-light is-fullheight">
+        <div className="hero nice-background is-fullheight">
+        </div>
+        <div className="hero-body custom-overlay">
           <div className="container has-text-centered">
             <div>
               <div className="columns">
@@ -13,7 +14,7 @@ class RequestButton extends Component {
                 <div className="column is-one-third">
                 </div>
                 <div className="column">
-                  <a className="button is-focused big-circle">Request</a>
+                  <a className="button is-focused big-circle is-white">Request</a>
                 </div>
                 <div className="column">
                 </div>
