@@ -19,11 +19,18 @@ webSocket.onmessage = (event) => {
   console.log(incomingObj);
 }
 
+const assignWebSocketId = function(stationId) {
+  webSocket.send(JSON.stringify({
+    type: "assignId",
+    id: stationId
+  }))
+}
+
 ReactDOM.render(
   <Router history={browserHistory}>
     <Route path="/" component={Main} />
-    <Route path="/nurse" component={Nurse} />
-    <Route path="/bed" component={Bed}/>
+    <Route path="/nurse" component={Nurse} assignWebSocketId={assignWebSocketId}/>
+    <Route path="/bed" component={Bed} assignWebSocketId={assignWebSocketId}/>
   </Router>,
   document.getElementById('react-root')
 );
