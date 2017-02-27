@@ -1,7 +1,7 @@
 var webpack = require('webpack');
 var path = require('path');
 var WebpackDevServer = require('webpack-dev-server');
-var config = require('./webpack.config');
+var config = require('./dev.config');
 var express = require('express');
 
 var server = new WebpackDevServer(webpack(config), {

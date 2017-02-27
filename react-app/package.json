@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js",
-    "build": "webpack"
+    "dev": "node server.js",
+    "prod": "webpack --config prod.config.js && node production-server.js"
   },
   "keywords": [],
   "author": "Team Master Nurse",
