@@ -15,24 +15,26 @@ class RequestForm extends Component {
             </header>
             <div className='columns'>
                 <div className='column'>
-                    <span className='button is-large is-primary'><i className="fa fa-medkit" aria-hidden="true"></i></span> 
+                    <span className='button is-large is-primary options'><i className='fa fa-medkit' aria-hidden='true'></i></span> 
                 </div>
                 <div className='column'>
-                    <span className='button is-large is-info'><i className="fa fa-cutlery" aria-hidden="true"></i></span> 
+                    <span className='button is-large is-info options'><i className='fa fa-cutlery' aria-hidden='true'></i></span> 
                 </div>
                 <div className='column'>
-                    <span className='button is-large is-success'>
-                        <i className="fa fa-male" aria-hidden="true"></i>
-                        <i className="fa fa-female" aria-hidden="true"></i>
+                    <span className='button is-large is-success options'>
+                        <i className='fa fa-male' aria-hidden='true'></i>
+                        <i className='fa fa-female' aria-hidden='true'></i>
                     </span>
                 </div>
                 <div className='column'>
-                    <span className='button is-large is-warning'><i className="fa fa-question" aria-hidden="true"></i></span>
+                    <span className='button is-large is-warning options'><i className='fa fa-question' aria-hidden='true'></i></span>
                 </div>
             </div>
-            <p className="control">
+            <p className='control'>
                 <textarea className='textarea' type='text' placeholder='Add a comment...'></textarea>
-                <button type='submit' className="button is-primary">Submit</button>
+                <button type='submit' className='button is-primary submit'>
+                    <h1 className='title is-1'>Submit</h1>
+                </button>
             </p>
         </div>
     );
