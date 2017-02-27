@@ -1,30 +1,27 @@
-const express = require('express')
-const path = require('path')
-const port = process.env.PORT || 3000
-const app = express()
+var webpack = require('webpack');
+var path = require('path');
+var WebpackDevServer = require('webpack-dev-server');
+var config = require('./dev.config');
+var express = require('express');
 
-// serve static assets normally
-app.use(express.static(__dirname + '/public'))
+var server = new WebpackDevServer(webpack(config), {
+    publicPath: config.output.publicPath,
+    watchOptions: {
+      aggregateTimeout: 300,
+      poll: 1000
+    },
+    setup: function(app) {
+      app.use(express.static(__dirname + '/build'));
+      app.get(/^[^.]+$/, function (request, response) {
+        response.sendFile(path.resolve(__dirname, 'build', 'index.html'))
+      });
+    }
+  });
 
-// Handles all routes so you do not get a not found error
-const nurseData = [
-  {
-    "name": "Emily",
-    "profilePic": "image1.jpg"
-  },
-  {
-    "name": "Jess",
-    "profilePic": "image2.jpg"
+server.listen(3000, '0.0.0.0', function (err, result) {
+  if (err) {
+    console.log(err);
   }
-]
 
-app.get('/api/nurses', (req, res) => {
-  res.send(JSON.stringify(nurseData));
+  console.log('Dev server running at http://0.0.0.0:3000');
 });
-
-app.get('*', function (request, response){
-    response.sendFile(path.resolve(__dirname, 'public', 'index.html'))
-});
-
-app.listen(port);
-console.log("server started on port " + port);

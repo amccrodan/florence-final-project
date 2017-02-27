@@ -19,7 +19,6 @@ class Bed extends Component {
     // This handles a new message from server
     // this.ws.onmessage = (event) => {
     // }
-    const test = this;
     this.serverRequest =
       axios ({
         method: "get",
