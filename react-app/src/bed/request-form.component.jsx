@@ -6,7 +6,11 @@ class RequestForm extends Component {
         <div className='container'>
             <header>
                 <div className='hero'>
-                    <p>How can we help you today?</p>
+                    <div className='hero-body'>
+                        <div className='container has-text-centered'>
+                            <h1 className='title'>How can we help you today?</h1>
+                        </div>
+                    </div>
                 </div>
             </header>
             <div className='columns'>
@@ -26,8 +30,10 @@ class RequestForm extends Component {
                     <span className='button is-large is-warning'><i className="fa fa-question" aria-hidden="true"></i></span>
                 </div>
             </div>
-            <textarea class="textarea" placeholder="Add a comment..."></textarea>
-            <button type='submit' className="button is-primary">Submit</button>
+            <p class="control">
+                <textarea className="textarea" placeholder="Add a comment..."></textarea>
+                <button type='submit' className="button is-primary">Submit</button>
+            </p>
         </div>
     );
   }
