@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 
 import RequestButton from './request-button.component.jsx';
 
+import axios from 'axios';
+
 class Bed extends Component {
   constructor(props){
     super(props);
@@ -14,12 +16,21 @@ class Bed extends Component {
   componentDidMount() {
 
     // this.ws = new WebSocket('ws://localhost:4000/');
-
     // This handles a new message from server
-    this.ws.onmessage = (event) => {
-
-    }
-  };
+    // this.ws.onmessage = (event) => {
+    // }
+    const test = this;
+    this.serverRequest =
+      axios ({
+        method: "get",
+        url: "http://localhost:8080/api/beds",
+        responseType: 'json', // default
+        withCredentials: false // default
+      })
+      .then(function(result) {
+        console.log(result)
+      })
+  }
 
   render(){
     return (
