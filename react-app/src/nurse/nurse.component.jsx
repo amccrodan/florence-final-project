@@ -10,30 +10,33 @@ class Nurse extends Component {
   constructor(props){
     super(props);
     this.state = {
-      this.serverRequest =
-      axios ({
-        method: "get",
-        url: "http://localhost:8080/api/requests",
-        responseType: 'json', // default
-        withCredentials: false // default
-      })
-      .then(function(result) {
-        console.log(result)
-      })
+      nurses: []
     };
   }
 
   componentDidMount(){
-
-  }
+    this.serverRequest =
+      axios ({
+        method: "get",
+        url: "http://localhost:8080/api/nurses",
+        responseType: 'json', // default
+        withCredentials: false // default
+      })
+      .then((result) => {
+        return result;
+      })
+      .then((result) => {
+        this.setState({nurses: result.data});
+      })
+  };
 
   render(){
     return (
       <div className='tile is-ancestor nurse-station'>
         <RequestQueue/>
         <div className='tile is-vertical is-parent'>
-          <CareAideList />
-          <NurseList />
+          <CareAideList nurses={this.state.nurses} />
+          <NurseList nurses={this.state.nurses} />
         </div>
       </div>
     );
