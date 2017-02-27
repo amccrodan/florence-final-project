@@ -30,8 +30,8 @@ class RequestForm extends Component {
                     <span className='button is-large is-warning'><i className="fa fa-question" aria-hidden="true"></i></span>
                 </div>
             </div>
-            <p class="control">
-                <textarea className="textarea" placeholder="Add a comment..."></textarea>
+            <p className="control">
+                <textarea className='textarea' type='text' placeholder='Add a comment...'></textarea>
                 <button type='submit' className="button is-primary">Submit</button>
             </p>
         </div>
