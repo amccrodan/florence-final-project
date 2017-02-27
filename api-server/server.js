@@ -20,12 +20,17 @@ const bedRoutes = require("./routes/beds");
 const nurseRoutes = require("./routes/nurses");
 const patientRoutes = require("./routes/patients");
 const requestRoutes = require("./routes/requests");
-
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 // Mount all resource routes
 app.use("/api/beds", bedRoutes(knex));
 app.use("/api/nurses", nurseRoutes(knex));
 app.use("/api/patients", patientRoutes(knex));
 app.use("/api/requests", requestRoutes(knex));
+
 
 app.listen(PORT, () => {
   console.log("Example app listening on port " + PORT);
