@@ -20,17 +20,15 @@
   color: black;
 }
 
-.custom-overlay {
-  height: 100%;
-  position: absolute;
-  width: 100%;
-}
 .login-form {
   display: none;
 }
 
 .nice-background {
-  background-image: url('https://images6.alphacoders.com/338/338596.jpg');
-  background-size: cover;
-  opacity: .5
+  // background-image: url('https://images6.alphacoders.com/338/338596.jpg');
+  // background-size: cover;
+  height: 100%;
+  opacity: .5;
+  position: absolute;
+  width: 100%;
 }

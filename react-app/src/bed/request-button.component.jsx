@@ -6,7 +6,7 @@ class RequestButton extends Component {
       <section className="hero is-light is-fullheight">
         <div className="hero nice-background is-fullheight">
         </div>
-        <div className="hero-body custom-overlay">
+        <div className="hero-body">
           <div className="container has-text-centered">
             <div>
               <div className="columns">
