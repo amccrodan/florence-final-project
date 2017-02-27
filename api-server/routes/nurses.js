@@ -10,7 +10,6 @@ module.exports = (knex) => {
     knex
       .select("*")
       .from("nurses")
-      .where("id", req.params.id)
       .then((results) => {
         res.json(results);
       });
