@@ -30,7 +30,7 @@ render(){
 	  <Login />
 
 	  <button className="button is-large is-dark">
-        <Link to="/nurse" activeClassName="active">Nurses</Link>
+      <Link to="/nurse" activeClassName="active">Nurses</Link>
 	  </button>
 	  <button className="button is-large is-dark">
 	    <Link to="/bed" activeClassName="active">Beds</Link>

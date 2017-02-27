@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import RequestButton from './request-button.component.jsx';
+import ChooseBed from './choose-bed.component.jsx'
 
 import axios from 'axios';
 
@@ -30,12 +31,11 @@ class Bed extends Component {
         console.log(result)
       })
   }
-
+        // <RequestButton />
   render(){
     return (
       <div>
-        <h1>Bed Page</h1>
-        <RequestButton />
+        <ChooseBed />
       </div>
     );
   }
