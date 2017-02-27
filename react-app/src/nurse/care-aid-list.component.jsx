@@ -2,7 +2,11 @@ import React, { Component } from 'react';
 
 class CareAidList extends Component {
   render(){
-    return ()
+    return (
+      <div className='is-child tile'>
+        <h1> Care-aids</h1>
+      </div>
+    )
   }
 
 
