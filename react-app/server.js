@@ -11,9 +11,9 @@ var server = new WebpackDevServer(webpack(config), {
       poll: 1000
     },
     setup: function(app) {
-      app.use(express.static(__dirname));
+      app.use(express.static(__dirname + '/build'));
       app.get(/^[^.]+$/, function (request, response) {
-        response.sendFile(path.resolve(__dirname, 'index.html'))
+        response.sendFile(path.resolve(__dirname, 'build', 'index.html'))
       });
     }
   });
@@ -23,5 +23,5 @@ server.listen(3000, '0.0.0.0', function (err, result) {
     console.log(err);
   }
 
-  console.log('Running at http://0.0.0.0:3000');
+  console.log('Dev server running at http://0.0.0.0:3000');
 });
