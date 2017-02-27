@@ -29,6 +29,10 @@ wss.broadcast = function broadcast(data) {
 wss.on('connection', (ws) => {
   console.log('Client connected');
 
+  ws.send(JSON.stringify({
+    message: "Hello from server!"
+  }));
+
   ws.on('message', function incoming(message) {
     const receivedMsg = JSON.parse(message);
 

@@ -13,6 +13,13 @@ import Main from './common/main.component.jsx'
 import Nurse from './nurse/nurse.component.jsx'
 import Bed from './bed/bed.component.jsx'
 
+const webSocket = new WebSocket("ws://localhost:4000");
+
+webSocket.onmessage = (event) => {
+  const incomingObj = JSON.parse(event.data);
+  console.log(incomingObj);
+}
+
 ReactDOM.render(
   <Router history={browserHistory}>
     <Route path="/" component={Main} />
