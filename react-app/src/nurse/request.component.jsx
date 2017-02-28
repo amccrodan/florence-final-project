@@ -37,7 +37,7 @@ class Request extends Component {
             {reqCategory(this.props.request_type_id)}
           </div>
           <div className="level-item column is-2">
-            <i className="fa fa-picture-o patient-avatar" aria-hidden="true"></i>
+            <img src={this.props.img} />
           </div>
         </div>
       </article>
