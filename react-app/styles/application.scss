@@ -14,12 +14,14 @@
 @import url("https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css");
 
 
-
+@import 'request-queue';
 @import 'request-button';
 @import 'choose-bed';
 @import 'request-form';
 @import 'request-pending';
 @import 'request-acknowledged';
+@import 'nurse-list';
+@import 'care-aid-list';
 
 body {
   font-family: 'Questrial', sans-serif;
