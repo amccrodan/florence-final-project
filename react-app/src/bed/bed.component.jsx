@@ -41,7 +41,7 @@ class Bed extends Component {
         <h1>Request pending</h1>
         <RequestPending />
       </div>
-    );*/
+    );
 
     return (
       <div>
@@ -50,19 +50,19 @@ class Bed extends Component {
       </div>
     );
    
-    /*return (
+    return (
       <div>
         <h1>Request form</h1>
         <RequestForm />
       </div>
-    );
+    );*/
 
     return (
       <div>
         <h1>Request Button</h1>
         <RequestButton />
       </div>
-    );*/
+    );
   }
 }
 

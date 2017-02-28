@@ -6,11 +6,11 @@ class RequestPending extends Component {
       <div>
       <section className='container'>
         <div className='hero'>
-            <div className='hero-body'>
-                <div className='container has-text-centered'>
-                    <h1 className='title'>Awaiting response</h1>
-                </div>
+          <div className='hero-body'>
+            <div className='container has-text-centered'>
+              <h1 className='title'>Awaiting response</h1>
             </div>
+          </div>
         </div>
       </section>
       <section className='hero is-light is-fullheight'>
