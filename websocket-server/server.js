@@ -15,6 +15,7 @@ const server = express()
 // Create the WebSockets server
 const wss = new WebSocket.Server({ server });
 
+// Broadcast to all clients
 wss.broadcast = function broadcast(data) {
   wss.clients.forEach(function each(client) {
     if (client.readyState === WebSocket.OPEN) {
@@ -22,6 +23,15 @@ wss.broadcast = function broadcast(data) {
     }
   });
 };
+
+// Send only to master station
+wss.sendToMaster = function sendToMaster(data) {
+  wss.clients.forEach(function each(client) {
+    if (client.florenceId === "master") {
+      client.send(data);
+    }
+  });
+}
 
 // Set up a callback that will run when a client connects to the server
 // When a client connects they are assigned a socket, represented by
@@ -35,6 +45,23 @@ wss.on('connection', (ws) => {
 
   ws.on('message', function incoming(message) {
     const receivedMsg = JSON.parse(message);
+
+    switch(receivedMsg.type) {
+      case 'newRequestMade':
+        // tell nurse station to get new requests
+        break;
+      case 'updateRequest':
+        // tell nurse station to update one request status (get all again?)
+        // tell specific bed to update request
+        break;
+      case 'assignId':
+        ws.florenceId = receivedMsg.id
+        console.log(`${ws.florenceId} just connected.`);
+        ws.send(JSON.stringify({message: `Your connection ID is ${ws.florenceId}`}))
+        break;
+      default:
+        console.log(`Unknown message type: ${receivedMsg.type}`)
+    }
 
   });
 

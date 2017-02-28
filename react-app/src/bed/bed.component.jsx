@@ -10,27 +10,26 @@ class Bed extends Component {
   constructor(props){
     super(props);
     this.state = {
+      bedId: 3,
+      beds: [] // test data
     };
 
-    // this.newMessage = this.newMessage.bind(this);
+    this.serverRequest = axios.create({
+      baseURL: "http://localhost:8080/api/",
+      responseType: 'json', // default
+      withCredentials: false // default
+    });
   }
 
   componentDidMount() {
+    // Put the below in the main request screen component
+    // this.props.route.assignWebSocketId(this.state.bedId);
 
-    // this.ws = new WebSocket('ws://localhost:4000/');
-    // This handles a new message from server
-    // this.ws.onmessage = (event) => {
-    // }
-    this.serverRequest =
-      axios ({
-        method: "get",
-        url: "http://localhost:8080/api/beds",
-        responseType: 'json', // default
-        withCredentials: false // default
-      })
-      .then(function(result) {
-        console.log(result)
-      })
+    this.serverRequest.get("beds").then((result) => {
+      this.setState({beds: result.data}, () => {
+        console.log(`State: ${this.state.beds}`);
+      });
+    })
   }
 
   render(){
