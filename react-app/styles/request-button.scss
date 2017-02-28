@@ -2,22 +2,10 @@
   color: floralwhite;
 }
 
-.big-circle {
-  border-radius: 100%;
-  font-size: 1.5em;
-  font-weight: bold;
+.choices {
   height: 200px;
-  line-height: 200px;
-  text-align: center;
-  vertical-align: middle;
-  width: 200px;
-}
-
-.button.is-white:focus, .button.is-white.is-focused {
-  border-color: black;
-  border-width: medium;
-  box-shadow: 0 0 6em rgba(255, 255, 255, 1.0);
-  color: black;
+  margin-bottom: 25px;
+  width: 50%;
 }
 
 .login-form {

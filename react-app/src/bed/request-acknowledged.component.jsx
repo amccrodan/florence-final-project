@@ -14,7 +14,7 @@ class RequestAcknowledged extends Component {
                 <div className="column is-one-third">
                 </div>
                 <div className="column">
-                  <a className="button is-focused big-circle is-white">Request</a>
+                  <a className="button is-focused big-circle is-white">Request Pending</a>
                 </div>
                 <div className="column">
                 </div>
