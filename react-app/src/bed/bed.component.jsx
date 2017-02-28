@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 
 import RequestButton from './request-button.component.jsx';
 import RequestForm from './request-form.component.jsx';
+import RequestPending from './request-pending.compenent.jsx';
+import RequestAcknowledged from './request-acknowledged.component.jsx';
 
 import axios from 'axios';
 
@@ -33,6 +35,21 @@ class Bed extends Component {
   }
 
   render(){
+   
+   return (
+      <div>
+        <h1>Request pending</h1>
+        <RequestPending />
+      </div>
+    );
+
+    return (
+      <div>
+        <h1>Request acknowledged</h1>
+        <RequestAcknowledged />
+      </div>
+    );
+   
     return (
       <div>
         <h1>Request form</h1>
