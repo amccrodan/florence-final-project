@@ -10,6 +10,9 @@ module.exports = (knex) => {
     knex
       .select("*")
       .from("requests")
+      .join("patients", function(){
+        this.on('patients.id', '=', 'requests.patient_id')
+      })
       .then((results) => {
         res.json(results);
     });
