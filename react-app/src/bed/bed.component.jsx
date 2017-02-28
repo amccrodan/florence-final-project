@@ -20,6 +20,8 @@ class Bed extends Component {
       responseType: 'json', // default
       withCredentials: false // default
     });
+
+    this.changeViewState = this.changeViewState.bind(this);
   }
 
   componentDidMount() {
@@ -32,12 +34,17 @@ class Bed extends Component {
     })
   }
 
+  changeViewState (stateName) {
+    this.setState({view: stateName});
+  }
+
   render(){
     let output = '';
     if (this.state.view === 'chooseBed') {
       output = <ChooseBed
       bedList={this.state.beds}
-      assignWebSocketId={this.props.route.assignWebSocketId} />
+      assignWebSocketId={this.props.route.assignWebSocketId}
+      changeViewState={this.changeViewState} />
     }
     if (this.state.view === 'requestButton') {
       output = <RequestButton />
