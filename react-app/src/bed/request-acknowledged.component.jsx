@@ -7,6 +7,14 @@ class RequestAcknowledged extends Component {
         <div className='hero nice-background is-fullheight'>
         </div>
         <div className='hero-body'>
+          <div className='complete'>
+            <a className='button is-success'>
+              <span className='icon is-small'>
+                <i className='fa fa-check'></i>
+              </span>
+              <span>Complete</span>
+            </a>
+          </div> 
           <div className='container has-text-centered'>
             <div className='columns'>
               <div className='column is-one-third'>
