@@ -9,9 +9,10 @@ class Bed extends Component {
   constructor(props){
     super(props);
     this.state = {
+      beds: []
     };
 
-    // this.newMessage = this.newMessage.bind(this);
+    this.renderAllButtons = this.renderAllButtons.bind(this);
   }
 
   componentDidMount() {
@@ -27,9 +28,10 @@ class Bed extends Component {
         responseType: 'json', // default
         withCredentials: false // default
       })
-      .then(function(result) {
-        console.log(result)
+      .then((result) => {
+        this.setState({beds: result.data})
       })
+      .then(() => console.log(this.state))
   }
         // <RequestButton />
   render(){
@@ -38,6 +40,13 @@ class Bed extends Component {
         <ChooseBed />
       </div>
     );
+  }
+
+  renderAllButtons(){
+    let output = ''
+    this.state.beds.forEach((item) => {
+      return <button className="button is-large is-40-wide">item.
+    })
   }
 }
 

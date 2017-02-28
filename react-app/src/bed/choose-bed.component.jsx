@@ -15,10 +15,10 @@ class ChooseBed extends Component {
                 </div>
                 <div className="column is-10">
                   <div className="sort-beds">
-                    <button className="button is-large is-4">
+                    <button className="button is-large is-40-wide">
                       Rooms
                     </button>
-                    <button classname="button is-large is-8">
+                    <button className="button is-large is-40-wide">
                       All Beds
                     </button>
                   </div>

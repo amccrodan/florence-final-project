@@ -2,3 +2,12 @@
   overflow-y: scroll;
   height: 70vh;
 }
+
+.is-40-wide {
+  width: 40%;
+}
+
+.sort-beds {
+  display: flex;
+  justify-content: space-around;
+}
