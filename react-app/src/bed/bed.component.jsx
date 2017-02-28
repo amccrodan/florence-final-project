@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import RequestButton from './request-button.component.jsx';
+import ChooseBed from './choose-bed.component.jsx'
 import RequestForm from './request-form.component.jsx';
 import RequestPending from './request-pending.component.jsx';
 import RequestAcknowledged from './request-acknowledged.component.jsx';
@@ -12,8 +13,8 @@ class Bed extends Component {
   constructor(props){
     super(props);
     this.state = {
-      bedId: 3,
-      beds: [] // test data
+      view: 'chooseBed',
+      beds: []
     };
 
     this.serverRequest = axios.create({
@@ -21,11 +22,12 @@ class Bed extends Component {
       responseType: 'json', // default
       withCredentials: false // default
     });
+
+    this.changeViewState = this.changeViewState.bind(this);
   }
 
   componentDidMount() {
     // Put the below in the main request screen component
-    // this.props.route.assignWebSocketId(this.state.bedId);
 
     this.serverRequest.get("beds").then((result) => {
       this.setState({beds: result.data}, () => {
@@ -34,36 +36,42 @@ class Bed extends Component {
     })
   }
 
+  changeViewState (stateName) {
+    this.setState({view: stateName});
+  }
+
   render(){
-   
-   /*return (
-      <div>
-        <h1>Request pending</h1>
-        <RequestPending />
-      </div>
-    );
+    let output = '';
+    if (this.state.view === 'chooseBed') {
+      output = <ChooseBed
+      bedList={this.state.beds}
+      assignWebSocketId={this.props.route.assignWebSocketId}
+      changeViewState={this.changeViewState} />
+    }
+    if (this.state.view === 'requestButton') {
+      output = <RequestButton
+      changeViewState={this.changeViewState}/>
+    }
+    if (this.state.view === 'requestForm') {
+      output = <RequestForm
+      changeViewState={this.changeViewState}/>
+    }
+    if (this.state.view === 'requestPending') {
+      output = <RequestPending
+      changeViewState={this.changeViewState}/>
+    }
+    if (this.state.view === 'requestAcknowledged') {
+      output = <RequestAcknowledged
+      changeViewState={this.changeViewState}/>
+    }
 
     return (
       <div>
-        <h1>Request acknowledged</h1>
-        <RequestAcknowledged />
-      </div>
-    );
-   
-    return (
-      <div>
-        <h1>Request form</h1>
-        <RequestForm />
-      </div>
-    );*/
-
-    return (
-      <div>
-        <h1>Request Button</h1>
-        <RequestButton />
+        {output}
       </div>
     );
   }
+
 }
 
 export default Bed

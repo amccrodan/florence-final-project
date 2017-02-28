@@ -1,6 +1,19 @@
 import React, { Component } from 'react';
 
 class RequestAcknowledged extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+    };
+  this.handleClick = this.handleClick.bind(this);
+
+  }
+
+  handleClick (event) {
+    // this will be changed to a page that the nurse can put a small note on
+    this.props.changeViewState('chooseButton');
+  }
+
   render(){
     return (
       <section className='hero is-light is-fullheight'>
@@ -14,13 +27,13 @@ class RequestAcknowledged extends Component {
               </span>
               <span>Complete</span>
             </a>
-          </div> 
+          </div>
           <div className='container has-text-centered'>
             <div className='columns'>
               <div className='column is-one-third'>
               </div>
               <div className='column'>
-                  <img className='is-focused big-circle' src='http://www.fillmurray.com/300/200'/>  
+                  <img className='is-focused big-circle' src='http://www.fillmurray.com/300/200'/>
               </div>
               <div className='column'>
               </div>
