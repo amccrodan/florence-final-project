@@ -11,7 +11,11 @@
 }
 
 .input-field {
-    display: hidden;
+    display: none;
+}
+
+.active {
+    display: block;
 }
 
 .options {

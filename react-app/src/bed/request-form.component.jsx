@@ -5,7 +5,7 @@ class RequestForm extends Component {
   render(){
     return (
         <div className='container'>
-            <header>
+            <section>
                 <div className='hero'>
                     <div className='hero-body'>
                         <div className='container has-text-centered'>
@@ -16,7 +16,7 @@ class RequestForm extends Component {
                         </div>
                     </div>
                 </div>
-            </header>
+            </section>
             <div className='columns'>
                 <div className='column'>
                     <span className='button is-large is-primary options'><i className='fa fa-medkit' aria-hidden='true'></i></span> 

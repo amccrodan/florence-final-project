@@ -1,5 +1,5 @@
 $(function () {
   $('.options').on('click', function(){
-    $('.input-field').slideToggle();
+    $('.input-field').toggleClass('active');
   })
 })
