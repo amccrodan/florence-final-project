@@ -1,44 +1,77 @@
 import React, { Component } from 'react';
 
 import RequestButton from './request-button.component.jsx';
+import ChooseBed from './choose-bed.component.jsx'
+import RequestForm from './request-form.component.jsx';
+import RequestPending from './request-pending.component.jsx';
+import RequestAcknowledged from './request-acknowledged.component.jsx';
 
 import axios from 'axios';
+
 
 class Bed extends Component {
   constructor(props){
     super(props);
     this.state = {
+      view: 'chooseBed',
+      beds: []
     };
 
-    // this.newMessage = this.newMessage.bind(this);
+    this.serverRequest = axios.create({
+      baseURL: "http://localhost:8080/api/",
+      responseType: 'json', // default
+      withCredentials: false // default
+    });
+
+    this.changeViewState = this.changeViewState.bind(this);
   }
 
   componentDidMount() {
+    // Put the below in the main request screen component
 
-    // this.ws = new WebSocket('ws://localhost:4000/');
-    // This handles a new message from server
-    // this.ws.onmessage = (event) => {
-    // }
-    this.serverRequest =
-      axios ({
-        method: "get",
-        url: "http://localhost:8080/api/beds",
-        responseType: 'json', // default
-        withCredentials: false // default
-      })
-      .then(function(result) {
-        console.log(result)
-      })
+    this.serverRequest.get("beds").then((result) => {
+      this.setState({beds: result.data}, () => {
+        console.log(`State: ${this.state.beds}`);
+      });
+    })
+  }
+
+  changeViewState (stateName) {
+    this.setState({view: stateName});
   }
 
   render(){
+    let output = '';
+    if (this.state.view === 'chooseBed') {
+      output = <ChooseBed
+      bedList={this.state.beds}
+      assignWebSocketId={this.props.route.assignWebSocketId}
+      changeViewState={this.changeViewState} />
+    }
+    if (this.state.view === 'requestButton') {
+      output = <RequestButton
+      changeViewState={this.changeViewState}/>
+    }
+    if (this.state.view === 'requestForm') {
+      output = <RequestForm
+      changeViewState={this.changeViewState}/>
+    }
+    if (this.state.view === 'requestPending') {
+      output = <RequestPending
+      changeViewState={this.changeViewState}/>
+    }
+    if (this.state.view === 'requestAcknowledged') {
+      output = <RequestAcknowledged
+      changeViewState={this.changeViewState}/>
+    }
+
     return (
       <div>
-        <h1>Bed Page</h1>
-        <RequestButton />
+        {output}
       </div>
     );
   }
+
 }
 
 export default Bed
