@@ -42,27 +42,32 @@ class Bed extends Component {
 
   render(){
     let output = '';
-    if (this.state.view === 'chooseBed') {
-      output = <ChooseBed
-      bedList={this.state.beds}
-      assignWebSocketId={this.props.route.assignWebSocketId}
-      changeViewState={this.changeViewState} />
+    const outputProps = {
+      changeViewState: this.changeViewState
     }
-    if (this.state.view === 'requestButton') {
-      output = <RequestButton
-      changeViewState={this.changeViewState}/>
-    }
-    if (this.state.view === 'requestForm') {
-      output = <RequestForm
-      changeViewState={this.changeViewState}/>
-    }
-    if (this.state.view === 'requestPending') {
-      output = <RequestPending
-      changeViewState={this.changeViewState}/>
-    }
-    if (this.state.view === 'requestAcknowledged') {
-      output = <RequestAcknowledged
-      changeViewState={this.changeViewState}/>
+
+    switch(this.state.view) {
+      case 'chooseBed':
+        output = <ChooseBed
+          bedList={this.state.beds}
+          assignWebSocketId={this.props.route.assignWebSocketId}
+          {...outputProps}
+        />
+        break;
+      case 'requestButton':
+        output = <RequestButton {...outputProps} />
+        break;
+      case 'requestForm':
+        output = <RequestForm {...outputProps} />
+        break;
+      case 'requestPending':
+        output = <RequestPending {...outputProps} />
+        break;
+      case 'requestAcknowledged':
+        output = <RequestAcknowledged {...outputProps} />
+        break;
+      default:
+        output = <h4>View Not Found</h4>
     }
 
     return (
