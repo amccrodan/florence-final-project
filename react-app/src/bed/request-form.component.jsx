@@ -11,7 +11,7 @@ class RequestForm extends Component {
                             <h1 className='title'>How can we help you today?</h1>
                         </div>
                         <div className='cancel'>
-                            <span className='button is-large is-danger'>Cancell</span>
+                            <span className='button is-large is-danger'>Cancel</span>
                         </div>
                     </div>
                 </div>
@@ -24,7 +24,7 @@ class RequestForm extends Component {
                     <span className='button is-large is-info options'><i className='fa fa-cutlery' aria-hidden='true'></i></span> 
                 </div>
                 <div className='column'>
-                    <span className='button is-large is-success options'>
+                    <span className='button is-large options bathroom'>
                         <i className='fa fa-male' aria-hidden='true'></i>
                         <i className='fa fa-female' aria-hidden='true'></i>
                     </span>
@@ -33,9 +33,9 @@ class RequestForm extends Component {
                     <span className='button is-large is-warning options'><i className='fa fa-question' aria-hidden='true'></i></span>
                 </div>
             </div>
-            <p className='control'>
+            <p className='input-field'>
                 <textarea className='textarea' type='text' placeholder='Add a comment...'></textarea>
-                <button type='submit' className='button is-primary submit'>
+                <button type='submit' className='button is-success submit'>
                     <h1 className='title is-1'>Submit</h1>
                 </button>
             </p>
