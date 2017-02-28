@@ -18,19 +18,15 @@ class RequestPending extends Component {
         </div>
         <div className='hero-body'>
           <div className='container has-text-centered'>
-            <div>
-              <div className='columns'>
-
-                <div className='column is-one-third'>
-                </div>
-                <div className='column'>
-                  <div className='button is-danger cancel-request'>
-                      <h1 className='title is-1'>Cancel</h1>
-                    </div>
-                </div>
-                <div className='column'>
-                </div>
-
+            <div className='columns'>
+              <div className='column is-one-third'>
+              </div>
+              <div className='column'>
+                <div className='button is-danger cancel-request'>
+                    <h1 className='title is-1'>Cancel</h1>
+                  </div>
+              </div>
+              <div className='column'>
               </div>
             </div>
           </div>

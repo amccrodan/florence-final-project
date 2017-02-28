@@ -36,21 +36,21 @@ class Bed extends Component {
 
   render(){
    
-   return (
+   /*return (
       <div>
         <h1>Request pending</h1>
         <RequestPending />
       </div>
-    );
+    );*/
 
-    /*return (
+    return (
       <div>
         <h1>Request acknowledged</h1>
         <RequestAcknowledged />
       </div>
     );
    
-    return (
+    /*return (
       <div>
         <h1>Request form</h1>
         <RequestForm />
