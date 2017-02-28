@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import RequestButton from './request-button.component.jsx';
 import ChooseBed from './choose-bed.component.jsx'
 import RequestForm from './request-form.component.jsx';
+import RequestPending from './request-pending.component.jsx';
+import RequestAcknowledged from './request-acknowledged.component.jsx';
 
 import axios from 'axios';
 
@@ -47,19 +49,28 @@ class Bed extends Component {
       changeViewState={this.changeViewState} />
     }
     if (this.state.view === 'requestButton') {
-      output = <RequestButton />
+      output = <RequestButton
+      changeViewState={this.changeViewState}/>
     }
     if (this.state.view === 'requestForm') {
-      output = <RequestForm />
+      output = <RequestForm
+      changeViewState={this.changeViewState}/>
     }
+    if (this.state.view === 'requestPending') {
+      output = <RequestPending
+      changeViewState={this.changeViewState}/>
+    }
+    if (this.state.view === 'requestAcknowledged') {
+      output = <RequestAcknowledged
+      changeViewState={this.changeViewState}/>
+    }
+
     return (
       <div>
         {output}
       </div>
     );
-
   }
-
 
 }
 
