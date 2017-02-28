@@ -17,7 +17,7 @@ class NurseList extends Component {
   render(){
     return (
       <div className='is-child tile'>
-        <h1>Nurses</h1>
+        <h1 className='title has-text-centered'>Nurses</h1>
         {this.props.nurses.map(nurse => {
           if (nurse.is_nurse) {
             return <article key={nurse.id} > {nurse.first_name} </article>
