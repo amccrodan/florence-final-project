@@ -10,6 +10,9 @@ class RequestForm extends Component {
                         <div className='container has-text-centered'>
                             <h1 className='title'>How can we help you today?</h1>
                         </div>
+                        <div className='cancel'>
+                            <span className='button is-large is-danger'>Cancell</span>
+                        </div>
                     </div>
                 </div>
             </header>
