@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 
 import RequestButton from './request-button.component.jsx';
+import RequestForm from './request-form.component.jsx';
 
 import axios from 'axios';
+
 
 class Bed extends Component {
   constructor(props){
@@ -31,6 +33,13 @@ class Bed extends Component {
   }
 
   render(){
+    return (
+      <div>
+        <h1>Request form</h1>
+        <RequestForm />
+      </div>
+    );
+
     return (
       <div>
         <h1>Bed Page</h1>
