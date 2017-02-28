@@ -13,22 +13,22 @@ class RequestPending extends Component {
             </div>
         </div>
       </section>
-      <section className="hero is-light is-fullheight">
-        <div className="hero nice-background is-fullheight">
+      <section className='hero is-light is-fullheight'>
+        <div className='hero nice-background is-fullheight'>
         </div>
-        <div className="hero-body">
-          <div className="container has-text-centered">
+        <div className='hero-body'>
+          <div className='container has-text-centered'>
             <div>
-              <div className="columns">
+              <div className='columns'>
 
-                <div className="column is-one-third">
+                <div className='column is-one-third'>
                 </div>
-                <div className="column">
-                  <span className="button is-focused big-circle is-white">
+                <div className='column'>
+                  <div className='button is-danger cancel-request'>
                       <h1 className='title is-1'>Cancel</h1>
-                    </span>
+                    </div>
                 </div>
-                <div className="column">
+                <div className='column'>
                 </div>
 
               </div>

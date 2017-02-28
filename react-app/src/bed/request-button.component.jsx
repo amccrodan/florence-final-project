@@ -8,15 +8,11 @@ class RequestButton extends Component {
         </div>
         <div className='hero-body'>
           <div className='container has-text-centered'>
-            <div className=''>
-              <span className='button is-focused is-success choices'>
-                  <h1 className='title is-1'>Request</h1>
-                </span>
+            <div className='button is-focused is-success choices'>
+                <h1 className='title is-1'>Request</h1>
             </div>
-            <div className=''>
-              <span className='button is-danger choices'>
-                  <i className='fa fa-exclamation-triangle' aria-hidden='true'></i>
-              </span>
+            <div className='button is-danger choices'>
+                <i className='fa fa-exclamation-triangle' aria-hidden='true'></i>
             </div>
           </div> 
         </div>
