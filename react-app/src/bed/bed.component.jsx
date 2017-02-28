@@ -5,6 +5,7 @@ import RequestForm from './request-form.component.jsx';
 
 import axios from 'axios';
 
+
 class Bed extends Component {
   constructor(props){
     super(props);
