@@ -14,7 +14,7 @@ const knexLogger  = require('knex-logger');
 
 app.use(morgan('dev'));
 app.use(knexLogger(knex));
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 app.use(express.static("public"));
 
 const bedRoutes = require("./routes/beds");
@@ -25,6 +25,7 @@ const requestRoutes = require("./routes/requests");
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  res.header("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT");
   next();
 });
 // Mount all resource routes
