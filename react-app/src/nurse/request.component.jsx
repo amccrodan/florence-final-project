@@ -74,7 +74,9 @@ class Request extends Component {
             { this.props.img ? (
               <img className="staff-picture" src={`http://localhost:8080/images/nurses/${this.props.img}`} />
             ) : (
-              <div></div>
+              <div className="assign-staff-box">
+                Assign
+              </div>
             )
           }
           </div>

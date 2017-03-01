@@ -15,7 +15,9 @@ i.patient-request{
 }
 
 .request-content{
-  // border: 3px solid grey;
+  border: 3px solid #eee;
+  border-radius: 10px;
+  box-shadow: 0px 0px 5px grey;
   border-radius: 5px;
   background-color:white;
   margin-top:12.5px;
@@ -25,19 +27,26 @@ i.patient-request{
 }
 
 .request-queue{
+  border-right: 3px solid #eee;
   min-height: 1vh;
   max-height: 100vh;
   overflow: auto;
-  background-color: #eee;
+  // background-color: #eee;
 }
 
-// .pending{
-//   border: 3px solid #ffdd57;
-// }
+.pending{
+  background-color: rgba(255, 221, 87, .1);
+  border: 3px solid #ffdd57;
+  border-radius: 10px;
+  box-shadow: 0px 0px 5px #ffdd57;
+}
 
-// .in-progress{
-//   border: 3px solid #22C65B;
-// }
+.in-progress{
+  background-color: rgba(34, 198, 91, .1);
+  border: 3px solid #22C65B;
+  border-radius: 10px;
+  box-shadow: 0px 0px 5px #22C65B;
+}
 
 .request-category-border{
   display:flex;
@@ -47,4 +56,14 @@ i.patient-request{
   border-radius: 5px;
   width: 6em;
   height: 6em;
+}
+
+.assign-staff-box{
+  display: flex;
+  align-items: center;
+  justify-content:center;
+  height:6em;
+  width: 6em;
+  border: 3px dotted grey;
+  border-radius: 5px;
 }
