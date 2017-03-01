@@ -8,11 +8,12 @@ module.exports = (knex) => {
   //Get all requests
   router.get("/", (req, res) => {
     knex
-      .select("requests.id as request_id", "requests.bed_id", "patients.id as patient_id", "nurse_id", "status_id", "request_type_id", "patients.first_name", "patients.last_name")
+      .select("requests.id as request_id", "requests.bed_id", "patients.id as patient_id", "requests.nurse_id AS nurse_id", "status_id", "request_type_id", "patients.first_name", "patients.last_name", "nurses.image", "nurses.first_name AS nurse_first_name", "nurses.last_name AS nurse_last_name")
       .from("requests")
       .join("patients", function(){
         this.on('patients.id', '=', 'requests.patient_id')
       })
+      .leftJoin("nurses", "requests.nurse_id", "nurses.id")
       .then((results) => {
         res.json(results);
     });
