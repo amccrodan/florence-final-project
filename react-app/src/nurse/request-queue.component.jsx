@@ -14,7 +14,7 @@ class RequestQueue extends Component {
         }
         )}
       </div>
-    )
+    );
   }
 }
 

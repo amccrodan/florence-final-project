@@ -41,7 +41,7 @@ class Request extends Component {
           </div>
         </div>
       </article>
-    )
+    );
   }
 }
 
