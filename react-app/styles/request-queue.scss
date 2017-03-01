@@ -26,6 +26,8 @@ i.patient-request{
 }
 
 .request-queue{
-  height:100%;
+  min-height: 1vh;
+  max-height: 100vh;
+  overflow: auto;
   background-color: #eee;
 }

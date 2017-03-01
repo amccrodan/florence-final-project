@@ -20,9 +20,18 @@
 @import 'request-form';
 @import 'request-pending';
 @import 'request-acknowledged';
-@import 'nurse-list';
-@import 'care-aid-list';
+@import 'staff-list';
 
 body {
   font-family: 'Questrial', sans-serif;
+  max-height: 100%;
+}
+
+html {
+  height: 100%;
+}
+
+.tile {
+  min-height: 1vh;
+  max-height: 100vh;
 }

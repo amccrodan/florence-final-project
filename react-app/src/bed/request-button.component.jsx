@@ -24,7 +24,7 @@ class RequestButton extends Component {
               <h1 className='title is-1'>Request</h1>
             </div>
             <div className='button is-danger choices'>
-              <i className='fa fa-exclamation-triangle' aria-hidden='true'></i>
+              <i className='request-category fa fa-exclamation-triangle' aria-hidden='true'></i>
             </div>
           </div>
         </div>

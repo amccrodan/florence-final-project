@@ -31,19 +31,19 @@ class RequestForm extends Component {
           </section>
           <div className='columns'>
             <div className='column'>
-              <span className='button is-large is-primary options'><i className='fa fa-medkit' aria-hidden='true'></i></span>
+              <span className='button is-large is-primary options'><i className='request-category fa fa-medkit' aria-hidden='true'></i></span>
             </div>
             <div className='column'>
-              <span className='button is-large is-info options'><i className='fa fa-cutlery' aria-hidden='true'></i></span>
+              <span className='button is-large is-info options'><i className='request-category fa fa-cutlery' aria-hidden='true'></i></span>
             </div>
             <div className='column'>
               <span className='button is-large options bathroom'>
-                <i className='fa fa-male' aria-hidden='true'></i>
-                <i className='fa fa-female' aria-hidden='true'></i>
+                <i className='request-category fa fa-male' aria-hidden='true'></i>
+                <i className='request-category fa fa-female' aria-hidden='true'></i>
               </span>
             </div>
             <div className='column'>
-              <span className='button is-large is-warning options'><i className='fa fa-question' aria-hidden='true'></i></span>
+              <span className='button is-large is-warning options'><i className='request-category fa fa-question' aria-hidden='true'></i></span>
             </div>
           </div>
           <p className='input-field'>
