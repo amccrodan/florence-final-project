@@ -8,7 +8,7 @@ module.exports = (knex) => {
   //Get all requests
   router.get("/", (req, res) => {
     knex
-      .select("*")
+      .select("requests.id as request_id", "requests.bed_id", "patients.id as patient_id", "nurse_id", "status_id", "request_type_id", "patients.first_name", "patients.last_name")
       .from("requests")
       .join("patients", function(){
         this.on('patients.id', '=', 'requests.patient_id')
