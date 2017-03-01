@@ -24,9 +24,14 @@ module.exports = (knex) => {
       bed_id: req.body.bed_id,
       patient_id: req.body.patient_id,
       status_id: 1,
-      request_type: req.body.request_type,
+      request_type_id: req.body.request_type_id,
       description: req.body.description
-    })
+    }).returning('id')
+      .then((results) => {
+        res.status(200).send(results);
+    }).catch(function(err) {
+        console.error(err);
+    });
   });
 
   //Get a specific request by id
@@ -42,13 +47,14 @@ module.exports = (knex) => {
 
   //Update a request status ie. pending -> complete
   router.put("/:id", (req, res) => {
-    knex
-      .select("status")
-      .from("requests")
-      .where("id", req.params.id)
-      .update("status", req.body.status)
+    console.log(req.body);
+    knex('requests')
+      .where("id", req.body.request_id)
+      .update("status_id", req.body.status_id)
       .then((results) => {
         res.json(results);
+      }).catch(function(err) {
+          console.error(err);
       });
   });
   return router;
