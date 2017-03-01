@@ -23,12 +23,6 @@ class ChooseBed extends Component {
     this.setState({bedSort: event.target.value})
   }
 
-  // handleRoom(room) {
-  //   const buttons = room.map(item => {
-  //     return <button className="button is-large is-40-wide" key={item.id} value={item.id} onClick={this.handleClick}>Bed {item.id}</button>
-  //   })
-  // }
-
   render(){
     let buttons = '';
     if (this.state.bedSort === 'all') {
