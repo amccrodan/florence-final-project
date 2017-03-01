@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-require("../../js/request.js");
 
 class RequestForm extends Component {
   constructor(props){
