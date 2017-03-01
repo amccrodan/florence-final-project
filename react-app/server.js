@@ -7,8 +7,8 @@ var express = require('express');
 var server = new WebpackDevServer(webpack(config), {
     publicPath: config.output.publicPath,
     watchOptions: {
-      aggregateTimeout: 300,
-      poll: 1000
+      // aggregateTimeout: 300,
+      poll: 2000
     },
     setup: function(app) {
       app.use(express.static(__dirname + '/build'));

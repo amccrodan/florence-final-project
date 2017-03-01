@@ -17,7 +17,7 @@ class SortByRoom extends Component {
       buttons.push(
         <button
         className="button is-large is-80-wide"
-        key={room}
+        key={'room' + room}
         value={room}
         data='room'
         onClick={this.handleRoom}>
