@@ -1,6 +1,11 @@
+.active {
+    display: block;
+}
+
 .bathroom {
     background-color: #F5B278;
 }
+
 .cancel {
     float: right;
 }
@@ -10,17 +15,25 @@
     font-size: 100px;
 }
 
+.food {
+
+}
+
 // .input-field {
 //     display: none;
 // }
 
-.active {
-    display: block;
+.medicine {
+
 }
 
 .options {
     height: 200px;
     width: 100%;
+}
+
+.other {
+  
 }
 
 .submit {
