@@ -1,3 +1,13 @@
+.assign-staff-box{
+  align-items: center;
+  border: 3px dotted grey;
+  border-radius: 5px;
+  display: flex;
+  height:6em;
+  justify-content:center;
+  width: 6em;
+}
+
 
 h1.title{
   margin: 25px auto;
@@ -11,28 +21,35 @@ i.patient-request{
   font-size:60px;
 }
 
+.in-progress{
+  background-color: rgba(34, 198, 91, .1);
+  border: 3px solid #22C65B;
+  border-radius: 10px;
+  box-shadow: 0px 0px 5px #22C65B;
+}
+
+
+.navbar{
+  background-color:#757575;
+  color: white;
+  font-size: 2em;
+  height:70px;
+  line-height:70px;
+}
+
 .nurse-station{
   padding:10px;
 }
 
 .request-content{
+  background-color:white;
   border: 3px solid #eee;
   border-radius: 10px;
   box-shadow: 0px 0px 5px grey;
-  border-radius: 5px;
-  background-color:white;
   margin-top:12.5px;
   margin-bottom:12.5px;
   padding-top:12.5px;
   padding-bottom:12.5px;
-}
-
-.request-queue{
-  border-right: 3px solid #eee;
-  min-height: 1vh;
-  max-height: 100vh;
-  overflow: auto;
-  // background-color: #eee;
 }
 
 .pending{
@@ -42,47 +59,33 @@ i.patient-request{
   box-shadow: 0px 0px 5px #ffdd57;
 }
 
-.in-progress{
-  background-color: rgba(34, 198, 91, .1);
-  border: 3px solid #22C65B;
-  border-radius: 10px;
-  box-shadow: 0px 0px 5px #22C65B;
-}
-
 .request-category-border{
-  display:flex;
   align-items:center;
-  justify-content:center;
   border: 1px solid white;
   border-radius: 5px;
-  width: 6em;
+  display:flex;
   height: 6em;
-}
-
-.assign-staff-box{
-  display: flex;
-  align-items: center;
   justify-content:center;
-  height:6em;
   width: 6em;
-  border: 3px dotted grey;
-  border-radius: 5px;
 }
 
-.navbar{
-  font-size: 2em;
-  color: white;
-  background-color:#757575;
-  height:70px;
+.request-queue{
+  border-right: 3px solid #eee;
+  max-height: 100vh;
+  min-height: 1vh;
+  overflow: auto;
 }
 
 .emergency {
-  .title{
-    color: white;
-  }
+
   .assign-staff-box{
     border: 3px dotted
   }
-  color:white;
+
+  .title{
+    color: white;
+  }
+
   background-color: rgb(255, 56, 96);
+  color:white;
 }
