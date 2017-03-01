@@ -16,12 +16,12 @@ class NurseList extends Component {
 
   render(){
     return (
-      <div className='is-child tile'>
+      <div className='is-child tile nurse-list'>
         <h1 className='title has-text-centered'>Nurses</h1>
         {this.props.nurses.map(nurse => {
           if (nurse.is_nurse) {
-            return <article key={nurse.id}>
-              <img src={ `http://localhost:8080/images/nurses/${nurse.image}`} />
+            return <article className='has-text-centered' key={nurse.id}>
+              <img className="staff-picture" src={ `http://localhost:8080/images/nurses/${nurse.image}`} />
               <p> {nurse.first_name} </p>
             </article>
           }

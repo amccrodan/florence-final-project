@@ -31,7 +31,7 @@ class Nurse extends Component {
 
     this.serverRequest.get("nurses").then((result) => {
       this.setState({nurses: result.data}, () => {
-        console.log(this.state.requests);
+        console.log(this.state.nurses);
       });
     })
 
@@ -42,7 +42,7 @@ class Nurse extends Component {
     return (
       <div className='tile is-ancestor nurse-station'>
         <RequestQueue requests={this.state.requests} />
-        <div className='tile is-vertical is-parent'>
+        <div id='staff-list' className='tile is-vertical is-parent staff-list'>
           <CareAideList nurses={this.state.nurses} />
           <NurseList nurses={this.state.nurses} />
         </div>
