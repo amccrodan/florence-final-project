@@ -22,13 +22,13 @@ class Bed extends Component {
 
     this.serverRequest = axios.create({
       baseURL: 'http://localhost:8080/api/',
-      responseType: 'json', // default
-      withCredentials: false // default
+      withCredentials: false, // default
     });
 
     this.changeViewState = this.changeViewState.bind(this);
     this.changeRequestState = this.changeRequestState.bind(this);
     this.postRequest = this.postRequest.bind(this);
+    this.putRequest = this.putRequest.bind(this);
   }
 
   componentDidMount() {
@@ -59,8 +59,17 @@ class Bed extends Component {
 
   postRequest () {
     console.log('Posted:');
+    this.state.request.patient_id = 3;
     console.log(this.state.request);
-    //this.serverRequest.post('requests', this.state.request);
+    this.serverRequest.post('requests', this.state.request).then((response) => {
+      this.changeRequestState({request_id: response.data[0]}, () => {});
+    });
+  }
+
+  putRequest () {
+    console.log('Put:');
+    console.log(this.state.request);
+    this.serverRequest.put(`requests/${this.state.request.bed_id}`, this.state.request);
   }
 
   render(){
@@ -68,7 +77,8 @@ class Bed extends Component {
     const outputProps = {
       changeViewState: this.changeViewState,
       changeRequestState: this.changeRequestState,
-      postRequest: this.postRequest
+      postRequest: this.postRequest,
+      putRequest: this.putRequest
     }
 
     switch(this.state.view) {
