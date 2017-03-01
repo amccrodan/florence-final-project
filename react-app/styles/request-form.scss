@@ -1,18 +1,26 @@
+.active {
+    display: block;
+}
+
 .bathroom {
   background-color: #F5B278;
 }
+
 .cancel {
   float: right;
 }
 
-.active {
-  display: block;
+.food {
+
+}
+
+.medicine {
+
 }
 
 .options {
   height: 200px;
   width: 100%;
-
 }
 
 .request-category{
@@ -20,6 +28,9 @@
   font-size: 100px;
 }
 
+.other {
+
+}
 
 .submit {
   color: white;

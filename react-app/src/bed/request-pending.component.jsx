@@ -1,6 +1,21 @@
 import React, { Component } from 'react';
 
 class RequestPending extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+    };
+  this.handleClick = this.handleClick.bind(this);
+
+  }
+
+  handleClick (event) {
+    this.props.changeRequestState({status_id: 4}, () => {
+      this.props.postRequest();
+    });
+    this.props.changeViewState('requestButton');
+  }
+
   render(){
     return (
       <div>
@@ -22,7 +37,7 @@ class RequestPending extends Component {
               <div className='column is-one-third'>
               </div>
               <div className='column'>
-                <div className='button is-danger cancel-request'>
+                <div className='button is-danger cancel-request' onClick={this.handleClick}>
                     <h1 className='title is-1'>Cancel</h1>
                   </div>
               </div>

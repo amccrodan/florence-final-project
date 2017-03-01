@@ -45,6 +45,7 @@ wss.on('connection', (ws) => {
 
   ws.on('message', function incoming(message) {
     const receivedMsg = JSON.parse(message);
+    console.log('Client connected.');
 
     switch(receivedMsg.type) {
       case 'newRequestMade':
@@ -56,7 +57,6 @@ wss.on('connection', (ws) => {
         break;
       case 'assignId':
         ws.florenceId = receivedMsg.id
-        console.log(`${ws.florenceId} just connected.`);
         ws.send(JSON.stringify({message: `Your connection ID is ${ws.florenceId}`}))
         break;
       default:
