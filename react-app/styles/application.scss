@@ -25,4 +25,20 @@
 
 body {
   font-family: 'Questrial', sans-serif;
+  max-height: 100%;
+}
+
+html {
+  height: 100%;
+}
+
+.tile {
+  min-height: 1vh;
+  max-height: 100vh;
+}
+
+.request-queue, .staff-list {
+  // overflow: auto;
+  min-height: 1vh;
+  max-height: 100vh;
 }
