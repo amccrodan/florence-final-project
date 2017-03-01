@@ -14,24 +14,29 @@ class Bed extends Component {
     super(props);
     this.state = {
       view: 'chooseBed',
-      beds: []
+      beds: [],
+      request: {
+        //bed_id, patient_id, nurse_id, status_id, request_type_id, description
+      }
     };
 
     this.serverRequest = axios.create({
-      baseURL: "http://localhost:8080/api/",
+      baseURL: 'http://localhost:8080/api/',
       responseType: 'json', // default
       withCredentials: false // default
     });
 
     this.changeViewState = this.changeViewState.bind(this);
+    this.changeRequestState = this.changeRequestState.bind(this);
+    this.postRequest = this.postRequest.bind(this);
   }
 
   componentDidMount() {
     // Put the below in the main request screen component
 
-    this.serverRequest.get("beds").then((result) => {
+    this.serverRequest.get('beds').then((result) => {
       this.setState({beds: result.data}, () => {
-        console.log(`State: ${this.state.beds}`);
+        console.log('Beds state set.');
       });
     })
   }
@@ -40,10 +45,30 @@ class Bed extends Component {
     this.setState({view: stateName});
   }
 
+  changeRequestState (params, callback) {
+    const newRequest = this.state.request;
+    for (let key in params) {
+      newRequest[key] = params[key];
+    }
+    this.setState({request: newRequest}, () => {
+      callback();
+      console.log('Local request:');
+      console.log(this.state.request);
+    });
+  }
+
+  postRequest () {
+    console.log('Posted:');
+    console.log(this.state.request);
+    //this.serverRequest.post('requests', this.state.request);
+  }
+
   render(){
     let output = '';
     const outputProps = {
-      changeViewState: this.changeViewState
+      changeViewState: this.changeViewState,
+      changeRequestState: this.changeRequestState,
+      postRequest: this.postRequest
     }
 
     switch(this.state.view) {
