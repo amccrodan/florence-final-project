@@ -20,7 +20,8 @@ class ChooseBed extends Component {
   }
 
   handleSort(event) {
-    this.setState({bedSort: event.target.value})
+    this.setState({bedSort: event.target.value});
+
   }
 
   render(){
