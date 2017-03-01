@@ -5,9 +5,6 @@ class RequestQueue extends Component {
   render(){
     return (
       <div className='tile is-parent is-vertical is-10 request-queue'>
-        <article className='is-child request-queue-title'>
-          <h1 className="title has-text-centered"> Request Queue: </h1>
-        </article>
         {this.props.requests.map(request => {
           console.log("Request img should be", request.image);
           return <Request key={request.request_id}
