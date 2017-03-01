@@ -6,8 +6,9 @@ class RequestForm extends Component {
     super(props);
       this.state = {
     };
-    this.handleSubmit = this.handleSubmit.bind(this);
     this.handleTypeButton = this.handleTypeButton.bind(this);
+    this.handleCancel = this.handleCancel.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleTypeButton (event) {
@@ -19,6 +20,10 @@ class RequestForm extends Component {
       }
     });
     this.props.changeRequestState({request_type_id: currentType}, () => {});
+  }
+
+  handleCancel (event) {
+    this.props.changeViewState('requestButton');
   }
 
   handleSubmit (event) {
@@ -39,7 +44,7 @@ class RequestForm extends Component {
                   <h1 className='title'>How can we help you today?</h1>
                     </div>
                 <div className='cancel'>
-                  <span className='button is-large is-danger'>Cancel</span>
+                  <span className='button is-large is-danger' onClick={this.handleCancel}>Cancel</span>
                 </div>
               </div>
             </div>
