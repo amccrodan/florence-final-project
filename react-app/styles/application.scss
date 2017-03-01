@@ -14,13 +14,24 @@
 @import url("https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css");
 
 
-
+@import 'request-queue';
 @import 'request-button';
 @import 'choose-bed';
 @import 'request-form';
 @import 'request-pending';
 @import 'request-acknowledged';
+@import 'staff-list';
 
 body {
   font-family: 'Questrial', sans-serif;
+  max-height: 100%;
+}
+
+html {
+  height: 100%;
+}
+
+.tile {
+  min-height: 1vh;
+  max-height: 100vh;
 }

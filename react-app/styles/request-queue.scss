@@ -1,0 +1,33 @@
+h1.title{
+  margin: 25px auto;
+}
+
+i.fa.fa-picture-o.patient-avatar::before{
+  font-size:75px;
+}
+
+i.patient-request{
+  font-size:75px;
+}
+
+.nurse-station{
+  padding:10px;
+}
+
+.request-content{
+  border: 1px solid white;
+  border-radius: 5px;
+  background-color:white;
+  height:100px;
+  margin-top:12.5px;
+  margin-bottom:12.5px;
+  padding-top:12.5px;
+  padding-bottom:12.5px;
+}
+
+.request-queue{
+  min-height: 1vh;
+  max-height: 100vh;
+  overflow: auto;
+  background-color: #eee;
+}
