@@ -11,9 +11,9 @@ class RequestPending extends Component {
 
   handleClick (event) {
     this.props.changeRequestState({status_id: 4}, () => {
-      this.props.postRequest();
+      this.props.putRequest();
+      this.props.changeViewState('requestButton');
     });
-    this.props.changeViewState('requestButton');
   }
 
   render(){
