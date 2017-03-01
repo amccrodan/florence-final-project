@@ -27,6 +27,7 @@ class Bed extends Component {
 
     this.changeViewState = this.changeViewState.bind(this);
     this.changeRequestState = this.changeRequestState.bind(this);
+    this.getPatientId = this.getPatientId.bind(this);
     this.postRequest = this.postRequest.bind(this);
     this.putRequest = this.putRequest.bind(this);
   }
@@ -57,9 +58,14 @@ class Bed extends Component {
     });
   }
 
+  getPatientId () {
+    this.serverRequest.get(`beds/${this.state.request.bed_id}`).then((response) => {
+      this.changeRequestState({patient_id: response.data[0].patient_id}, () => {});
+    });
+  }
+
   postRequest () {
     console.log('Posted:');
-    this.state.request.patient_id = 3;
     console.log(this.state.request);
     this.serverRequest.post('requests', this.state.request).then((response) => {
       this.changeRequestState({request_id: response.data[0]}, () => {});
@@ -90,7 +96,9 @@ class Bed extends Component {
         />
         break;
       case 'requestButton':
-        output = <RequestButton {...outputProps} />
+        output = <RequestButton
+          getPatientId={this.getPatientId}
+          {...outputProps} />
         break;
       case 'requestForm':
         output = <RequestForm {...outputProps} />
