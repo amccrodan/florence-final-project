@@ -23,8 +23,22 @@ class Request extends Component {
       }
     };
 
+    function reqStatusBorderColour(request_status_id){
+      switch (request_status_id){
+        case 1:
+          return 'pending'
+          break
+        case 2:
+          return 'in-progress'
+          break
+        default:
+          return ''
+          break
+      }
+    };
+
     return (
-      <article className='is-child request-content' key={this.props.id}>
+      <article className={`is-child request-content ${reqStatusBorderColour(this.props.status_id)}`} key={this.props.id}>
         <div className="level columns">
           <div className="level-item column is-1 has-text-centered">
             <p className="title">5:00</p>
