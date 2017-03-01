@@ -29,7 +29,6 @@ class SortByRoom extends Component {
   }
 
   handleRoom (event) {
-    console.log('buttons state', this.state.buttons);
     // build a new state
     const resetState = []
     this.state.buttons.forEach(button => {
@@ -53,7 +52,6 @@ class SortByRoom extends Component {
 
     //add them to state
     this.state.buttons.splice.apply(this.state.buttons, [parseInt(event.target.value), 0].concat(bedButtons));
-    console.log('afterwards', this.state.buttons);
     this.forceUpdate();
   }
 
