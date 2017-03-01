@@ -21,10 +21,6 @@ class RequestButton extends Component {
   }
 
   componentDidMount () {
-    this.props.changeRequestState({
-      request_type_id: 0,
-      status_id: 1
-    }, () => {});
   }
 
   render(){
