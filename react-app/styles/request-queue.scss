@@ -7,7 +7,7 @@ i.fa.fa-picture-o.patient-avatar::before{
 }
 
 i.patient-request{
-  font-size:75px;
+  font-size:60px;
 }
 
 .nurse-station{
@@ -15,10 +15,9 @@ i.patient-request{
 }
 
 .request-content{
-  border: 1px solid white;
+  // border: 3px solid grey;
   border-radius: 5px;
   background-color:white;
-  height:100px;
   margin-top:12.5px;
   margin-bottom:12.5px;
   padding-top:12.5px;
@@ -32,10 +31,20 @@ i.patient-request{
   background-color: #eee;
 }
 
-.pending{
-  border: 5px solid #ffdd57;
-}
+// .pending{
+//   border: 3px solid #ffdd57;
+// }
 
-.in-progress{
-  border: 5px solid #22C65B;
+// .in-progress{
+//   border: 3px solid #22C65B;
+// }
+
+.request-category-border{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border: 1px solid white;
+  border-radius: 5px;
+  width: 6em;
+  height: 6em;
 }
