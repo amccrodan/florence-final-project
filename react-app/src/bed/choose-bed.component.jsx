@@ -1,56 +1,54 @@
 import React, { Component } from 'react';
+import SortByRoom from './sort-by-room.component.jsx'
 
 class ChooseBed extends Component {
   constructor(props){
     super(props);
     this.state = {
-
+      bedSort: 'all',
+      rooms: {}
     };
 
   this.handleClick = this.handleClick.bind(this);
-
+  this.handleSort = this.handleSort.bind(this);
   }
 
   handleClick (event) {
-    console.log(event.target.value);
     this.props.assignWebSocketId(event.target.value);
     this.props.changeViewState('requestButton');
   }
 
+  handleSort(event) {
+    this.setState({bedSort: event.target.value})
+  }
+
+  // handleRoom(room) {
+  //   const buttons = room.map(item => {
+  //     return <button className="button is-large is-40-wide" key={item.id} value={item.id} onClick={this.handleClick}>Bed {item.id}</button>
+  //   })
+  // }
+
   render(){
     let buttons = '';
-    let rooms = {
-      1: [
-        {
-          id: 1,
-          patient_id: 1,
-          room_id: 1
-        },
-        {
-          id: 2,
-          patient_id: 2,
-          room_id: 1
-        }
-      ],
-      2: [
-        {
-          id: 3,
-          patient_id: 3,
-          room_id: 2
-        },
-        {
-          id: 4,
-          patient_id: 4,
-          room_id: 2
-        }
-      ]
+    if (this.state.bedSort === 'all') {
+      buttons = this.props.bedList.map( item => {
+        return <button className="button is-large is-40-wide" key={item.id} value={item.id} onClick={this.handleClick}>Bed {item.id}</button>
+      })
     }
+    if (this.state.bedSort === 'rooms') {
+      let rooms = {};
+      this.props.bedList.forEach(item => {
+        if (rooms[item.room_id]) {
+          rooms[item.room_id].push(item);
+        } else {
+          rooms[item.room_id] = [item];
+        }
+      });
+      buttons = <SortByRoom
+        rooms={rooms}
+        handleBedClick={this.handleClick}
+        />
 
-    if (this.props.bedList[0]) {
-    console.log('only logs if props list is not empty');
-    buttons = this.props.bedList.map( item => {
-      return <button className="button is-large is-40-wide" key={item.id} value={item.id} onClick={this.handleClick}>Bed {item.id}</button>
-    })
     }
     return (
       <section className="hero is-light is-fullheight">
@@ -65,10 +63,16 @@ class ChooseBed extends Component {
                 </div>
                 <div className="column is-10 no-padding">
                   <div className="sort-beds">
-                    <button className="button is-large is-40-wide">
+                    <button
+                    className="button is-large is-40-wide"
+                    value='rooms'
+                    onClick={this.handleSort}>
                       Rooms
                     </button>
-                    <button className="button is-large is-40-wide">
+                    <button
+                    className="button is-large is-40-wide"
+                    value='all'
+                    onClick={this.handleSort}>
                       All Beds
                     </button>
                   </div>

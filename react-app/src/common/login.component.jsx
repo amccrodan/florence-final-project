@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
 
-require("../../js/login.js");
-
-
 class Login extends Component {
   render(){
     return (
