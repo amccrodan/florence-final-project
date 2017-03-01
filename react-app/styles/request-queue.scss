@@ -26,21 +26,8 @@ i.patient-request{
 }
 
 .request-queue{
+  min-height: 1vh;
   max-height: 100vh;
   overflow: auto;
   background-color: #eee;
-}
-
-
-.staff-list{
-
-  .is-child tile{
-
-    // min-height: 50vh;
-    max-height: 100vh;
-    // overflow: auto;
-  }
-
-
-
 }
