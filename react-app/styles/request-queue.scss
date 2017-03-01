@@ -1,3 +1,4 @@
+
 h1.title{
   margin: 25px auto;
 }
@@ -73,4 +74,15 @@ i.patient-request{
   color: white;
   background-color:#757575;
   height:70px;
+}
+
+.emergency {
+  .title{
+    color: white;
+  }
+  .assign-staff-box{
+    border: 3px dotted
+  }
+  color:white;
+  background-color: rgb(255, 56, 96);
 }

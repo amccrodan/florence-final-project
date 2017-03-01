@@ -57,8 +57,16 @@ class Request extends Component {
       }
     };
 
+    function checkReqType(request_type_id){
+      if (request_type_id == 5) {
+        return 'emergency';
+      }else{
+        return '';
+      }
+    }
+
     return (
-      <article className={`is-child request-content ${reqStatusBorderColour(this.props.status_id)}`} key={this.props.id}>
+      <article className={`is-child request-content ${reqStatusBorderColour(this.props.status_id)} ${checkReqType(this.props.request_type_id)}`} key={this.props.id}>
         <div className="level columns">
           <div className="level-item column is-1 has-text-centered">
             <p className="title">5:00</p>
