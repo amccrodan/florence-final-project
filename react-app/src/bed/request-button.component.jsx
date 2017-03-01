@@ -6,11 +6,25 @@ class RequestButton extends Component {
     this.state = {
     };
   this.handleClick = this.handleClick.bind(this);
-
+  this.emergencyRequest = this.emergencyRequest.bind(this);
   }
 
   handleClick (event) {
     this.props.changeViewState('requestForm');
+  }
+
+  emergencyRequest () {
+    this.props.changeRequestState({request_type_id: 5, status_id: 1}, () => {
+      this.props.postRequest();
+    });
+    this.props.changeViewState('requestPending');
+  }
+
+  componentDidMount () {
+    this.props.changeRequestState({
+      request_type_id: 0,
+      status_id: 1
+    }, () => {});
   }
 
   render(){
@@ -23,7 +37,7 @@ class RequestButton extends Component {
             <div className='button is-focused is-success choices' onClick={this.handleClick}>
               <h1 className='title is-1'>Request</h1>
             </div>
-            <div className='button is-danger choices'>
+            <div className='button is-danger choices' onClick={this.emergencyRequest}>
               <i className='fa fa-exclamation-triangle' aria-hidden='true'></i>
             </div>
           </div>
