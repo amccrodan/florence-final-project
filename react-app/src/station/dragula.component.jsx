@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 import ReactDragula from 'react-dragula';
 
 class DragulaComponent extends Component {
 
   componentDidMount(){
-    const container = React.findDOMNode(this);
-    dragula([container]);
+    var container = ReactDOM.findDOMNode(this);
+    ReactDragula([container]);
   }
 
   render (){

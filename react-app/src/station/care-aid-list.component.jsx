@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import CareAid from './care-aid.component.jsx';
 
 class CareAideList extends Component {
 
@@ -16,13 +17,10 @@ class CareAideList extends Component {
 
   render(){
     return (
-      <div className='is-child tile care-aides-list'>
-        {this.props.nurses.map(careaid => {
-          if (!careaid.is_nurse) {
-            return <article className='has-text-centered' key={careaid.id}>
-            <img className="staff-picture" src={ `http://localhost:8080/images/nurses/${careaid.image}`} />
-            <p> {careaid.first_name} </p>
-            </article>
+      <div className='is-child tile nurse-list'>
+        {this.props.nurses.map(nurse => {
+          if (!nurse.is_nurse) {
+            return <CareAid key={nurse.id} first_name={nurse.first_name} img={nurse.image} />
           }
         }
         )}
