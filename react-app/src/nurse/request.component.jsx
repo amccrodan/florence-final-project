@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import moment  from 'moment';
- 
+
 class Request extends Component {
   constructor(props){
     super(props);
@@ -115,7 +115,7 @@ class Request extends Component {
       <article className={`is-child request-content ${reqStatusBorderColour(this.props.status_id)} ${checkReqType(this.props.request_type_id)}`} key={this.props.id}>
         <div className="level columns">
           <div className="level-item column is-1 has-text-centered">
-            <p className="title">{moment(this.props.created_at).format('h:mm')}</p>
+            <p className="title">{moment(this.props.created_at).format('HH:mm')}</p>
           </div>
           <div className="level-item column is-4">
             <p className="title"> {this.props.first_name} {this.props.last_name} </p>
@@ -125,7 +125,10 @@ class Request extends Component {
             {reqCategory(this.props.request_type_id)}
           </div>
           <div className="level-item column is-2">
-            { this.props.img ? (
+            { this.props.status_id === 2 ||
+              this.props.status_id === 3 ||
+              this.props.request_type_id === 5 ||
+              this.props.request_type_id === 3 ? (
               <img className="staff-picture" src={`http://localhost:8080/images/nurses/${this.props.img}`} />
             ) : (
               <div className="assign-staff-box">

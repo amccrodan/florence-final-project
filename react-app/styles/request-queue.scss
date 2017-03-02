@@ -34,7 +34,7 @@ i.patient-request{
 
 .nurse-station{
   .tile {
-    max-height: 90vh;    
+    max-height: 90vh;
   }
   padding:10px;
 }
@@ -92,4 +92,12 @@ i.patient-request{
 
   background-color: rgb(255, 56, 96);
   color:white;
+}
+
+.nav.nav.navbar.level{
+  margin:0;
+}
+
+.nav-item{
+  font-size:1em;
 }
