@@ -74,6 +74,7 @@ class Bed extends Component {
       console.log('Posted:');
       console.log(this.state.request);
       this.changeRequestState({request_id: response.data[0]}, () => {});
+      this.props.route.webSocket.send(JSON.stringify({type: 'refreshRequests'}));
     });
   }
 
@@ -82,6 +83,7 @@ class Bed extends Component {
     .then(() => {
       console.log('Put:');
       console.log(this.state.request);
+      this.props.route.webSocket.send(JSON.stringify({type: 'refreshRequests'}));
     });
   }
 
