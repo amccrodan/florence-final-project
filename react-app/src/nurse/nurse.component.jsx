@@ -40,13 +40,20 @@ class Nurse extends Component {
 
   render(){
     return (
-      <div className='tile is-ancestor nurse-station'>
-        <RequestQueue requests={this.state.requests} />
-        <div id='staff-list' className='tile is-vertical is-parent staff-list'>
-          <CareAideList nurses={this.state.nurses} />
-          <NurseList nurses={this.state.nurses} />
+      <div>
+        <nav className="nav navbar">
+          <div className="nav-left">
+            Florence
+          </div>
+        </nav>
+        <div className='tile is-ancestor nurse-station'>
+          <RequestQueue requests={this.state.requests} />
+          <div id='staff-list' className='tile is-vertical is-parent staff-list'>
+            <CareAideList nurses={this.state.nurses} />
+            <NurseList nurses={this.state.nurses} />
+          </div>
         </div>
-      </div>
+        </div>
     );
   }
 }
