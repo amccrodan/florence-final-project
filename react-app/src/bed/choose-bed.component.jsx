@@ -6,11 +6,25 @@ class ChooseBed extends Component {
     super(props);
     this.state = {
       bedSort: 'all',
-      rooms: {}
+      rooms: {},
+      roomsClass: '',
+      allClass: 'active',
+
     };
 
   this.handleClick = this.handleClick.bind(this);
   this.handleSort = this.handleSort.bind(this);
+  this.isActive = this.isActive.bind(this);
+  }
+
+  isActive (bedSort) {
+    console.log('looking for this', bedSort);
+    if (bedSort === 'all') {
+      this.setState({roomsClass: '', allClass: 'active'})
+    }
+    if (bedSort === 'rooms') {
+      this.setState({roomsClass: 'active', allClass: ''})
+    }
   }
 
   handleClick (event) {
@@ -21,7 +35,7 @@ class ChooseBed extends Component {
 
   handleSort(event) {
     this.setState({bedSort: event.target.value});
-
+    this.isActive(event.target.value);
   }
 
   render(){
@@ -60,13 +74,13 @@ class ChooseBed extends Component {
                 <div className="column is-10 no-padding">
                   <div className="sort-beds">
                     <button
-                    className="button is-large is-40-wide"
+                    className={`button is-large is-40-wide ${this.state.roomsClass}`}
                     value='rooms'
                     onClick={this.handleSort}>
                       Rooms
                     </button>
                     <button
-                    className="button is-large is-40-wide"
+                    className={`button is-large is-40-wide ${this.state.allClass}`}
                     value='all'
                     onClick={this.handleSort}>
                       All Beds
