@@ -41,7 +41,7 @@ class RequestAcknowledged extends Component {
           </div>
         </div>
         <div className='container has-text-centered'>
-          <h1 className='title'>Insert nurses' name here is coming to help you </h1>
+          <h1 className='title'>Insert nurses name here is coming to help you </h1>
         </div>
       </section>
     );

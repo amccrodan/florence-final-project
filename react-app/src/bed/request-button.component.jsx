@@ -14,17 +14,14 @@ class RequestButton extends Component {
   }
 
   emergencyRequest () {
-    this.props.changeRequestState({request_type_id: 5, status_id: 1}, () => {
+    this.props.changeRequestState({request_type_id: 5}, () => {
       this.props.postRequest();
     });
     this.props.changeViewState('requestPending');
   }
 
   componentDidMount () {
-    this.props.changeRequestState({
-      request_type_id: 0,
-      status_id: 1
-    }, () => {});
+    this.props.getPatientId();
   }
 
   render(){
