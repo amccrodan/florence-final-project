@@ -6,7 +6,6 @@ class RequestQueue extends Component {
     return (
       <div className='tile is-parent is-vertical is-10 request-queue'>
         {this.props.requests.map(request => {
-          console.log("Request img should be", request.image);
           return <Request key={request.request_id}
             first_name={request.first_name}
             last_name={request.last_name}

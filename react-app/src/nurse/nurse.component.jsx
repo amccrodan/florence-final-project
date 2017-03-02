@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import moment from 'moment';
 
 import RequestQueue from './request-queue.component.jsx';
 import NurseList from './nurse-list.component.jsx';
@@ -13,6 +14,7 @@ class Nurse extends Component {
       stationId: "master",
       requests: [],
       nurses: [],
+      time: '',
     };
 
     this.serverRequest = axios.create({
@@ -20,9 +22,17 @@ class Nurse extends Component {
       responseType: 'json', // default
       withCredentials: false // default
     });
+
+    this.getCurrentTime = this.getCurrentTime.bind(this);
+  }
+
+  getCurrentTime (){
+    const currentTime = moment().format("ddd, MMMM Do YYYY, HH:mm:ss a");
+    this.setState({ time: currentTime })
   }
 
   componentDidMount() {
+
     this.serverRequest.get("requests").then((result) => {
       this.setState({requests: result.data}, () => {
         console.log(this.state.requests);
@@ -35,15 +45,22 @@ class Nurse extends Component {
       });
     })
 
+    setInterval(this.getCurrentTime, 1000);
+
     this.props.route.assignWebSocketId(this.state.stationId);
   }
 
   render(){
     return (
       <div>
-        <nav className="nav navbar">
-          <div className="nav-left">
-            Florence
+        <nav className='nav navbar level'>
+          <div className='level-left'>
+            <div className='nav-item'> Florence </div>
+          </div>
+          <div className='level-right'>
+            <div className='nav-item'>
+              {this.state.time}
+            </div>
           </div>
         </nav>
         <div className='tile is-ancestor nurse-station'>
