@@ -1,3 +1,14 @@
+.assign-staff-box{
+  align-items: center;
+  border: 3px dotted grey;
+  border-radius: 5px;
+  display: flex;
+  height:6em;
+  justify-content:center;
+  width: 6em;
+}
+
+
 h1.title{
   margin: 25px auto;
 }
@@ -7,7 +18,15 @@ i.fa.fa-picture-o.patient-avatar::before{
 }
 
 i.patient-request{
-  font-size:75px;
+  font-size:60px;
+}
+
+.navbar{
+  background-color:#757575;
+  color: white;
+  font-size: 2em;
+  height:70px;
+  line-height:70px;
 }
 
 .nurse-station{
@@ -15,19 +34,57 @@ i.patient-request{
 }
 
 .request-content{
-  border: 1px solid white;
-  border-radius: 5px;
   background-color:white;
-  height:100px;
+  border: 3px solid #eee;
+  border-radius: 10px;
+  box-shadow: 0px 0px 5px grey;
   margin-top:12.5px;
   margin-bottom:12.5px;
   padding-top:12.5px;
   padding-bottom:12.5px;
 }
 
+.in-progress{
+  background-color: rgba(34, 198, 91, .1);
+  border: 3px solid #22C65B;
+  border-radius: 10px;
+  box-shadow: 0px 0px 5px #22C65B;
+}
+
+.pending{
+  background-color: rgba(255, 221, 87, .1);
+  border: 3px solid #ffdd57;
+  border-radius: 10px;
+  box-shadow: 0px 0px 5px #ffdd57;
+}
+
+.request-category-border{
+  align-items:center;
+  border: 1px solid white;
+  border-radius: 5px;
+  display:flex;
+  height: 6em;
+  justify-content:center;
+  width: 6em;
+}
+
 .request-queue{
-  min-height: 1vh;
+  border-right: 3px solid #eee;
   max-height: 100vh;
+  min-height: 1vh;
   overflow: auto;
-  background-color: #eee;
+}
+
+.emergency {
+
+  .assign-staff-box{
+    border: 3px dotted
+  }
+
+  .title{
+    color: white;
+  }
+
+  background-color: rgb(255, 56, 96);
+  color:white;
 }
