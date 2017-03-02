@@ -60,7 +60,8 @@ wss.on('connection', (ws) => {
         break;
       case 'assignId':
         ws.florenceId = receivedMsg.id
-        ws.send(JSON.stringify({message: `Your connection ID is ${ws.florenceId}`}))
+        console.log(`Assigning id ${receivedMsg.id}`);
+        ws.send(JSON.stringify(receivedMsg))
         break;
       default:
         console.log(`Unknown message type: ${receivedMsg.type}`)
