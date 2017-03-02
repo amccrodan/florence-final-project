@@ -59,9 +59,11 @@ class Bed extends Component {
   }
 
   getPatientId () {
-    this.serverRequest.get(`beds/${this.state.request.bed_id}`).then((response) => {
-      this.changeRequestState({patient_id: response.data[0].patient_id}, () => {});
-    });
+    if (!this.state.request.patient_id) {
+      this.serverRequest.get(`beds/${this.state.request.bed_id}`).then((response) => {
+        this.changeRequestState({patient_id: response.data[0].patient_id}, () => {});
+      });
+    }
   }
 
   postRequest () {
@@ -73,9 +75,11 @@ class Bed extends Component {
   }
 
   putRequest () {
-    console.log('Put:');
-    console.log(this.state.request);
-    this.serverRequest.put(`requests/${this.state.request.bed_id}`, this.state.request);
+    this.serverRequest.put(`requests/${this.state.request.bed_id}`, this.state.request)
+    .then(() => {
+      console.log('Put:');
+      console.log(this.state.request);
+    });
   }
 
   render(){
