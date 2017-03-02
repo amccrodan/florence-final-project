@@ -22,12 +22,16 @@ class Nurse extends Component {
     });
   }
 
-  componentDidMount() {
+  getRequests() {
     this.serverRequest.get("requests").then((result) => {
       this.setState({requests: result.data}, () => {
         console.log(this.state.requests);
       });
-    })
+    });
+  }
+
+  componentDidMount() {
+    this.getRequests();
 
     this.serverRequest.get("nurses").then((result) => {
       this.setState({nurses: result.data}, () => {
