@@ -27,7 +27,7 @@ class Bed extends Component {
 
     this.changeViewState = this.changeViewState.bind(this);
     this.changeRequestState = this.changeRequestState.bind(this);
-    this.getPatientId = this.getPatientId.bind(this);
+    this.getPatientInfo = this.getPatientInfo.bind(this);
     this.postRequest = this.postRequest.bind(this);
     this.putRequest = this.putRequest.bind(this);
   }
@@ -58,18 +58,21 @@ class Bed extends Component {
     });
   }
 
-  getPatientId () {
+  getPatientInfo () {
     if (!this.state.request.patient_id) {
       this.serverRequest.get(`beds/${this.state.request.bed_id}`).then((response) => {
-        this.changeRequestState({patient_id: response.data[0].patient_id}, () => {});
+        this.changeRequestState({
+          patient_id: response.data[0].patient_id,
+          nurse_id: response.data[0].nurse_id
+        }, () => {});
       });
     }
   }
 
   postRequest () {
-    console.log('Posted:');
-    console.log(this.state.request);
     this.serverRequest.post('requests', this.state.request).then((response) => {
+      console.log('Posted:');
+      console.log(this.state.request);
       this.changeRequestState({request_id: response.data[0]}, () => {});
     });
   }
@@ -101,7 +104,7 @@ class Bed extends Component {
         break;
       case 'requestButton':
         output = <RequestButton
-          getPatientId={this.getPatientId}
+          getPatientInfo={this.getPatientInfo}
           {...outputProps} />
         break;
       case 'requestForm':
