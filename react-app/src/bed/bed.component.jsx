@@ -80,7 +80,7 @@ class Bed extends Component {
   }
 
   putRequest () {
-    this.serverRequest.put(`requests/${this.state.request.bed_id}`, this.state.request)
+    this.serverRequest.put(`requests/${this.state.request.request_id}`, this.state.request)
     .then(() => {
       console.log('Put:');
       console.log(this.state.request);
