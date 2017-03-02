@@ -5,13 +5,17 @@ class Login extends Component {
   constructor(props){
     super(props);
     this.state = {
-      clicked: false
+      clicked: false,
+      hidden: ''
     }
     this.dropDown = this.dropDown.bind(this);
   }
 
   dropDown () {
-    this.setState({clicked: true})
+    this.setState({
+      clicked: true,
+      hidden: 'is-hidden'
+    })
   }
 
   render() {
@@ -38,8 +42,8 @@ class Login extends Component {
             </span>
           </p>
           <p className="control">
-          <button className="button is-success">
-          Login
+          <button type='submit' className="button is-success" onClick={this.handleSubmit}>
+            Login
           </button>
           </p>
         </form>
@@ -49,7 +53,7 @@ class Login extends Component {
       <div>
         <div className='level'>
           <div className='level-item has-text-centered'>
-            <a className="nav-item is-white login" onClick={this.dropDown}>Login</a>
+            <a className={`nav-item is-white login ${this.state.hidden}`} onClick={this.dropDown}>Login</a>
           </div>
         </div>
 
