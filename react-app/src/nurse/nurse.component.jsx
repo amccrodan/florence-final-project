@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import moment from 'moment';
 
 import RequestQueue from './request-queue.component.jsx';
 import NurseList from './nurse-list.component.jsx';
 import CareAideList from './care-aid-list.component.jsx';
-
 
 class Nurse extends Component {
   constructor(props){
@@ -13,6 +13,7 @@ class Nurse extends Component {
       stationId: "master",
       requests: [],
       nurses: [],
+      time: '',
     };
 
     this.serverRequest = axios.create({
@@ -23,7 +24,7 @@ class Nurse extends Component {
 
     this.getRequests = this.getRequests.bind(this);
     this.respondToRequest = this.respondToRequest.bind(this);
-
+    this.getCurrentTime = this.getCurrentTime.bind(this);
   }
 
   getRequests() {
@@ -32,6 +33,11 @@ class Nurse extends Component {
         // console.log(this.state.requests);
       });
     });
+  }
+
+  getCurrentTime (){
+    const currentTime = moment().format("ddd, MMMM Do YYYY, HH:mm:ss a");
+    this.setState({ time: currentTime })
   }
 
   respondToRequest(bed_id) {
@@ -48,6 +54,8 @@ class Nurse extends Component {
       });
     })
 
+    setInterval(this.getCurrentTime, 1000);
+
     this.props.route.assignWebSocketId(this.state.stationId);
 
     this.props.route.webSocket.onmessage = (event) => {
@@ -61,9 +69,14 @@ class Nurse extends Component {
   render(){
     return (
       <div>
-        <nav className="nav navbar">
-          <div className="nav-left">
-            Florence
+        <nav className='nav navbar level'>
+          <div className='level-left'>
+            <div className='nav-item'> Florence </div>
+          </div>
+          <div className='level-right'>
+            <div className='nav-item'>
+              {this.state.time}
+            </div>
           </div>
         </nav>
         <div className='tile is-ancestor nurse-station'>
