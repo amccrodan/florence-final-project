@@ -48,7 +48,7 @@ class Nurse extends Component {
         </nav>
         <div className='tile is-ancestor nurse-station'>
           <RequestQueue requests={this.state.requests} />
-          <div id='staff-list' className='tile is-vertical is-parent staff-list'>
+          <div className='tile is-vertical is-parent staff-list'>
             <CareAideList nurses={this.state.nurses} />
             <hr className='divider'/>
             <NurseList nurses={this.state.nurses} />
