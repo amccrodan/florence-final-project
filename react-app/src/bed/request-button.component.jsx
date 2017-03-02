@@ -22,7 +22,7 @@ class RequestButton extends Component {
   }
 
   componentDidMount () {
-    this.props.getPatientId();
+    this.props.getPatientInfo();
   }
 
   render(){

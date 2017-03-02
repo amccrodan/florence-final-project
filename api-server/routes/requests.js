@@ -8,7 +8,18 @@ module.exports = (knex) => {
   //Get all requests
   router.get('/', (req, res) => {
     knex
-      .select("requests.id as request_id", "requests.bed_id", "patients.id as patient_id", "requests.nurse_id AS nurse_id", "status_id", "request_type_id", "patients.first_name", "patients.last_name", "nurses.image", "nurses.first_name AS nurse_first_name", "nurses.last_name AS nurse_last_name")
+      .select("requests.id as request_id",
+       "requests.bed_id", 
+       "patients.id as patient_id", 
+       "requests.nurse_id AS nurse_id", 
+       "status_id", "request_type_id", 
+       "patients.first_name", 
+       "patients.last_name", 
+       "nurses.image", 
+       "nurses.first_name AS nurse_first_name", 
+       "nurses.last_name AS nurse_last_name",
+       "requests.created_at",
+       "requests.updated_at")
       .from("requests")
       .join("patients", function(){
         this.on('patients.id', '=', 'requests.patient_id')
@@ -25,6 +36,7 @@ module.exports = (knex) => {
       bed_id: req.body.bed_id,
       patient_id: req.body.patient_id,
       status_id: 1,
+      nurse_id: req.body.nurse_id,
       request_type_id: req.body.request_type_id,
       description: req.body.description,
       created_at: 'now',

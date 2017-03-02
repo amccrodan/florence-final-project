@@ -1,7 +1,41 @@
 import React, { Component } from 'react';
-
+import moment  from 'moment';
+ 
 class Request extends Component {
   render(){
+
+    function showRespond(req_id){
+      switch (req_id) {
+        case 1:
+          return (
+            <div className='button is-large is-success'>
+              Respond
+            </div>
+          )
+          break;
+        case 2: 
+          return (
+            <p className='title is-large'>
+              In Progress
+            </p>
+          )
+          break;
+      case 3: 
+        return (
+            <p className='title is-large'>
+              Completed
+            </p>
+        )
+        break;
+      case 4:
+        return (
+            <p className='title is-large'>
+              Cancelled
+            </p>
+        )
+        break;
+      }
+    };
 
     function reqCategory(request_type_id){
       switch (request_type_id){
@@ -69,9 +103,9 @@ class Request extends Component {
       <article className={`is-child request-content ${reqStatusBorderColour(this.props.status_id)} ${checkReqType(this.props.request_type_id)}`} key={this.props.id}>
         <div className="level columns">
           <div className="level-item column is-1 has-text-centered">
-            <p className="title">5:00</p>
+            <p className="title">{moment(this.props.created_at).format('h:mm')}</p>
           </div>
-          <div className="level-item column is-6">
+          <div className="level-item column is-4">
             <p className="title"> {this.props.first_name} {this.props.last_name} </p>
             <p className="title"> Bed {this.props.bed_id} </p>
           </div>
@@ -83,10 +117,13 @@ class Request extends Component {
               <img className="staff-picture" src={`http://localhost:8080/images/nurses/${this.props.img}`} />
             ) : (
               <div className="assign-staff-box">
-                Assign
+                <i className="fa fa-user" aria-hidden="true"></i>
               </div>
             )
           }
+          </div>
+          <div className='level-item column is-2'>
+            {showRespond(this.props.status_id)}
           </div>
         </div>
       </article>
