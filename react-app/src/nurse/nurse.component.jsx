@@ -20,22 +20,42 @@ class Nurse extends Component {
       responseType: 'json', // default
       withCredentials: false // default
     });
+
+    this.getRequests = this.getRequests.bind(this);
+    this.respondToRequest = this.respondToRequest.bind(this);
+
+  }
+
+  getRequests() {
+    this.serverRequest.get("requests").then((result) => {
+      this.setState({requests: result.data}, () => {
+        // console.log(this.state.requests);
+      });
+    });
+  }
+
+  respondToRequest(bed_id) {
+    // send WS message that will go to specified bed_id
+    console.log("Clicked respond on Bed " + bed_id);
   }
 
   componentDidMount() {
-    this.serverRequest.get("requests").then((result) => {
-      this.setState({requests: result.data}, () => {
-        console.log(this.state.requests);
-      });
-    })
+    this.getRequests();
 
     this.serverRequest.get("nurses").then((result) => {
       this.setState({nurses: result.data}, () => {
-        console.log(this.state.nurses);
+        // console.log(this.state.nurses);
       });
     })
 
     this.props.route.assignWebSocketId(this.state.stationId);
+
+    this.props.route.webSocket.onmessage = (event) => {
+      const incomingObj = JSON.parse(event.data);
+      if (incomingObj.type === "refreshRequests") {
+        this.getRequests();
+      }
+    }
   }
 
   render(){
@@ -47,7 +67,7 @@ class Nurse extends Component {
           </div>
         </nav>
         <div className='tile is-ancestor nurse-station'>
-          <RequestQueue requests={this.state.requests} />
+          <RequestQueue requests={this.state.requests} respondToRequest={this.respondToRequest}/>
           <div className='tile is-vertical is-parent staff-list'>
             <h1 className='title has-text-centered'>Care-aides</h1>
             <CareAideList nurses={this.state.nurses} />

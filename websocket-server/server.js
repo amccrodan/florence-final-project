@@ -25,9 +25,9 @@ wss.broadcast = function broadcast(data) {
 };
 
 // Send only to master station
-wss.sendToMaster = function sendToMaster(data) {
+wss.sendToFlorence = function sendToFlorence(id, data) {
   wss.clients.forEach(function each(client) {
-    if (client.florenceId === "master") {
+    if (client.florenceId === id) {
       client.send(data);
     }
   });
@@ -45,15 +45,18 @@ wss.on('connection', (ws) => {
 
   ws.on('message', function incoming(message) {
     const receivedMsg = JSON.parse(message);
-    console.log('Client connected.');
+    console.log(receivedMsg);
 
     switch(receivedMsg.type) {
-      case 'newRequestMade':
-        // tell nurse station to get new requests
+      case 'refreshRequests':
+        // tell nurse station to get all requests
+        wss.sendToFlorence("master", JSON.stringify(receivedMsg));
+        console.log(`Sending ${receivedMsg} to master.`);
         break;
       case 'updateRequest':
-        // tell nurse station to update one request status (get all again?)
+        // tell nurse station to update one request status? Maybe for scaling
         // tell specific bed to update request
+        wss.sendToFlorence(receivedMsg.bed_id, JSON.stringify(receivedMsg));
         break;
       case 'assignId':
         ws.florenceId = receivedMsg.id

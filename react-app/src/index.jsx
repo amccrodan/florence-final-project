@@ -30,8 +30,16 @@ const assignWebSocketId = function(stationId) {
 ReactDOM.render(
   <Router history={browserHistory}>
     <Route path="/" component={Main} />
-    <Route path="/nurse" component={Nurse} assignWebSocketId={assignWebSocketId}/>
-    <Route path="/bed" component={Bed} assignWebSocketId={assignWebSocketId}/>
+    <Route path="/nurse"
+      component={Nurse}
+      assignWebSocketId={assignWebSocketId}
+      webSocket={webSocket}
+    />
+    <Route path="/bed"
+      component={Bed}
+      assignWebSocketId={assignWebSocketId}
+      webSocket={webSocket}
+    />
   </Router>,
   document.getElementById('react-root')
 );
