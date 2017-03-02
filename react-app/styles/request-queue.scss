@@ -6,6 +6,9 @@
   height:6em;
   justify-content:center;
   width: 6em;
+  i.fa.fa-user {
+    font-size: 4em;
+  }
 }
 
 
@@ -30,6 +33,9 @@ i.patient-request{
 }
 
 .nurse-station{
+  .tile {
+    max-height: 90vh;    
+  }
   padding:10px;
 }
 
@@ -69,7 +75,6 @@ i.patient-request{
 }
 
 .request-queue{
-  border-right: 3px solid #eee;
   max-height: 100vh;
   min-height: 1vh;
   overflow: auto;
