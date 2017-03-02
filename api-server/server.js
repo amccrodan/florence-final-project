@@ -11,9 +11,12 @@ const knexConfig  = require("./knexfile");
 const knex        = require("knex")(knexConfig[ENV]);
 const morgan      = require('morgan');
 const knexLogger  = require('knex-logger');
+const jwt         = require('jsonwebtoken');
+
 
 app.use(morgan('dev'));
 app.use(knexLogger(knex));
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(express.static("public"));
 
@@ -29,11 +32,11 @@ app.use(function(req, res, next) {
   next();
 });
 // Mount all resource routes
+app.use("/api/authenticate", requestRoutes(knex));
 app.use("/api/beds", bedRoutes(knex));
 app.use("/api/nurses", nurseRoutes(knex));
 app.use("/api/patients", patientRoutes(knex));
 app.use("/api/requests", requestRoutes(knex));
-
 
 app.listen(PORT, () => {
   console.log("Example app listening on port " + PORT);
