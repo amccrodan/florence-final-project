@@ -116,7 +116,7 @@ class Request extends Component {
               <img className="staff-picture" src={`http://localhost:8080/images/nurses/${this.props.img}`} />
             ) : (
               <div className="assign-staff-box">
-                Assign
+                <i className="fa fa-user" aria-hidden="true"></i>
               </div>
             )
           }
