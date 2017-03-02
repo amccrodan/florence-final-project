@@ -15,11 +15,6 @@ import Bed from './bed/bed.component.jsx'
 
 const webSocket = new WebSocket("ws://localhost:4000");
 
-webSocket.onmessage = (event) => {
-  const incomingObj = JSON.parse(event.data);
-  console.log(incomingObj);
-}
-
 const assignWebSocketId = function(stationId) {
   webSocket.send(JSON.stringify({
     type: "assignId",

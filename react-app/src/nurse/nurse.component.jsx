@@ -29,13 +29,11 @@ class Nurse extends Component {
 
   getRequests() {
     this.serverRequest.get("requests").then((result) => {
-      this.setState({requests: result.data}, () => {
-        console.log(this.state.requests);
-      });
+      this.setState({requests: result.data}, () => {});
     });
   }
 
-  getCurrentTime (){
+  getCurrentTime() {
     const currentTime = moment().format("ddd, MMMM Do YYYY, HH:mm:ss a");
     this.setState({ time: currentTime });
   }
@@ -44,6 +42,7 @@ class Nurse extends Component {
     // send WS message that will go to specified bed_id
     console.log("Clicked respond on Bed " + bed_id +''+ id);
     this.serverRequest.put((`requests/${id}`), {status_id: 2}).then(() => {
+      this.props.route.webSocket.send(JSON.stringify({type: 'updateRequest', bed_id: bed_id}));
       this.getRequests();
     });
   }
@@ -57,19 +56,27 @@ class Nurse extends Component {
       });
     })
 
-    setInterval(this.getCurrentTime, 1000);
+    this.getCurrentTime();
+    this.clockTimer = setInterval(this.getCurrentTime, 1000);
 
     this.props.route.assignWebSocketId(this.state.stationId);
 
     this.props.route.webSocket.onmessage = (event) => {
       const incomingObj = JSON.parse(event.data);
-      if (incomingObj.type === "refreshRequests") {
+      if (incomingObj.type === 'refreshRequests') {
         this.getRequests();
+      }
+      if (incomingObj.type === 'assignId') {
+        console.log(incomingObj);
       }
     }
   }
 
-  render(){
+  componentWillUnmount () {
+    clearInterval(this.clockTimer);
+  }
+
+  render() {
     return (
       <div>
         <nav className='nav navbar level'>

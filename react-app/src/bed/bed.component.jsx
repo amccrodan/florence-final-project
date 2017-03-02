@@ -35,12 +35,21 @@ class Bed extends Component {
 
   componentDidMount() {
     // Put the below in the main request screen component
-
     this.serverRequest.get('beds').then((result) => {
       this.setState({beds: result.data}, () => {
         console.log('Beds state set.');
       });
     })
+
+    this.props.route.webSocket.onmessage = (event) => {
+      const incomingObj = JSON.parse(event.data);
+      if (incomingObj.type === 'updateRequest') {
+        this.setState({view: 'requestAcknowledged'});
+      }
+      if (incomingObj.type === 'assignId') {
+        console.log(incomingObj);
+      }
+    }
   }
 
   changeViewState (stateName) {
