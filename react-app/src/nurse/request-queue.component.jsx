@@ -14,6 +14,8 @@ class RequestQueue extends Component {
             request_type_id={request.request_type_id}
             img={request.image}
             status_id={request.status_id}
+            created_at={request.created_at}
+            updated_at={request.updated_at}
             />
         }
         )}
