@@ -9,8 +9,8 @@ class ChooseBed extends Component {
       rooms: {}
     };
 
-  this.handleClick = this.handleClick.bind(this);
-  this.handleSort = this.handleSort.bind(this);
+    this.handleClick = this.handleClick.bind(this);
+    this.handleSort = this.handleSort.bind(this);
   }
 
   handleClick (event) {
