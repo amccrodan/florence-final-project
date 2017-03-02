@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-class CareAidList extends Component {
+class CareAideList extends Component {
 
   constructor(props){
     super(props);
@@ -16,8 +16,8 @@ class CareAidList extends Component {
 
   render(){
     return (
-      <div className='is-child tile care-aids-list'>
-        <h1 className='title has-text-centered'>Care-aids</h1>
+      <div className='is-child tile care-aides-list'>
+        <h1 className='title has-text-centered'>Care-aides</h1>
         {this.props.nurses.map(careaid => {
           if (!careaid.is_nurse) {
             return <article className='has-text-centered' key={careaid.id}>
@@ -34,4 +34,4 @@ class CareAidList extends Component {
 
 }
 
-export default CareAidList
+export default CareAideList
