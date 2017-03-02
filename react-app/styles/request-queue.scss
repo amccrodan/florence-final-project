@@ -21,14 +21,6 @@ i.patient-request{
   font-size:60px;
 }
 
-.in-progress{
-  background-color: rgba(34, 198, 91, .1);
-  border: 3px solid #22C65B;
-  border-radius: 10px;
-  box-shadow: 0px 0px 5px #22C65B;
-}
-
-
 .navbar{
   background-color:#757575;
   color: white;
@@ -50,6 +42,13 @@ i.patient-request{
   margin-bottom:12.5px;
   padding-top:12.5px;
   padding-bottom:12.5px;
+}
+
+.in-progress{
+  background-color: rgba(34, 198, 91, .1);
+  border: 3px solid #22C65B;
+  border-radius: 10px;
+  box-shadow: 0px 0px 5px #22C65B;
 }
 
 .pending{
