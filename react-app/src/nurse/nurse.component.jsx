@@ -37,15 +37,15 @@ class Nurse extends Component {
 
   getCurrentTime (){
     const currentTime = moment().format("ddd, MMMM Do YYYY, HH:mm:ss a");
-    this.setState({ time: currentTime })
+    this.setState({ time: currentTime });
   }
 
   respondToRequest(bed_id, id) {
     // send WS message that will go to specified bed_id
     console.log("Clicked respond on Bed " + bed_id +''+ id);
-    this.serverRequest.put((`requests/${id}`), {status_id: 2}).then(
-      this.getRequests()
-    );
+    this.serverRequest.put((`requests/${id}`), {status_id: 2}).then(() => {
+      this.getRequests();
+    });
   }
 
   componentDidMount() {
