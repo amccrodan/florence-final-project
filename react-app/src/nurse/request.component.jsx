@@ -3,6 +3,16 @@ import React, { Component } from 'react';
 class Request extends Component {
   render(){
 
+    function showRespond(req_id){
+      if (req_id == 1) {
+        return (
+            <div className='button is-large is-success'>
+              Respond
+            </div>
+        )
+      }
+    }
+
     function reqCategory(request_type_id){
       switch (request_type_id){
         case 1:
@@ -87,6 +97,9 @@ class Request extends Component {
               </div>
             )
           }
+          </div>
+          <div className='level-item column is-2'>
+            {showRespond(this.props.status_id)}
           </div>
         </div>
       </article>
