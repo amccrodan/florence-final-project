@@ -1,25 +1,37 @@
 import React, { Component } from 'react';
 
 class Request extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+    };
+    this.handleRespond = this.handleRespond.bind(this);
+  }
+
+  handleRespond () {
+    this.props.respondToRequest(this.props.bed_id);
+  }
+
   render(){
+    const handleRespond = this.handleRespond;
 
     function showRespond(req_id){
       switch (req_id) {
         case 1:
           return (
-            <div className='button is-large is-success'>
+            <div className='button is-large is-success' onClick={handleRespond}>
               Respond
             </div>
           )
           break;
-        case 2: 
+        case 2:
           return (
             <p className='title is-large'>
               In Progress
             </p>
           )
           break;
-      case 3: 
+      case 3:
         return (
             <p className='title is-large'>
               Completed

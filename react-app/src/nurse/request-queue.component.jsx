@@ -2,6 +2,12 @@ import React, { Component } from 'react';
 import Request from './request.component.jsx';
 
 class RequestQueue extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+    };
+  }
+
   render(){
     return (
       <div className='tile is-parent is-vertical is-10 request-queue'>
@@ -13,6 +19,7 @@ class RequestQueue extends Component {
             request_type_id={request.request_type_id}
             img={request.image}
             status_id={request.status_id}
+            respondToRequest={this.props.respondToRequest}
             />
         }
         )}
