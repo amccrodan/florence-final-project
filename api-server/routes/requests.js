@@ -9,14 +9,14 @@ module.exports = (knex) => {
   router.get('/', (req, res) => {
     knex
       .select("requests.id as request_id",
-       "requests.bed_id", 
-       "patients.id as patient_id", 
-       "requests.nurse_id AS nurse_id", 
-       "status_id", "request_type_id", 
-       "patients.first_name", 
-       "patients.last_name", 
-       "nurses.image", 
-       "nurses.first_name AS nurse_first_name", 
+       "requests.bed_id",
+       "patients.id as patient_id",
+       "requests.nurse_id AS nurse_id",
+       "status_id", "request_type_id",
+       "patients.first_name",
+       "patients.last_name",
+       "nurses.image",
+       "nurses.first_name AS nurse_first_name",
        "nurses.last_name AS nurse_last_name",
        "requests.created_at",
        "requests.updated_at")
@@ -62,9 +62,9 @@ module.exports = (knex) => {
 
   //Update a request status ie. pending -> complete
   router.put('/:id', (req, res) => {
-    console.log(req.body);
+    console.log(req.body.status_id);
     knex('requests')
-      .where('id', req.body.request_id)
+      .where('id', req.params.id)
       .update({
         'status_id': req.body.status_id,
         'updated_at': 'now'
