@@ -102,7 +102,7 @@ class Request extends Component {
       <article className={`is-child request-content ${reqStatusBorderColour(this.props.status_id)} ${checkReqType(this.props.request_type_id)}`} key={this.props.id}>
         <div className="level columns">
           <div className="level-item column is-1 has-text-centered">
-            <p className="title">5:00</p>
+            <p className="title">{this.props.created_at}</p>
           </div>
           <div className="level-item column is-4">
             <p className="title"> {this.props.first_name} {this.props.last_name} </p>
