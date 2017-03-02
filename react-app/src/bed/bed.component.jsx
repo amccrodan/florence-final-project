@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group' // ES6
 
 import RequestButton from './request-button.component.jsx';
 import ChooseBed from './choose-bed.component.jsx'
@@ -119,7 +120,14 @@ class Bed extends Component {
 
     return (
       <div>
+      <ReactCSSTransitionGroup
+        transitionName="fadeTransition"
+        transitionAppear={true}
+        transitionAppearTimeout={500}
+        transitionEnterTimeout={500}
+        transitionLeaveTimeout={300}>
         {output}
+        </ReactCSSTransitionGroup>
       </div>
     );
   }

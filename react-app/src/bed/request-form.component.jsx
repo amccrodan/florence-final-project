@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 
 class RequestForm extends Component {
   constructor(props){
@@ -36,6 +37,12 @@ class RequestForm extends Component {
   render(){
     return (
         <div className='container'>
+            <ReactCSSTransitionGroup
+            transitionName="fadeTransition"
+            transitionAppear={true}
+            transitionAppearTimeout={500}
+            transitionEnterTimeout={500}
+            transitionLeaveTimeout={300}>
           <section>
             <div className='hero'>
               <div className='hero-body'>
@@ -77,6 +84,7 @@ class RequestForm extends Component {
              <h1 className='title is-1'>Submit</h1>
             </button>
           </p>
+            </ReactCSSTransitionGroup>
         </div>
     );
   }
