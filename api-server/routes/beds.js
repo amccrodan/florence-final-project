@@ -19,9 +19,12 @@ module.exports = (knex) => {
   // Get a single bed by id
   router.get("/:id", (req, res) => {
     knex
-      .select("*")
+      .select("beds.id as bed_id", "beds.room_id", "beds.patient_id", "patients.nurse_id")
       .from("beds")
-      .where('id', req.params.id)
+      .join("patients", function(){
+        this.on('beds.id', '=', 'patients.bed_id')
+      })
+      .where('beds.id', req.params.id)
       .then((results) => {
         res.json(results);
     });

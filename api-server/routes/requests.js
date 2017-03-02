@@ -25,6 +25,7 @@ module.exports = (knex) => {
       bed_id: req.body.bed_id,
       patient_id: req.body.patient_id,
       status_id: 1,
+      nurse_id: req.body.nurse_id,
       request_type_id: req.body.request_type_id,
       description: req.body.description,
       created_at: 'now',
