@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group' // ES6
 
 import RequestButton from './request-button.component.jsx';
-import ChooseBed from './choose-bed.component.jsx'
+import ChooseBed from './choose-bed.component.jsx';
 import RequestForm from './request-form.component.jsx';
 import RequestPending from './request-pending.component.jsx';
 import RequestAcknowledged from './request-acknowledged.component.jsx';
@@ -52,11 +52,11 @@ class Bed extends Component {
     }
   }
 
-  changeViewState (stateName) {
+  changeViewState(stateName) {
     this.setState({view: stateName});
   }
 
-  changeRequestState (params, callback) {
+  changeRequestState(params, callback) {
     const newRequest = this.state.request;
     for (let key in params) {
       newRequest[key] = params[key];
@@ -68,9 +68,15 @@ class Bed extends Component {
     });
   }
 
-  getPatientInfo () {
+  getPatientInfo() {
     if (!this.state.request.patient_id) {
       this.serverRequest.get(`beds/${this.state.request.bed_id}`).then((response) => {
+
+        // No Patient assigned to bed
+        if (!response.data[0]) {
+          return;
+        }
+
         this.changeRequestState({
           patient_id: response.data[0].patient_id,
           nurse_id: response.data[0].nurse_id
@@ -79,7 +85,7 @@ class Bed extends Component {
     }
   }
 
-  postRequest () {
+  postRequest() {
     this.serverRequest.post('requests', this.state.request).then((response) => {
       console.log('Posted:');
       console.log(this.state.request);
@@ -88,7 +94,7 @@ class Bed extends Component {
     });
   }
 
-  putRequest () {
+  putRequest() {
     this.serverRequest.put(`requests/${this.state.request.request_id}`, this.state.request)
     .then(() => {
       console.log('Put:');
@@ -97,13 +103,14 @@ class Bed extends Component {
     });
   }
 
-  render(){
+  render() {
     let output = '';
     const outputProps = {
       changeViewState: this.changeViewState,
       changeRequestState: this.changeRequestState,
       postRequest: this.postRequest,
-      putRequest: this.putRequest
+      putRequest: this.putRequest,
+      requestState: this.state.request
     }
 
     switch(this.state.view) {

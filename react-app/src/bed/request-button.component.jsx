@@ -1,54 +1,46 @@
 import React, { Component } from 'react';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+
+import ButtonSet from './button-set.component.jsx';
+import NoPatient from './no-patient.component.jsx';
 
 class RequestButton extends Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
     };
-  this.handleClick = this.handleClick.bind(this);
-  this.emergencyRequest = this.emergencyRequest.bind(this);
+    this.handleRequest = this.handleRequest.bind(this);
+    this.emergencyRequest = this.emergencyRequest.bind(this);
   }
 
-  handleClick (event) {
+  handleRequest(event) {
     this.props.changeViewState('requestForm');
   }
 
-  emergencyRequest () {
+  emergencyRequest() {
     this.props.changeRequestState({request_type_id: 5}, () => {
       this.props.postRequest();
     });
     this.props.changeViewState('requestPending');
   }
 
-  componentDidMount () {
+  componentWillMount() {
     this.props.getPatientInfo();
   }
 
-  render(){
-    return (
-      <section className='hero is-light is-fullheight'>
-        <div className='hero nice-background is-fullheight'>
-        </div>
-        <div className='hero-body'>
-          <div className='container has-text-centered'>
-            <ReactCSSTransitionGroup
-              transitionName="fadeTransition"
-              transitionAppear={true}
-              transitionAppearTimeout={500}
-              transitionEnterTimeout={500}
-              transitionLeaveTimeout={300}>
-              <div className='button is-focused is-success choices' onClick={this.handleClick}>
-                <h1 className='title is-1'>Request</h1>
-              </div>
-              <div className='button is-danger choices' onClick={this.emergencyRequest}>
-                <i className='request-category fa fa-exclamation-triangle' aria-hidden='true'></i>
-              </div>
-            </ReactCSSTransitionGroup>
-          </div>
-        </div>
-      </section>
-    );
+  componentDidMount() {
+  }
+
+  render() {
+    if (this.props.requestState.patient_id) {
+      return (
+        <ButtonSet handleRequest={this.handleRequest} emergencyRequest={this.emergencyRequest}/>
+      );
+    } else {
+      return (
+        <NoPatient/>
+      );
+    }
   }
 }
 
