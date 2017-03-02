@@ -22,6 +22,7 @@ class RequestQueue extends Component {
             created_at={request.created_at}
             updated_at={request.updated_at}
             respondToRequest={this.props.respondToRequest}
+            id={request.request_id}
             />
         }
         )}

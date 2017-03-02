@@ -10,7 +10,7 @@ class Request extends Component {
   }
 
   handleRespond () {
-    this.props.respondToRequest(this.props.bed_id);
+    this.props.respondToRequest(this.props.bed_id, this.props.id);
   }
 
   render(){
