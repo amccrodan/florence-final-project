@@ -40,13 +40,14 @@ class SortByRoom extends Component {
 
     //make new buttons
     const bedButtons = this.state.rooms[event.target.value].map(item => {
-      return (<button
-      className="button is-large is-40-wide"
-      key={'bed' + item.id}
-      value={item.id}
-      data='bed'
-      onClick={this.props.handleBedClick}>Bed {item.id}
-      </button>
+      return (
+          <button
+          className="button is-large is-40-wide"
+          key={'bed' + item.id}
+          value={item.id}
+          data='bed'
+          onClick={this.props.handleBedClick}>Bed {item.id}
+          </button>
       )
     });
 

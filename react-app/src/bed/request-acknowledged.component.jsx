@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 
 class RequestAcknowledged extends Component {
   constructor(props){
@@ -17,6 +18,12 @@ class RequestAcknowledged extends Component {
   render(){
     return (
       <section className='hero is-light is-fullheight'>
+      <ReactCSSTransitionGroup
+              transitionName="fadeTransition"
+              transitionAppear={true}
+              transitionAppearTimeout={500}
+              transitionEnterTimeout={500}
+              transitionLeaveTimeout={300}>
         <div className='hero nice-background is-fullheight'>
         </div>
         <div className='hero-body'>
@@ -43,6 +50,7 @@ class RequestAcknowledged extends Component {
         <div className='container has-text-centered'>
           <h1 className='title'>Insert nurses name here is coming to help you </h1>
         </div>
+        </ReactCSSTransitionGroup>
       </section>
     );
   }

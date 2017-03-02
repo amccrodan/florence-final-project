@@ -1,6 +1,14 @@
+.active {
+  background-color: tomato;
+}
+
 .handle-overflow {
   overflow-y: scroll;
   height: 70vh;
+}
+
+.is-30-wide {
+  width: 30%;
 }
 
 .is-40-wide {

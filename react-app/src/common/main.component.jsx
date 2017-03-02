@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import { Link } from 'react-router';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group' // ES6
 
 import Login from './login.component.jsx'
 
@@ -13,16 +14,21 @@ class Main extends Component {
           <div className="columns">
             <div className="column is-one-third">
             </div>
-
             <div className="column">
-              <h1 className="title">
-                Florence
-              </h1>
-              <h3 className="subtitle animated fadeInUp">
-                Your Hospice Assistant
-              </h3>
+               <ReactCSSTransitionGroup
+                transitionName="fadeTransition"
+                transitionAppear={true}
+                transitionAppearTimeout={500}
+                transitionEnterTimeout={500}
+                transitionLeaveTimeout={300}>
+                  <h1 className="title">
+                    Florence
+                  </h1>
+                  <h3 className="subtitle animated fadeInUp">
+                    Your Hospice Assistant
+                  </h3>
+              </ReactCSSTransitionGroup>
             </div>
-
             <div className="column">
             </div>
           </div>
