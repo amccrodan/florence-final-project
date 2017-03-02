@@ -17,7 +17,6 @@ class CareAideList extends Component {
   render(){
     return (
       <div className='is-child tile care-aides-list'>
-        <h1 className='title has-text-centered'>Care-aides</h1>
         {this.props.nurses.map(careaid => {
           if (!careaid.is_nurse) {
             return <article className='has-text-centered' key={careaid.id}>
