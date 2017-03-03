@@ -13,8 +13,8 @@
 // Animate CSS
 @import url("https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css");
 
+@import 'home';
 @import 'react-transitions';
-
 @import 'request-queue';
 @import 'request-button';
 @import 'choose-bed';
@@ -26,7 +26,7 @@
 body {
   font-family: 'Questrial', sans-serif;
   max-height: 100%;
-  min-height: 100%
+  min-height: 100%;
 }
 
 html {

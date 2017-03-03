@@ -42,13 +42,14 @@ class Main extends Component {
       buttons = (
         <div>
           <Link to="/nurse" activeClassName="active">
-            <button className="button is-large is-dark">
-              Nurses
+            <button className='button btn-sleek'>
+              <span>Nurses</span>
             </button>
           </Link>
+          <br />
           <Link to="/bed" activeClassName="active">
-            <button className="button is-large is-dark">
-              Beds
+            <button className='button btn-sleek'>
+              <span>Beds</span>
             </button>
           </Link>
         </div>
@@ -69,10 +70,10 @@ class Main extends Component {
                 transitionAppearTimeout={500}
                 transitionEnterTimeout={500}
                 transitionLeaveTimeout={300}>
-                  <h1 className="title">
+                  <h1 className="title larger">
                     Florence
                   </h1>
-                  <h3 className="subtitle animated fadeInUp">
+                  <h3 className="subtitle animated fadeInUp larger">
                     Your Hospice Assistant
                   </h3>
               </ReactCSSTransitionGroup>
