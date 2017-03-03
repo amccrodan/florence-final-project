@@ -6,7 +6,7 @@ class Request extends Component {
   constructor(props){
     super(props);
     this.state = {
-      requestAck: false
+      requestAck: false,
       showDescription: ''
     };
     this.handleRespond = this.handleRespond.bind(this);
@@ -23,7 +23,8 @@ class Request extends Component {
   }
 
   showDescription () {
-    if (this.state.showDescription) {
+    console.log('hello', this.state.showDescription)
+    if (!this.state.showDescription) {
       this.setState({showDescription: ':active'});
     }
     else {
@@ -131,7 +132,7 @@ class Request extends Component {
     }
 
     return (
-      <article className={`is-child request-content ${reqStatusBorderColour(this.props.status_id)} ${checkReqType(this.props.request_type_id)}`} key={this.props.id}>
+      <article className={`is-child request-content ${reqStatusBorderColour(this.props.status_id)} ${checkReqType(this.props.request_type_id)}`} key={this.props.id} onClick={this.showDescription}>
         <div className='level columns'>
           <div className='level-item column is-1 has-text-centered'>
             <p className='title'>{moment(this.props.created_at).format('HH:mm')}</p>
@@ -162,7 +163,7 @@ class Request extends Component {
             {showRespond(this.props.status_id)}
           </div>
         </div>
-        <div className=`request-description${this.state.showDescription}` onClick={showDescription}>
+        <div className={`request-description${this.state.showDescription}`}>
           <p>
             Request Description: {this.props.description}
           </p>
