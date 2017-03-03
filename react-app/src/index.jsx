@@ -11,7 +11,7 @@ import {Router, Route, IndexRoute, browserHistory} from 'react-router';
 import Main from './common/main.component.jsx'
 import Station from './station/station.component.jsx'
 import Bed from './bed/bed.component.jsx'
-
+import Admin from './admin/admin.component.jsx'
 
 const webSocket = new WebSocket('ws://localhost:4000');
 
@@ -34,6 +34,11 @@ ReactDOM.render(
     />
     <Route path='/bed'
       component={Bed}
+      assignWebSocketId={assignWebSocketId}
+      webSocket={webSocket}
+    />
+    <Route path='/admin'
+      component={Admin}
       assignWebSocketId={assignWebSocketId}
       webSocket={webSocket}
     />

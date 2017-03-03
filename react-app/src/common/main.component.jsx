@@ -41,9 +41,14 @@ class Main extends Component {
     if (this.state.loggedIn) {
       buttons = (
         <div className='columns'>
-          <div className='column is-one-third'>
+          <div className='column'>
           </div>
-          <div className='column '>
+          <div className='column is-two-thirds'>
+            <Link to='/admin' activeClassName='active'>
+              <button className='button is-large is-outlined login-btn'>
+                Admin
+              </button>
+            </Link>
             <Link to='/nurse' activeClassName='active'>
               <button className='button is-large is-outlined login-btn'>
                 Nurses
