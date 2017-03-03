@@ -43,7 +43,6 @@ class Station extends Component {
 
   respondToRequest(bed_id, id) {
     // send WS message that will go to specified bed_id
-    console.log("Clicked respond on Bed " + bed_id +''+ id);
     this.serverRequest.put((`requests/${id}`), {status_id: 2}).then(() => {
       this.props.route.webSocket.send(JSON.stringify({type: 'updateRequest', bed_id: bed_id}));
       this.getRequests();
@@ -58,7 +57,6 @@ class Station extends Component {
   }
 
   clickOnStaff(nurse_id){
-    console.log("The state should be updated to", nurse_id);
     this.setState({ staffSelected: nurse_id });
   }
 

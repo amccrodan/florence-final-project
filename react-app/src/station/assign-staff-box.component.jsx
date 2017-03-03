@@ -10,7 +10,6 @@ class AssignStaffBox extends Component {
   }
 
    assignStaff () {
-    console.log(this.props.id);
     this.props.changeRequestAck();
     this.props.assignStaffToRequest(this.props.id, this.props.staffSelected);
   }
