@@ -11,8 +11,6 @@ class ButtonSet extends React.Component {
   render () {
     return (
       <section className='hero is-light is-fullheight'>
-        <div className='hero nice-background is-fullheight'>
-        </div>
         <div className='hero-body'>
           <div className='container has-text-centered'>
             <ReactCSSTransitionGroup
