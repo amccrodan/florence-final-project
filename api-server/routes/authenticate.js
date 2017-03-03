@@ -34,8 +34,6 @@ module.exports = (knex, jwt, app) => {
         knex.raw('LOWER("last_name") = ?', req.body.last_name.toLowerCase())
       )
       .then((results) => {
-        console.log('results', results[0]);
-
         const passwordString = results[0].password;
         let passwordMatch = bcrypt.compareSync(req.body.password, passwordString);
         console.log(passwordMatch);
