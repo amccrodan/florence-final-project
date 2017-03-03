@@ -132,10 +132,7 @@ class Request extends Component {
               this.props.request_type_id === 3 ? (
               <img className="staff-picture" src={`http://localhost:8080/images/nurses/${this.props.img}`} />
             ) : (
-              // <div className="assign-staff-box">
-              //   <i className="fa fa-user" aria-hidden="true"></i>
-              // </div>
-              <DragulaComponent />
+              <AssignStaffBox />
             )
           }
           </div>
