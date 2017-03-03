@@ -9,19 +9,20 @@ module.exports = (knex) => {
   router.get('/', (req, res) => {
     knex
       .select('requests.id as request_id',
+       'request_type_id',
        'requests.bed_id',
-       'patients.id as patient_id',
+       'requests.created_at',
+       'requests.updated_at',
+       'requests.description',
        'requests.nurse_id AS nurse_id',
-       'status_id', 'request_type_id',
+       'patients.id as patient_id',
+       'status_id',
        'patients.first_name',
        'patients.last_name',
        'patients.medical_history',
        'nurses.image',
        'nurses.first_name AS nurse_first_name',
        'nurses.last_name AS nurse_last_name',
-       'requests.created_at',
-       'requests.updated_at',
-       'requests.description',
        'beds.room_id')
       .orderBy('requests.created_at')
       .from('requests')

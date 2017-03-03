@@ -21,10 +21,15 @@ class RequestQueue extends Component {
             status_id={request.status_id}
             created_at={request.created_at}
             updated_at={request.updated_at}
-            respondToRequest={this.props.respondToRequest}
-            assignStaffToRequest={this.props.assignStaffToRequest}
             id={request.request_id}
             nurse_id={request.nurse_id}
+            nurse_first_name={request.nurse_first_name}
+            nurse_last_name={request.nurse_last_name}
+            description={request.description}
+            room_num={request.room_id}
+            med_hist={request.medical_history}
+            respondToRequest={this.props.respondToRequest}
+            assignStaffToRequest={this.props.assignStaffToRequest}
             staffSelected={this.props.staffSelected}
             />
         }

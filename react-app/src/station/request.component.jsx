@@ -150,6 +150,16 @@ class Request extends Component {
             {showRespond(this.props.status_id)}
           </div>
         </div>
+        <div>
+          <p>
+            {this.props.nurse_first_name}
+            {this.props.nurse_last_name}
+            {this.props.room_id}
+            {this.props.med_hist}
+            {this.props.description}
+            {moment(this.props.updated_at).format('HH:mm')}
+          </p>
+        </div>
       </article>
     );
   }
