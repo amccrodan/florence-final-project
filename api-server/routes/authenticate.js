@@ -27,8 +27,12 @@ module.exports = (knex, jwt, app) => {
     knex
       .select("*")
       .from("nurses")
-      .where("first_name", req.body.first_name.toLowerCase())
-      .andWhere("last_name", req.body.last_name.toLowerCase())
+      .where(
+        knex.raw('LOWER("first_name") = ?', req.body.first_name.toLowerCase())
+      )
+      .andWhere(
+        knex.raw('LOWER("last_name") = ?', req.body.last_name.toLowerCase())
+      )
       .then((results) => {
         console.log('results', results[0]);
 
