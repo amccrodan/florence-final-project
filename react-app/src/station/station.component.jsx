@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import moment from 'moment';
+import cookie from 'react-cookie';
+import { Link } from 'react-router';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group' // ES6
 
 import RequestQueue from './request-queue.component.jsx';
 import NurseList from './nurse-list.component.jsx';
@@ -15,12 +18,14 @@ class Station extends Component {
       nurses: [],
       time: '',
       staffSelected: 0,
+      loggedIn: false
     };
 
     this.serverRequest = axios.create({
       baseURL: "http://localhost:8080/api/",
-      responseType: "json", // default
-      withCredentials: false // default
+      responseType: 'json', // default
+      withCredentials: false, // default
+      headers: {'x-access-token': cookie.load('session')}
     });
 
     this.getRequests = this.getRequests.bind(this);
@@ -64,6 +69,15 @@ class Station extends Component {
 
 
   componentDidMount() {
+    this.serverRequest
+    .get('authenticate')
+    .then(result => {
+      console.log(result.data);
+      if (result.data.success) {
+        this.setState({loggedIn: true});
+      }
+    })
+
     this.getRequests();
 
     this.serverRequest.get("nurses").then((result) => {
@@ -92,8 +106,9 @@ class Station extends Component {
     clearInterval(this.clockTimer);
   }
 
-  render() {
-    return (
+  render(){
+    let output = '';
+    output = (
       <div>
         <nav className='nav navbar level'>
           <div className='level-left'>
@@ -119,7 +134,28 @@ class Station extends Component {
             <NurseList nurses={this.state.nurses} />
           </div>
         </div>
-        </div>
+      </div>
+    )
+    if (!this.state.loggedIn) {
+      output = (
+      <Link to="/" activeClassName="active">
+        <p className='nav-item is-white center-stage'>
+          Please Login
+        </p>
+      </Link>
+      )
+    }
+    return (
+      <div>
+        <ReactCSSTransitionGroup
+          transitionName="fadeTransition"
+          transitionAppear={true}
+          transitionAppearTimeout={500}
+          transitionEnterTimeout={500}
+          transitionLeaveTimeout={300}>
+          {output}
+        </ReactCSSTransitionGroup>
+      </div>
     );
   }
 }

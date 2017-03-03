@@ -22,9 +22,13 @@ const assignWebSocketId = function(stationId) {
   }))
 }
 
+
+
 ReactDOM.render(
   <Router history={browserHistory}>
-    <Route path="/" component={Main} />
+    <Route path="/"
+    component={Main}
+    />
     <Route path="/nurse"
       component={Station}
       assignWebSocketId={assignWebSocketId}
