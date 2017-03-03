@@ -37,8 +37,6 @@ class Bed extends Component {
   }
 
   componentDidMount() {
-    // Put the below in the main request screen component
-    console.log(cookie.load('session'));
     this.serverRequest
     .get('authenticate')
     .then(result => {
@@ -136,7 +134,7 @@ class Bed extends Component {
     }
     if (!this.state.loggedIn) {
       output = (
-      <Link to="/" activeClassName="active">
+      <Link to="/" activeClassName="active" >
         <p className='nav-item is-white center-stage'>
           Please Login
         </p>

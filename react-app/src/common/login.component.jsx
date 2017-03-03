@@ -35,14 +35,22 @@ class Login extends Component {
     })
     .then((response) => {
       console.log('you should have a cookie now?');
-      this.props.logIn(true);
+      this.props.logIn(response.data.success);
       cookie.save('session', response.data.token, { path: '/' });
     })
   }
 
   render() {
     let loginForm = '';
-    console.log(this.props.loggedIn);
+    let loginText = '';
+    if (!this.props.loggedIn) {
+      loginText = <div className='level-item has-text-centered'>
+        <a
+        className={`nav-item is-white login ${this.state.hidden}`}
+        onClick={this.dropDown}>Login
+        </a>
+      </div>
+    }
     if (this.state.clicked && !this.props.loggedIn) {
       loginForm = (
         <div className="login-form" key='login-form'>
@@ -75,9 +83,7 @@ class Login extends Component {
     return (
       <div>
         <div className='level'>
-          <div className='level-item has-text-centered'>
-            <a className={`nav-item is-white login ${this.state.hidden}`} onClick={this.dropDown}>Login</a>
-          </div>
+          {loginText}
         </div>
 
         <div className="level">

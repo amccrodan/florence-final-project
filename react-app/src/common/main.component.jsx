@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
 import { Link } from 'react-router';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group' // ES6
+import axios from 'axios';
+import cookie from 'react-cookie';
 
 import Login from './login.component.jsx'
 
@@ -11,17 +13,27 @@ class Main extends Component {
       loggedIn: false
     }
     this.logIn = this.logIn.bind(this);
-    this.changeType = this.changeType.bind(this);
+
+    this.serverRequest = axios.create({
+      baseURL: 'http://localhost:8080/api/',
+      withCredentials: false, // default
+      headers: {'x-access-token': cookie.load('session')},
+    });
   }
 
   logIn (bool) {
     this.setState({loggedIn: bool});
-    this.props.route.loggedIn.loggedIn = true;
-    console.log('in login (main)', this.props.route);
   }
 
-  changeType (type) {
-    this.props.route.loggedIn.asType = type;
+  componentDidMount() {
+    this.serverRequest
+    .get('authenticate')
+    .then(result => {
+      console.log(result.data);
+      if (result.data.success) {
+        this.setState({loggedIn: true});
+      }
+    })
   }
 
   render(){
@@ -30,12 +42,12 @@ class Main extends Component {
       buttons = (
         <div>
           <Link to="/nurse" activeClassName="active">
-            <button className="button is-large is-dark" onClick={this.changeType.bind(this,'nurse')}>
+            <button className="button is-large is-dark">
               Nurses
             </button>
           </Link>
           <Link to="/bed" activeClassName="active">
-            <button className="button is-large is-dark" onClick={this.changeType.bind(this,'bed')}>
+            <button className="button is-large is-dark">
               Beds
             </button>
           </Link>

@@ -27,29 +27,22 @@ const assignWebSocketId = function(stationId) {
   }))
 }
 
-const loggedIn = {
-  loggedIn: false,
-  asType: ''
-}
 
 
 ReactDOM.render(
   <Router history={browserHistory}>
     <Route path="/"
     component={Main}
-    loggedIn={loggedIn}
     />
     <Route path="/nurse"
       component={Nurse}
       assignWebSocketId={assignWebSocketId}
       webSocket={webSocket}
-      loggedIn={loggedIn}
     />
     <Route path="/bed"
       component={Bed}
       assignWebSocketId={assignWebSocketId}
       webSocket={webSocket}
-      loggedIn={loggedIn}
     />
   </Router>,
   document.getElementById('react-root')
