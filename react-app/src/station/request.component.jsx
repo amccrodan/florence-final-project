@@ -23,7 +23,6 @@ class Request extends Component {
   }
 
   showDescription () {
-    console.log('hello', this.state.showDescription)
     if (!this.state.showDescription) {
       this.setState({showDescription: ':active'});
     }
@@ -164,21 +163,23 @@ class Request extends Component {
           </div>
         </div>
         <div className={`request-description${this.state.showDescription}`}>
-          <p>
-            Request Description: {this.props.description}
-          </p>
-          <p>
-            Assigned Nurse: {this.props.nurse_first_name} {this.props.nurse_last_name}
-          </p>
-          <p>
-            Room Number: {this.props.room_num}
-          </p>
-          <p>
-            Mecial History: {this.props.med_hist}
-          </p>
-          <p>
-            Last Updated {moment(this.props.updated_at).format('HH:mm')}
-          </p>
+          <div className='level columns'>
+            <div className='level-item column is-1 has-text-centered'>
+              <p className='title'>Last Updated {moment(this.props.updated_at).format('HH:mm')}</p>
+            </div>
+            <div>
+              <p>Request Description: {this.props.description}</p>
+            </div>
+            <div>
+              <p>Assigned Nurse: {this.props.nurse_first_name} {this.props.nurse_last_name}</p>
+            </div>
+            <div>
+              <p>Room Number: {this.props.room_num}</p>
+            </div>
+            <div>
+              <p>Mecial History: {this.props.med_hist}</p>
+            </div>
+          </div>
         </div>
       </article>
     );

@@ -103,7 +103,7 @@ i.patient-request{
 
 .request-description{
   display: none;
-  .request-description{
-    display: block;
+  .request-description:active{
+    display: flex;
   }
 }
