@@ -14,7 +14,7 @@ class Station extends Component {
       requests: [],
       nurses: [],
       time: '',
-      staffSelected: 0
+      staffSelected: 0,
     };
 
     this.serverRequest = axios.create({
@@ -51,6 +51,7 @@ class Station extends Component {
   }
 
   assignStaffToRequest(request_id, nurse_id){
+    this.setState( {requestAck: true});
     this.serverRequest.put((`requests/${request_id}`), {nurse_id: nurse_id}).then(() => {
       this.getRequests();
     });
