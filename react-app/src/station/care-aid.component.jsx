@@ -6,6 +6,12 @@ class CareAid extends Component {
     super(props);
     this.state = {
     };
+    this.clickHandler = this.clickHandler.bind(this);
+  }
+
+  clickHandler(){
+    console.log("Nurse id clicked", this.props.id);
+    this.props.clickOnStaff(this.props.id);
   }
 
   render(){
@@ -13,7 +19,7 @@ class CareAid extends Component {
       <div className='container'>
       <article className='has-text-centered'>
         <div>
-        <img className="staff-picture" src={ `http://localhost:8080/images/nurses/${this.props.img}`} />
+        <img onClick={this.clickHandler} className="staff-picture" src={ `http://localhost:8080/images/nurses/${this.props.img}`} />
         <p> {this.props.first_name} </p>
         </div>
       </article>

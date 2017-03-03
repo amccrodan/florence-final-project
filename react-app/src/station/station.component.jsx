@@ -14,6 +14,7 @@ class Station extends Component {
       requests: [],
       nurses: [],
       time: '',
+      staffSelected: 0
     };
 
     this.serverRequest = axios.create({
@@ -25,6 +26,8 @@ class Station extends Component {
     this.getRequests = this.getRequests.bind(this);
     this.respondToRequest = this.respondToRequest.bind(this);
     this.getCurrentTime = this.getCurrentTime.bind(this);
+    this.assignStaffToRequest = this.assignStaffToRequest.bind(this);
+    this.clickOnStaff = this.clickOnStaff.bind(this);
   }
 
   getRequests() {
@@ -46,6 +49,18 @@ class Station extends Component {
       this.getRequests();
     });
   }
+
+  assignStaffToRequest(request_id, nurse_id){
+    this.serverRequest.put((`requests/${request_id}`), {nurse_id: nurse_id}).then(() => {
+      this.getRequests();
+    });
+  }
+
+  clickOnStaff(nurse_id){
+    console.log("The state should be updated to", nurse_id);
+    this.setState({ staffSelected: nurse_id });
+  }
+
 
   componentDidMount() {
     this.getRequests();
@@ -90,10 +105,14 @@ class Station extends Component {
           </div>
         </nav>
         <div className='tile is-ancestor nurse-station'>
-          <RequestQueue requests={this.state.requests} respondToRequest={this.respondToRequest}/>
+          <RequestQueue requests={this.state.requests}
+            assignStaffToRequest={this.assignStaffToRequest}
+            respondToRequest={this.respondToRequest}
+            staffSelected={this.state.staffSelected}
+            />
           <div className='tile is-vertical is-parent staff-list'>
             <h1 className='title has-text-centered'>Care-aides</h1>
-            <CareAideList nurses={this.state.nurses} />
+            <CareAideList clickOnStaff={this.clickOnStaff} nurses={this.state.nurses} />
             <hr className='divider'/>
             <h1 className='title has-text-centered'>Nurses</h1>
             <NurseList nurses={this.state.nurses} />

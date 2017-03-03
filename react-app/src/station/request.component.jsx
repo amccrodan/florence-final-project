@@ -132,7 +132,8 @@ class Request extends Component {
               this.props.request_type_id === 3 ? (
               <img className="staff-picture" src={`http://localhost:8080/images/nurses/${this.props.img}`} />
             ) : (
-              <AssignStaffBox />
+              <AssignStaffBox id={this.props.id} assignStaffToRequest={this.props.assignStaffToRequest}
+              staffSelected={this.props.staffSelected} />
             )
           }
           </div>
