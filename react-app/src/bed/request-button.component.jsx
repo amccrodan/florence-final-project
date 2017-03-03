@@ -38,7 +38,7 @@ class RequestButton extends Component {
       );
     } else {
       return (
-        <NoPatient/>
+        <NoPatient changeViewState={this.props.changeViewState}/>
       );
     }
   }

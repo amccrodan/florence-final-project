@@ -5,11 +5,19 @@ class NoPatient extends React.Component {
     super(props);
     this.state = {
     };
+    this.handleBack = this.handleBack.bind(this);
+  }
+
+  handleBack() {
+    this.props.changeViewState('chooseBed');
   }
 
   render () {
     return (
-      <h1>NO PATIENT</h1>
+      <div>
+        <h1>NO PATIENT</h1>
+        <div className='button is-info' onClick={this.handleBack}>Go Back</div>
+      </div>
     );
   }
 }
