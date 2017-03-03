@@ -11,8 +11,10 @@ class RequestAcknowledged extends Component {
   }
 
   handleClick (event) {
-    // this will be changed to a page that the nurse can put a small note on
-    this.props.changeViewState('requestButton');
+    this.props.changeRequestState({status_id: 3}, () => {
+      this.props.putRequest();
+      this.props.changeViewState('requestButton');
+    });
   }
 
   render(){
