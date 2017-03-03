@@ -24,10 +24,6 @@ class RequestButton extends Component {
     this.props.changeViewState('requestPending');
   }
 
-  componentWillMount() {
-    this.props.getPatientInfo();
-  }
-
   componentDidMount() {
   }
 
