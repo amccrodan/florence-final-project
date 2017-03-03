@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import ReactDragula from 'react-dragula';
-
 
 class CareAid extends Component {
 
@@ -10,17 +8,16 @@ class CareAid extends Component {
     };
   }
 
-  // componentDidMount(){
-  //   const container = React.findDOMNode(this);
-  //   dragula([container]);
-  // }
-
   render(){
     return (
-      <article className='container has-text-centered'>
+      <div className='container'>
+      <article className='has-text-centered'>
+        <div>
         <img className="staff-picture" src={ `http://localhost:8080/images/nurses/${this.props.img}`} />
         <p> {this.props.first_name} </p>
+        </div>
       </article>
+      </div>
     );
   }
 }

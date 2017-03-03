@@ -2,22 +2,19 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import ReactDragula from 'react-dragula';
 
-class DragulaComponent extends Component {
-
-  componentDidMount(){
-    var container = ReactDOM.findDOMNode(this);
-    ReactDragula([container]);
-  }
+class AssignStaffBox extends Component {
 
   render (){
 
     return (
-      <div className='assign-staff-box'>
-        <i className="fa fa-user" aria-hidden="true"></i>
+      <div className='container'>
+        <div className='assign-staff-box'>
+          <i className="fa fa-user" aria-hidden="true"></i>
+        </div>
       </div>
     )
   }
 
 }
 
-export default DragulaComponent
+export default AssignStaffBox

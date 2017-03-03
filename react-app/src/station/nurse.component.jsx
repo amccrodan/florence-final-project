@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import ReactDragula from 'react-dragula';
-
 
 class Nurse extends Component {
 
@@ -9,11 +7,6 @@ class Nurse extends Component {
     this.state = {
     };
   }
-
-  // componentDidMount(){
-  //   const container = React.findDOMNode(this);
-  //   dragula([container]);
-  // }
 
   render(){
     return (

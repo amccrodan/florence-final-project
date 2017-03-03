@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import ReactDragula from 'react-dragula';
 import Nurse from './nurse.component.jsx';
-
 
 class NurseList extends Component {
 
@@ -11,11 +9,6 @@ class NurseList extends Component {
     this.state = {
     };
   }
-
-  // componentDidMount(){
-  //   const container = React.findDOMNode(this);
-  //   dragula([container]);
-  // }
 
   render(){
     return (

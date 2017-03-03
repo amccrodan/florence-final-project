@@ -11,10 +11,6 @@ class CareAideList extends Component {
     };
   }
 
-  componentDidMount(){
-
-  }
-
   render(){
     return (
       <div className='is-child tile nurse-list'>
