@@ -9,7 +9,7 @@ import ReactDOM from 'react-dom';
 import {Router, Route, IndexRoute, browserHistory} from 'react-router';
 
 import Main from './common/main.component.jsx'
-import Nurse from './nurse/nurse.component.jsx'
+import Station from './station/station.component.jsx'
 import Bed from './bed/bed.component.jsx'
 
 
@@ -26,7 +26,7 @@ ReactDOM.render(
   <Router history={browserHistory}>
     <Route path="/" component={Main} />
     <Route path="/nurse"
-      component={Nurse}
+      component={Station}
       assignWebSocketId={assignWebSocketId}
       webSocket={webSocket}
     />

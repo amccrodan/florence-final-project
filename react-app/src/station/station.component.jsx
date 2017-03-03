@@ -6,7 +6,7 @@ import RequestQueue from './request-queue.component.jsx';
 import NurseList from './nurse-list.component.jsx';
 import CareAideList from './care-aid-list.component.jsx';
 
-class Nurse extends Component {
+class Station extends Component {
   constructor(props){
     super(props);
     this.state = {
@@ -104,4 +104,4 @@ class Nurse extends Component {
   }
 }
 
-export default Nurse
+export default Station

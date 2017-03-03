@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import moment  from 'moment';
+import AssignStaffBox from './assign-staff-box.component.jsx';
 
 class Request extends Component {
   constructor(props){
@@ -131,9 +132,7 @@ class Request extends Component {
               this.props.request_type_id === 3 ? (
               <img className="staff-picture" src={`http://localhost:8080/images/nurses/${this.props.img}`} />
             ) : (
-              <div className="assign-staff-box">
-                <i className="fa fa-user" aria-hidden="true"></i>
-              </div>
+              <AssignStaffBox />
             )
           }
           </div>
