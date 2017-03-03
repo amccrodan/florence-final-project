@@ -15,6 +15,11 @@ class RequestAcknowledged extends Component {
     this.props.changeViewState('chooseButton');
   }
 
+  componentDidMount(){
+    this.props.getRequest();
+    console.log("request state should now be", this.props.requestState);
+  }
+
   render(){
     return (
       <section className='hero is-light is-fullheight'>
@@ -38,7 +43,7 @@ class RequestAcknowledged extends Component {
               <div className='column is-one-third'>
               </div>
               <div className='column'>
-                  <img className='is-focused big-circle' src='http://www.fillmurray.com/300/200'/>
+                  <img className='is-focused big-circle' src={`http://localhost:8080/images/nurses/${this.props.requestState.image}`} />
               </div>
               <div className='column'>
               </div>
@@ -46,7 +51,7 @@ class RequestAcknowledged extends Component {
           </div>
         </div>
         <div className='container has-text-centered'>
-          <h1 className='title'>Insert nurses name here is coming to help you </h1>
+          <h1 className='title'> {this.props.requestState.first_name} is coming to help you </h1>
         </div>
         </ReactCSSTransitionGroup>
       </section>
