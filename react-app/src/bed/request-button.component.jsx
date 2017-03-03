@@ -28,12 +28,10 @@ class RequestButton extends Component {
   render(){
     return (
       <section className='hero is-light is-fullheight'>
-        <div className='hero nice-background is-fullheight'>
-        </div>
         <div className='hero-body'>
           <div className='container has-text-centered'>
             <ReactCSSTransitionGroup
-              transitionName="fadeTransition"
+              transitionName='fadeTransition'
               transitionAppear={true}
               transitionAppearTimeout={500}
               transitionEnterTimeout={500}

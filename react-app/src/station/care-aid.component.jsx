@@ -10,7 +10,7 @@ class CareAid extends Component {
   }
 
   clickHandler(){
-    console.log("Nurse id clicked", this.props.id);
+    console.log('Nurse id clicked', this.props.id);
     this.props.clickOnStaff(this.props.id);
   }
 
@@ -19,7 +19,7 @@ class CareAid extends Component {
       <div className='container'>
       <article className='has-text-centered'>
         <div>
-        <img onClick={this.clickHandler} className="staff-picture" src={ `http://localhost:8080/images/nurses/${this.props.img}`} />
+        <img onClick={this.clickHandler} className='staff-picture' src={ `http://localhost:8080/images/nurses/${this.props.img}`} />
         <p> {this.props.first_name} </p>
         </div>
       </article>

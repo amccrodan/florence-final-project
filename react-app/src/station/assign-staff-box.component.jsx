@@ -20,7 +20,7 @@ class AssignStaffBox extends Component {
     return (
       <div className='container'>
         <div className='assign-staff-box' onClick={this.assignStaff}>
-          <i className="fa fa-user" aria-hidden="true"></i>
+          <i className='fa fa-user' aria-hidden='true'></i>
         </div>
       </div>
     )

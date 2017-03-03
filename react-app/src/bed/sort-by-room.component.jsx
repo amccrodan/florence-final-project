@@ -16,7 +16,7 @@ class SortByRoom extends Component {
     for (let room in rooms) {
       buttons.push(
         <button
-        className="button is-large is-80-wide"
+        className='button is-large is-80-wide'
         key={'room' + room}
         value={room}
         data='room'
@@ -42,7 +42,7 @@ class SortByRoom extends Component {
     const bedButtons = this.state.rooms[event.target.value].map(item => {
       return (
           <button
-          className="button is-large is-40-wide"
+          className='button is-large is-40-wide'
           key={'bed' + item.id}
           value={item.id}
           data='bed'
