@@ -100,3 +100,10 @@ i.patient-request{
 .nav-item{
   font-size:1em;
 }
+
+.request-description{
+  display: none;
+  .request-description:active{
+    display: flex;
+  }
+}
