@@ -38,7 +38,7 @@ class RequestForm extends Component {
     return (
         <div className='container'>
             <ReactCSSTransitionGroup
-            transitionName="fadeTransition"
+            transitionName='fadeTransition'
             transitionAppear={true}
             transitionAppearTimeout={500}
             transitionEnterTimeout={500}

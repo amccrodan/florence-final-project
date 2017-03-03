@@ -19,13 +19,11 @@ class RequestAcknowledged extends Component {
     return (
       <section className='hero is-light is-fullheight'>
       <ReactCSSTransitionGroup
-              transitionName="fadeTransition"
+              transitionName='fadeTransition'
               transitionAppear={true}
               transitionAppearTimeout={500}
               transitionEnterTimeout={500}
               transitionLeaveTimeout={300}>
-        <div className='hero nice-background is-fullheight'>
-        </div>
         <div className='hero-body'>
           <div className='complete'>
             <a className='button is-success'>

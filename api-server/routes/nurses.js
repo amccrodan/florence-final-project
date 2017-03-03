@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 const express = require('express');
 const router  = express.Router();
@@ -6,18 +6,18 @@ const router  = express.Router();
 module.exports = (knex) => {
 
   //Get a list of all nurses
-  router.get("/", (req, res) => {
+  router.get('/', (req, res) => {
     knex
-      .select("*")
-      .from("nurses")
+      .select('*')
+      .from('nurses')
       .then((results) => {
         res.json(results);
       });
   });
 
   //Create a new nurse
-  router.post("/"), (req, res) => {
-    knex("nurses").insert({
+  router.post('/'), (req, res) => {
+    knex('nurses').insert({
       first_name: req.body.first_name,
       last_name: req.body.last_name,
       image: req.body.image,
@@ -30,37 +30,37 @@ module.exports = (knex) => {
   }
 
   //Get a specific nurse's info when displaying who is assigned to a request
-  router.get("/:id", (req, res) => {
+  router.get('/:id', (req, res) => {
     knex
-      .select("*")
-      .from("nurses")
-      .where("id", req.params.id)
+      .select('*')
+      .from('nurses')
+      .where('id', req.params.id)
       .then((results) => {
         res.json(results);
       });
   });
 
   //Update a nurses status ie active: true -> active: false
-  router.put("/:id", (req, res) => {
+  router.put('/:id', (req, res) => {
 
     function findNurseStatus(){
       return knex
-        .select("active")
-        .from("nurses")
-        .where("id", req.params.id)
+        .select('active')
+        .from('nurses')
+        .where('id', req.params.id)
     }
 
     const status = findNurseStatus();
 
     if (status.active){
       status
-      .update("active", false)
+      .update('active', false)
       .then((results) => {
         res.json(results);
       });
     }else{
       status
-      .update("active", true)
+      .update('active', true)
       .then((results) => {
         res.json(results);
       });

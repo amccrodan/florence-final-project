@@ -89,7 +89,7 @@ class Request extends Component {
         case 5:
           return (
             <div style={{backgroundColor:'#ff3860', color: 'white'}} className='request-category-border has-text-centered'>
-              <i className='patient-request fa fa-exclamation-triangle' aria-hidden="true"></i>
+              <i className='patient-request fa fa-exclamation-triangle' aria-hidden='true'></i>
             </div>
           )
           break;
@@ -120,24 +120,24 @@ class Request extends Component {
 
     return (
       <article className={`is-child request-content ${reqStatusBorderColour(this.props.status_id)} ${checkReqType(this.props.request_type_id)}`} key={this.props.id}>
-        <div className="level columns">
-          <div className="level-item column is-1 has-text-centered">
-            <p className="title">{moment(this.props.created_at).format('HH:mm')}</p>
+        <div className='level columns'>
+          <div className='level-item column is-1 has-text-centered'>
+            <p className='title'>{moment(this.props.created_at).format('HH:mm')}</p>
           </div>
-          <div className="level-item column is-4">
-            <p className="title"> {this.props.first_name} {this.props.last_name} </p>
-            <p className="title"> Bed {this.props.bed_id} </p>
+          <div className='level-item column is-4'>
+            <p className='title'> {this.props.first_name} {this.props.last_name} </p>
+            <p className='title'> Bed {this.props.bed_id} </p>
           </div>
-          <div className="level-item column is-2">
+          <div className='level-item column is-2'>
             {reqCategory(this.props.request_type_id)}
           </div>
-          <div className="level-item column is-2">
+          <div className='level-item column is-2'>
             { this.state.requestAck === true ||
               this.props.status_id === 2 ||
               this.props.status_id === 3 ||
               this.props.request_type_id === 5 ||
               this.props.request_type_id === 3 ? (
-              <img className="staff-picture" src={`http://localhost:8080/images/nurses/${this.props.img}`} />
+              <img className='staff-picture' src={`http://localhost:8080/images/nurses/${this.props.img}`} />
             ) : (
               <AssignStaffBox id={this.props.id} assignStaffToRequest={this.props.assignStaffToRequest}
               staffSelected={this.props.staffSelected}
