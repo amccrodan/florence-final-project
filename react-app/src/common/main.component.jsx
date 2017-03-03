@@ -40,19 +40,23 @@ class Main extends Component {
     let buttons = '';
     if (this.state.loggedIn) {
       buttons = (
-        <div>
-
-          <Link to='/nurse' activeClassName='active'>
-            <button className='button is-large is-dark'>
-              Nurses
-            </button>
-          </Link>
-          <br />
-          <Link to='/bed' activeClassName='active'>
-            <button className='button is-large is-dark'>
-              Beds
-            </button>
-          </Link>
+        <div className='columns'>
+          <div className='column is-one-third'>
+          </div>
+          <div className='column '>
+            <Link to='/nurse' activeClassName='active'>
+              <button className='button is-large is-outlined login-btn'>
+                Nurses
+              </button>
+            </Link>
+            <Link to='/bed' activeClassName='active'>
+              <button className='button is-large is-outlined login-btn'>
+                Beds
+              </button>
+            </Link>
+          </div>
+          <div className='column'>
+          </div>
         </div>
       )
     }
@@ -72,10 +76,10 @@ class Main extends Component {
                 transitionEnterTimeout={500}
                 transitionLeaveTimeout={300}>
 
-                  <h1 className='title'>
+                  <h1 className='title larger'>
                     Florence
                   </h1>
-                  <h3 className='subtitle animated fadeInUp'>
+                  <h3 className='subtitle animated fadeInUp slighty-larger'>
                     Your Hospice Assistant
                   </h3>
               </ReactCSSTransitionGroup>
