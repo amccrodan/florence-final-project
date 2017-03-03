@@ -165,19 +165,22 @@ class Request extends Component {
         <div className={`request-description${this.state.showDescription}`}>
           <div className='level columns'>
             <div className='level-item column is-1 has-text-centered'>
-              <p className='title'>Last Updated {moment(this.props.updated_at).format('HH:mm')}</p>
+              <p className='title'>Updated {moment(this.props.updated_at).format('HH:mm')}</p>
             </div>
-            <div>
-              <p>Request Description: {this.props.description}</p>
+            <div className='level-item column is-2'>
+              <p className='title'>Room: {this.props.room_num}</p>
             </div>
-            <div>
-              <p>Assigned Nurse: {this.props.nurse_first_name} {this.props.nurse_last_name}</p>
+            <div className='level-item column is-2'>
+              <p className='title'>Description:</p>
+              <p>{this.props.description}</p>
             </div>
-            <div>
-              <p>Room Number: {this.props.room_num}</p>
+            <div className='level-item column is-1'>
+              <p className='title'>Nurse:</p>
+              <p>{this.props.nurse_first_name} {this.props.nurse_last_name}</p>
             </div>
-            <div>
-              <p>Mecial History: {this.props.med_hist}</p>
+            <div className='level-item column is-2'>
+              <p className='title'>Mecial History:</p>
+              <p>{this.props.med_hist}</p>
             </div>
           </div>
         </div>
