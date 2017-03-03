@@ -179,7 +179,7 @@ class Request extends Component {
               <p>{this.props.nurse_first_name} {this.props.nurse_last_name}</p>
             </div>
             <div className='level-item column is-2'>
-              <p>Mecial History:</p>
+              <p>Medical History:</p>
               <p>{this.props.med_hist}</p>
             </div>
           </div>
