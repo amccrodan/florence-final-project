@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group' // ES6
 import axios from 'axios';
-
+import cookie from 'react-cookie';
 
 class Login extends Component {
   constructor(props){
     super(props);
     this.state = {
       clicked: false,
-      hidden: ''
+      hidden: '',
     }
     this.dropDown = this.dropDown.bind(this);
     this.postLogin = this.postLogin.bind(this);
@@ -28,17 +28,22 @@ class Login extends Component {
     console.log(password);
 
     axios
-    .post('http://localhost:8080/api/authenticate', {first_name: first_name, last_name: last_name})
+    .post('http://localhost:8080/api/authenticate', {
+      first_name: first_name,
+      last_name: last_name,
+      password: password
+    })
     .then((response) => {
-      console.log('Posted:');
-      console.log(this.state.request);
-      this.changeRequestState({request_id: response.data[0]}, () => {});
+      console.log('you should have a cookie now?');
+      this.props.logIn(true);
+      cookie.save('session', response.data.token, { path: '/' });
     })
   }
 
   render() {
     let loginForm = '';
-    if (this.state.clicked) {
+    console.log(this.props.loggedIn);
+    if (this.state.clicked && !this.props.loggedIn) {
       loginForm = (
         <div className="login-form" key='login-form'>
           <p className="control has-icon">
@@ -80,7 +85,7 @@ class Login extends Component {
             <ReactCSSTransitionGroup
               transitionName="fadeTransition"
               transitionEnterTimeout={500}
-              transitionLeaveTimeout={300}>
+              transitionLeaveTimeout={100}>
                 {loginForm}
             </ReactCSSTransitionGroup>
           </div>

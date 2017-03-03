@@ -2,11 +2,16 @@ import React, { Component } from 'react';
 import Request from './request.component.jsx';
 
 class RequestQueue extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+    };
+  }
+
   render(){
     return (
       <div className='tile is-parent is-vertical is-10 request-queue'>
         {this.props.requests.map(request => {
-          console.log("Request img should be", request.image);
           return <Request key={request.request_id}
             first_name={request.first_name}
             last_name={request.last_name}
@@ -16,6 +21,7 @@ class RequestQueue extends Component {
             status_id={request.status_id}
             created_at={request.created_at}
             updated_at={request.updated_at}
+            respondToRequest={this.props.respondToRequest}
             />
         }
         )}

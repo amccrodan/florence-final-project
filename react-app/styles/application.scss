@@ -26,12 +26,21 @@
 body {
   font-family: 'Questrial', sans-serif;
   max-height: 100%;
+  min-height: 100%
 }
 
 html {
   height: 100%;
   width: 100%;
   position: fixed;
+}
+
+.center-stage {
+  display: flex;
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  font-size: 3em;
 }
 
 .is-hidden {
