@@ -45,8 +45,7 @@ i.patient-request{
   box-shadow: 0px 0px 5px grey;
   margin-top:12.5px;
   margin-bottom:12.5px;
-  padding-top:12.5px;
-  padding-bottom:12.5px;
+  padding-top:20px;
 }
 
 .in-progress{
@@ -103,7 +102,8 @@ i.patient-request{
 
 .request-description{
   display: none;
-  .request-description:active{
+  :active{
     display: flex;
+    padding-bottom: 12.5px;
   }
 }
