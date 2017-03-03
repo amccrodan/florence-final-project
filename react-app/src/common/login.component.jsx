@@ -18,27 +18,27 @@ class Login extends Component {
     let loginForm = '';
     if (this.state.clicked) {
       loginForm = (
-        <form className="login-form" key='login-form'>
-          <p className="control has-icon">
-            <input className="input" type="text" name="first_name" placeholder="First Name" />
-            <span className="icon is-small">
-              <i className="fa fa-user" />
+        <form className='login-form' key='login-form'>
+          <p className='control has-icon'>
+            <input className='input' type='text' name='first_name' placeholder='First Name' />
+            <span className='icon is-small'>
+              <i className='fa fa-user' />
             </span>
           </p>
-          <p className="control has-icon">
-            <input className="input" type="text" name="last_name" placeholder="Last Name" />
-            <span className="icon is-small">
-              <i className="fa fa-user" />
+          <p className='control has-icon'>
+            <input className='input' type='text' name='last_name' placeholder='Last Name' />
+            <span className='icon is-small'>
+              <i className='fa fa-user' />
             </span>
           </p>
-          <p className="control has-icon">
-            <input className="input" type="password" name="password" placeholder="Password" />
-            <span className="icon is-small">
-              <i className="fa fa-lock" />
+          <p className='control has-icon'>
+            <input className='input' type='password' name='password' placeholder='Password' />
+            <span className='icon is-small'>
+              <i className='fa fa-lock' />
             </span>
           </p>
-          <p className="control">
-          <button className="button is-success">
+          <p className='control'>
+          <button className='button is-success'>
           Login
           </button>
           </p>
@@ -49,14 +49,14 @@ class Login extends Component {
       <div>
         <div className='level'>
           <div className='level-item has-text-centered'>
-            <a className="nav-item is-white login" onClick={this.dropDown}>Login</a>
+            <a className='nav-item is-white login' onClick={this.dropDown}>Login</a>
           </div>
         </div>
 
-        <div className="level">
-          <div className="level-item has-text-centered">
+        <div className='level'>
+          <div className='level-item has-text-centered'>
             <ReactCSSTransitionGroup
-              transitionName="fadeTransition"
+              transitionName='fadeTransition'
               transitionEnterTimeout={500}
               transitionLeaveTimeout={300}>
                 {loginForm}

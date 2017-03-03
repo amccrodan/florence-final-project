@@ -10,7 +10,7 @@ class Station extends Component {
   constructor(props){
     super(props);
     this.state = {
-      stationId: "master",
+      stationId: 'master',
       requests: [],
       nurses: [],
       time: '',
@@ -18,8 +18,8 @@ class Station extends Component {
     };
 
     this.serverRequest = axios.create({
-      baseURL: "http://localhost:8080/api/",
-      responseType: "json", // default
+      baseURL: 'http://localhost:8080/api/',
+      responseType: 'json', // default
       withCredentials: false // default
     });
 
@@ -31,19 +31,19 @@ class Station extends Component {
   }
 
   getRequests() {
-    this.serverRequest.get("requests").then((result) => {
+    this.serverRequest.get('requests').then((result) => {
       this.setState({requests: result.data}, () => {});
     });
   }
 
   getCurrentTime() {
-    const currentTime = moment().format("ddd, MMMM Do YYYY, HH:mm:ss a");
+    const currentTime = moment().format('ddd, MMMM Do YYYY, HH:mm:ss a');
     this.setState({ time: currentTime });
   }
 
   respondToRequest(bed_id, id) {
     // send WS message that will go to specified bed_id
-    console.log("Clicked respond on Bed " + bed_id +''+ id);
+    console.log('Clicked respond on Bed ' + bed_id +''+ id);
     this.serverRequest.put((`requests/${id}`), {status_id: 2}).then(() => {
       this.props.route.webSocket.send(JSON.stringify({type: 'updateRequest', bed_id: bed_id}));
       this.getRequests();
@@ -58,7 +58,7 @@ class Station extends Component {
   }
 
   clickOnStaff(nurse_id){
-    console.log("The state should be updated to", nurse_id);
+    console.log('The state should be updated to', nurse_id);
     this.setState({ staffSelected: nurse_id });
   }
 
@@ -66,7 +66,7 @@ class Station extends Component {
   componentDidMount() {
     this.getRequests();
 
-    this.serverRequest.get("nurses").then((result) => {
+    this.serverRequest.get('nurses').then((result) => {
       this.setState({nurses: result.data}, () => {
         // console.log(this.state.nurses);
       });
