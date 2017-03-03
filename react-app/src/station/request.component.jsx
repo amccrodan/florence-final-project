@@ -7,9 +7,11 @@ class Request extends Component {
     super(props);
     this.state = {
       requestAck: false
+      showDescription: ''
     };
     this.handleRespond = this.handleRespond.bind(this);
     this.changeRequestAck = this.changeRequestAck.bind(this);
+    this.showDescription =  this.showDescription.bind(this);
   }
 
   handleRespond () {
@@ -18,6 +20,16 @@ class Request extends Component {
 
   changeRequestAck(){
     this.setState({ requestAck: true});
+  }
+
+  showDescription () {
+    if (this.state.showDescription) {
+      this.setState({showDescription: ':active'});
+    }
+    else {
+      this.setState({showDescription: ''});
+    }
+
   }
 
   render(){
@@ -150,7 +162,7 @@ class Request extends Component {
             {showRespond(this.props.status_id)}
           </div>
         </div>
-        <div>
+        <div className=`request-description${this.state.showDescription}` onClick={showDescription}>
           <p>
             Request Description: {this.props.description}
           </p>
