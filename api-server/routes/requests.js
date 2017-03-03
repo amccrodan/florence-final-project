@@ -62,10 +62,11 @@ module.exports = (knex) => {
 
   //Update a request status ie. pending -> complete
   router.put('/:id', (req, res) => {
-    console.log(req.body.status_id);
+    console.log(req.body);
     knex('requests')
       .where('id', req.params.id)
       .update({
+        'nurse_id': req.body.nurse_id,
         'status_id': req.body.status_id,
         'updated_at': 'now'
       })
