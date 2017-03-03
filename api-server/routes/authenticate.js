@@ -3,54 +3,62 @@
 const express = require('express');
 const router  = express.Router();
 
-module.exports = (knex) => {
+module.exports = (knex, jwt, app) => {
 
-  //Get a list of all beds when assigning room
+  router.get('/', function(req, res, next) {
+    let token = req.headers['x-access-token'];
+    console.log(token);
+    jwt.verify(token, app.get('superSecret'), function(err, decoded) {
+      if (err) {
+        return res.json({ success: false, message: 'Failed to authenticate token.' });
+      } else {
+        // if everything is good, save to request for use in other routes
+        req.decoded = decoded;
+        res.json({ success: true, message: 'You are good to go' })
+        next();
+      }
+    });
+  })
+
   router.post('/', function(req, res) {
-    console.log('whole thing', req)
     console.log('body', req.body)
     // find the user
-    // knex
-    //   .select("*")
-    //   .from("nurses")
-    //   .where("first_name", req.body.first_name)
-    //   .andWhere("last_name", requ.body.last_name)
-    //   .then((results) => {
-    //     res.json(results);
-    //   });
+    knex
+      .select("*")
+      .from("nurses")
+      .where("first_name", req.body.first_name)
+      .andWhere("last_name", req.body.last_name)
+      .then((results) => {
+        console.log('results', results[0]);
 
-  //   User.findOne({
-  //     name: req.body.name
-  //   }, function(err, user) {
+        const passwordString = results[0].password.toString()
+        console.log(typeof req.body.password);
+        if (!results[0]) {
+          console.log('No Nurse Found');
+          res.json({ success: false, message: 'Authentication failed. User not found.' });
+        } else {
+          if (passwordString !== req.body.password) {
+            console.log('Nurse Found, but password does not match').
+            res.json({ success: false, message: 'Authentication failed. Password does not match.' });
+          }
+          else {
+            if (passwordString === req.body.password) {
+              // create a token
+              const token = jwt.sign(results[0], app.get('superSecret'), {
+                // expiresIn: 1440 // expires in 24 hours
+              });
 
-  //     if (err) throw err;
+              res.json({
+                success: true,
+                message: 'Enjoy your token!',
+                token: token
+              });
 
-  //     if (!user) {
-  //       res.json({ success: false, message: 'Authentication failed. User not found.' });
-  //     } else if (user) {
+            }
+          }
+        }
+      });
 
-  //       // check if password matches
-  //       if (user.password != req.body.password) {
-  //         res.json({ success: false, message: 'Authentication failed. Wrong password.' });
-  //       } else {
-
-  //         // if user is found and password is right
-  //         // create a token
-  //         var token = jwt.sign(user, app.get('superSecret'), {
-  //           expiresInMinutes: 1440 // expires in 24 hours
-  //         });
-
-  //         // return the information including token as JSON
-  //         res.json({
-  //           success: true,
-  //           message: 'Enjoy your token!',
-  //           token: token
-  //         });
-  //       }
-
-  //     }
-
-  //   });
-  // });
+  });
  return router;
 }
