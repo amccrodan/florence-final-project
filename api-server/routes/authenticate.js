@@ -2,6 +2,7 @@
 
 const express = require('express');
 const router  = express.Router();
+const bcrypt = require('bcrypt');
 
 module.exports = (knex, jwt, app) => {
 
@@ -26,23 +27,25 @@ module.exports = (knex, jwt, app) => {
     knex
       .select("*")
       .from("nurses")
-      .where("first_name", req.body.first_name)
-      .andWhere("last_name", req.body.last_name)
+      .where("first_name", req.body.first_name.toLowerCase())
+      .andWhere("last_name", req.body.last_name.toLowerCase())
       .then((results) => {
         console.log('results', results[0]);
 
-        const passwordString = results[0].password.toString()
-        console.log(typeof req.body.password);
+        const passwordString = results[0].password;
+        let passwordMatch = bcrypt.compareSync(req.body.password, passwordString);
+        console.log(passwordMatch);
+
         if (!results[0]) {
           console.log('No Nurse Found');
           res.json({ success: false, message: 'Authentication failed. User not found.' });
         } else {
-          if (passwordString !== req.body.password) {
+          if (!passwordMatch) {
             console.log('Nurse Found, but password does not match').
             res.json({ success: false, message: 'Authentication failed. Password does not match.' });
           }
           else {
-            if (passwordString === req.body.password) {
+            if (passwordMatch) {
               // create a token
               const token = jwt.sign(results[0], app.get('superSecret'), {
                 // expiresIn: 1440 // expires in 24 hours

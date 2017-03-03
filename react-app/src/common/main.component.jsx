@@ -41,11 +41,13 @@ class Main extends Component {
     if (this.state.loggedIn) {
       buttons = (
         <div>
+
           <Link to='/nurse' activeClassName='active'>
             <button className='button is-large is-dark'>
               Nurses
             </button>
           </Link>
+          <br />
           <Link to='/bed' activeClassName='active'>
             <button className='button is-large is-dark'>
               Beds
@@ -69,6 +71,7 @@ class Main extends Component {
                 transitionAppearTimeout={500}
                 transitionEnterTimeout={500}
                 transitionLeaveTimeout={300}>
+
                   <h1 className='title'>
                     Florence
                   </h1>
