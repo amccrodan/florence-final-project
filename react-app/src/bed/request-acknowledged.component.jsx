@@ -12,7 +12,7 @@ class RequestAcknowledged extends Component {
 
   handleClick (event) {
     // this will be changed to a page that the nurse can put a small note on
-    this.props.changeViewState('chooseButton');
+    this.props.changeViewState('requestButton');
   }
 
   render(){
@@ -25,7 +25,7 @@ class RequestAcknowledged extends Component {
               transitionEnterTimeout={500}
               transitionLeaveTimeout={300}>
         <div className='hero-body'>
-          <div className='complete'>
+          <div className='complete' onClick={this.handleClick}>
             <a className='button is-success'>
               <span className='icon is-small'>
                 <i className='fa fa-check'></i>
