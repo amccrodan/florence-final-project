@@ -152,12 +152,19 @@ class Request extends Component {
         </div>
         <div>
           <p>
-            {this.props.nurse_first_name}
-            {this.props.nurse_last_name}
-            {this.props.room_id}
-            {this.props.med_hist}
-            {this.props.description}
-            {moment(this.props.updated_at).format('HH:mm')}
+            Request Description: {this.props.description}
+          </p>
+          <p>
+            Assigned Nurse: {this.props.nurse_first_name} {this.props.nurse_last_name}
+          </p>
+          <p>
+            Room Number: {this.props.room_num}
+          </p>
+          <p>
+            Mecial History: {this.props.med_hist}
+          </p>
+          <p>
+            Last Updated {moment(this.props.updated_at).format('HH:mm')}
           </p>
         </div>
       </article>
