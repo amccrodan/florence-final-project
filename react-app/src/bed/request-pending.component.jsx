@@ -26,7 +26,7 @@ class RequestPending extends Component {
     return (
       <div>
         <ReactCSSTransitionGroup
-            transitionName="fadeTransition"
+            transitionName='fadeTransition'
             transitionAppear={true}
             transitionAppearTimeout={500}
             transitionEnterTimeout={500}
@@ -41,8 +41,6 @@ class RequestPending extends Component {
             </div>
           </section>
           <section className='hero is-light is-fullheight'>
-            <div className='hero nice-background is-fullheight'>
-            </div>
             <div className='hero-body'>
               <div className='container has-text-centered'>
                 <div className='columns'>

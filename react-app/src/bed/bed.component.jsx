@@ -8,7 +8,8 @@ import RequestPending from './request-pending.component.jsx';
 import RequestAcknowledged from './request-acknowledged.component.jsx';
 
 import axios from 'axios';
-
+import { Link } from 'react-router';
+import cookie from 'react-cookie';
 
 class Bed extends Component {
   constructor(props){
@@ -18,12 +19,14 @@ class Bed extends Component {
       beds: [],
       request: {
         //bed_id, patient_id, nurse_id, status_id, request_type_id, description
-      }
+      },
+      loggedIn: false
     };
 
     this.serverRequest = axios.create({
       baseURL: 'http://localhost:8080/api/',
       withCredentials: false, // default
+      headers: {'x-access-token': cookie.load('session')},
     });
 
     this.changeViewState = this.changeViewState.bind(this);
@@ -34,7 +37,15 @@ class Bed extends Component {
   }
 
   componentDidMount() {
-    // Put the below in the main request screen component
+    this.serverRequest
+    .get('authenticate')
+    .then(result => {
+      console.log(result.data);
+      if (result.data.success) {
+        this.setState({loggedIn: true});
+      }
+    })
+
     this.serverRequest.get('beds').then((result) => {
       this.setState({beds: result.data}, () => {
         console.log('Beds state set.');
@@ -138,11 +149,19 @@ class Bed extends Component {
       default:
         output = <h4>View Not Found</h4>
     }
-
+    if (!this.state.loggedIn) {
+      output = (
+      <Link to="/" activeClassName="active" >
+        <p className='nav-item is-white center-stage'>
+          Please Login
+        </p>
+      </Link>
+      )
+    }
     return (
       <div>
       <ReactCSSTransitionGroup
-        transitionName="fadeTransition"
+        transitionName='fadeTransition'
         transitionAppear={true}
         transitionAppearTimeout={500}
         transitionEnterTimeout={500}

@@ -8,23 +8,24 @@ module.exports = (knex) => {
   //Get all requests
   router.get('/', (req, res) => {
     knex
-      .select("requests.id as request_id",
-       "requests.bed_id",
-       "patients.id as patient_id",
-       "requests.nurse_id AS nurse_id",
-       "status_id", "request_type_id",
-       "patients.first_name",
-       "patients.last_name",
-       "nurses.image",
-       "nurses.first_name AS nurse_first_name",
-       "nurses.last_name AS nurse_last_name",
-       "requests.created_at",
-       "requests.updated_at")
-      .from("requests")
-      .join("patients", function(){
+      .select('requests.id as request_id',
+       'requests.bed_id',
+       'patients.id as patient_id',
+       'requests.nurse_id AS nurse_id',
+       'status_id', 'request_type_id',
+       'patients.first_name',
+       'patients.last_name',
+       'nurses.image',
+       'nurses.first_name AS nurse_first_name',
+       'nurses.last_name AS nurse_last_name',
+       'requests.created_at',
+       'requests.updated_at')
+      .orderBy('requests.created_at')
+      .from('requests')
+      .join('patients', function(){
         this.on('patients.id', '=', 'requests.patient_id')
       })
-      .leftJoin("nurses", "requests.nurse_id", "nurses.id")
+      .leftJoin('nurses', 'requests.nurse_id', 'nurses.id')
       .then((results) => {
         res.json(results);
     });
@@ -62,10 +63,11 @@ module.exports = (knex) => {
 
   //Update a request status ie. pending -> complete
   router.put('/:id', (req, res) => {
-    console.log(req.body.status_id);
+    console.log(req.body);
     knex('requests')
       .where('id', req.params.id)
       .update({
+        'nurse_id': req.body.nurse_id,
         'status_id': req.body.status_id,
         'updated_at': 'now'
       })

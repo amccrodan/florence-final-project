@@ -42,7 +42,7 @@ class ChooseBed extends Component {
     let buttons = '';
     if (this.state.bedSort === 'all') {
       buttons = this.props.bedList.map( item => {
-        return <button className="button is-large is-40-wide" key={item.id} value={item.id} onClick={this.handleClick}>Bed {item.id}</button>
+        return <button className='button is-large is-40-wide' key={item.id} value={item.id} onClick={this.handleClick}>Bed {item.id}</button>
       })
     }
     if (this.state.bedSort === 'rooms') {
@@ -61,18 +61,16 @@ class ChooseBed extends Component {
 
     }
     return (
-      <section className="hero is-light is-fullheight">
-        <div className="hero nice-background is-fullheight">
-        </div>
-        <div className="hero-body ">
-          <div className="container has-text-centered">
+      <section className='hero is-light is-fullheight'>
+        <div className='hero-body '>
+          <div className='container has-text-centered'>
             <div>
-              <div className="columns">
+              <div className='columns'>
 
-                <div className="column no-padding">
+                <div className='column no-padding'>
                 </div>
-                <div className="column is-10 no-padding">
-                  <div className="sort-beds">
+                <div className='column is-10 no-padding'>
+                  <div className='sort-beds'>
                     <button
                     className={`button is-large is-40-wide ${this.state.roomsClass}`}
                     value='rooms'
@@ -86,12 +84,12 @@ class ChooseBed extends Component {
                       All Beds
                     </button>
                   </div>
-                  <hr className="less-margin"/>
-                  <div className="handle-overflow">
+                  <hr className='less-margin'/>
+                  <div className='handle-overflow'>
                     {buttons}
                   </div>
                 </div>
-                <div className="column no-padding">
+                <div className='column no-padding'>
                 </div>
 
               </div>
