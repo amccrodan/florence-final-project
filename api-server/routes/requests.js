@@ -20,6 +20,7 @@ module.exports = (knex) => {
        "nurses.last_name AS nurse_last_name",
        "requests.created_at",
        "requests.updated_at")
+      .orderBy("requests.created_at")
       .from("requests")
       .join("patients", function(){
         this.on('patients.id', '=', 'requests.patient_id')
