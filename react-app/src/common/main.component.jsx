@@ -41,52 +41,53 @@ class Main extends Component {
     if (this.state.loggedIn) {
       buttons = (
         <div>
-          <Link to="/nurse" activeClassName="active">
-            <button className='button btn-sleek'>
-              <span>Nurses</span>
+
+          <Link to='/nurse' activeClassName='active'>
+            <button className='button is-large is-dark'>
+              Nurses
             </button>
           </Link>
           <br />
-          <Link to="/bed" activeClassName="active">
-            <button className='button btn-sleek'>
-              <span>Beds</span>
+          <Link to='/bed' activeClassName='active'>
+            <button className='button is-large is-dark'>
+              Beds
             </button>
           </Link>
         </div>
       )
     }
     return(
-      <section className="hero is-light is-fullheight">
+      <section className='hero is-light is-fullheight'>
 
-      <div className="hero-body">
-        <div className="container has-text-centered">
-          <div className="columns">
-            <div className="column is-one-third">
+      <div className='hero-body'>
+        <div className='container has-text-centered'>
+          <div className='columns'>
+            <div className='column is-one-third'>
             </div>
-            <div className="column">
+            <div className='column'>
                <ReactCSSTransitionGroup
-                transitionName="fadeTransition"
+                transitionName='fadeTransition'
                 transitionAppear={true}
                 transitionAppearTimeout={500}
                 transitionEnterTimeout={500}
                 transitionLeaveTimeout={300}>
-                  <h1 className="title larger">
+
+                  <h1 className='title'>
                     Florence
                   </h1>
-                  <h3 className="subtitle animated fadeInUp larger">
+                  <h3 className='subtitle animated fadeInUp'>
                     Your Hospice Assistant
                   </h3>
               </ReactCSSTransitionGroup>
             </div>
-            <div className="column">
+            <div className='column'>
             </div>
           </div>
-
           <Login
           logIn={this.logIn}
           loggedIn={this.state.loggedIn} />
           <ReactCSSTransitionGroup
-            transitionName="fadeTransition"
+            transitionName='fadeTransition'
             transitionAppear={true}
             transitionAppearTimeout={500}
             transitionEnterTimeout={500}

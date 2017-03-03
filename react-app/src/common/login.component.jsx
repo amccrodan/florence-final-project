@@ -53,27 +53,27 @@ class Login extends Component {
     }
     if (this.state.clicked && !this.props.loggedIn) {
       loginForm = (
-        <div className="login-form" key='login-form'>
-          <p className="control has-icon">
-            <input className="input first-name" type="text" name="first_name" placeholder="First Name" />
-            <span className="icon is-small">
-              <i className="fa fa-user" />
+        <div className='login-form' key='login-form'>
+          <p className='control has-icon'>
+            <input className='input first-name' type='text' name='first_name' placeholder='First Name' />
+            <span className='icon is-small'>
+              <i className='fa fa-user' />
             </span>
           </p>
-          <p className="control has-icon">
-            <input className="input last-name" type="text" name="last_name" placeholder="Last Name" />
-            <span className="icon is-small">
-              <i className="fa fa-user" />
+          <p className='control has-icon'>
+            <input className='input last-name' type='text' name='last_name' placeholder='Last Name' />
+            <span className='icon is-small'>
+              <i className='fa fa-user' />
             </span>
           </p>
-          <p className="control has-icon">
-            <input className="input password" type="password" name="password" placeholder="Password" />
-            <span className="icon is-small">
-              <i className="fa fa-lock" />
+          <p className='control has-icon'>
+            <input className='input password' type='password' name='password' placeholder='Password' />
+            <span className='icon is-small'>
+              <i className='fa fa-lock' />
             </span>
           </p>
-          <p className="control">
-          <button type='submit' className="button is-success" onClick={this.postLogin}>
+          <p className='control'>
+          <button type='submit' className='button is-success' onClick={this.postLogin}>
             Login
           </button>
           </p>
@@ -86,10 +86,10 @@ class Login extends Component {
           {loginText}
         </div>
 
-        <div className="level">
-          <div className="level-item has-text-centered">
+        <div className='level'>
+          <div className='level-item has-text-centered'>
             <ReactCSSTransitionGroup
-              transitionName="fadeTransition"
+              transitionName='fadeTransition'
               transitionEnterTimeout={500}
               transitionLeaveTimeout={100}>
                 {loginForm}

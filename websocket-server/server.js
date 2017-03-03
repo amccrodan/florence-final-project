@@ -40,7 +40,7 @@ wss.on('connection', (ws) => {
   console.log('Client connected');
 
   ws.send(JSON.stringify({
-    message: "Hello from server!"
+    message: 'Hello from server!'
   }));
 
   ws.on('message', function incoming(message) {
@@ -50,7 +50,7 @@ wss.on('connection', (ws) => {
     switch(receivedMsg.type) {
       case 'refreshRequests':
         // tell nurse station to get all requests
-        wss.sendToFlorence("master", JSON.stringify(receivedMsg));
+        wss.sendToFlorence('master', JSON.stringify(receivedMsg));
         console.log(`Sending ${receivedMsg} to master.`);
         break;
       case 'updateRequest':

@@ -38,7 +38,7 @@ class RequestForm extends Component {
     return (
         <div className='container'>
             <ReactCSSTransitionGroup
-            transitionName="fadeTransition"
+            transitionName='fadeTransition'
             transitionAppear={true}
             transitionAppearTimeout={500}
             transitionEnterTimeout={500}
@@ -48,7 +48,7 @@ class RequestForm extends Component {
               <div className='hero-body'>
                 <div className='container has-text-centered'>
                   <h1 className='title'>How can we help you today?</h1>
-                    </div>
+                </div>
                 <div className='cancel'>
                   <span className='button is-large is-danger' onClick={this.handleCancel}>Cancel</span>
                 </div>
