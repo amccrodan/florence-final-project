@@ -10,7 +10,6 @@ class CareAid extends Component {
   }
 
   clickHandler(){
-    console.log('Nurse id clicked', this.props.id);
     this.props.clickOnStaff(this.props.id);
   }
 
