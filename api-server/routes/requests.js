@@ -15,17 +15,19 @@ module.exports = (knex) => {
        'status_id', 'request_type_id',
        'patients.first_name',
        'patients.last_name',
+       'patients.medical_history',
        'nurses.image',
        'nurses.first_name AS nurse_first_name',
        'nurses.last_name AS nurse_last_name',
        'requests.created_at',
-       'requests.updated_at')
+       'requests.updated_at',
+       'requests.description',
+       'beds.room_id')
       .orderBy('requests.created_at')
       .from('requests')
-      .join('patients', function(){
-        this.on('patients.id', '=', 'requests.patient_id')
-      })
-      .leftJoin('nurses', 'requests.nurse_id', 'nurses.id')
+      .join('patients', 'patients.id', 'requests.patient_id')
+      .join('nurses', 'requests.nurse_id', 'nurses.id')
+      .join('beds', 'requests.bed_id', 'beds.id')
       .then((results) => {
         res.json(results);
     });
