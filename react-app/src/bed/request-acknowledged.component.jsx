@@ -6,8 +6,8 @@ class RequestAcknowledged extends Component {
     super(props);
     this.state = {
     };
-  this.handleClick = this.handleClick.bind(this);
 
+    this.handleClick = this.handleClick.bind(this);
   }
 
   handleClick (event) {

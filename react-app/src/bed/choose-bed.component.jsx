@@ -28,7 +28,7 @@ class ChooseBed extends Component {
   }
 
   handleClick (event) {
-    this.props.assignWebSocketId(event.target.value);
+    this.props.assignWebSocketId(parseInt(event.target.value));
     this.props.changeRequestState({bed_id: event.target.value}, () => {});
     this.props.changeViewState('requestButton');
   }

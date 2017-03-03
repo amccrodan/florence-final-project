@@ -9,16 +9,11 @@ import ReactDOM from 'react-dom';
 import {Router, Route, IndexRoute, browserHistory} from 'react-router';
 
 import Main from './common/main.component.jsx'
-import Nurse from './nurse/nurse.component.jsx'
+import Station from './station/station.component.jsx'
 import Bed from './bed/bed.component.jsx'
 
 
 const webSocket = new WebSocket("ws://localhost:4000");
-
-webSocket.onmessage = (event) => {
-  const incomingObj = JSON.parse(event.data);
-  console.log(incomingObj);
-}
 
 const assignWebSocketId = function(stationId) {
   webSocket.send(JSON.stringify({
@@ -35,7 +30,7 @@ ReactDOM.render(
     component={Main}
     />
     <Route path="/nurse"
-      component={Nurse}
+      component={Station}
       assignWebSocketId={assignWebSocketId}
       webSocket={webSocket}
     />

@@ -22,6 +22,10 @@ class RequestQueue extends Component {
             created_at={request.created_at}
             updated_at={request.updated_at}
             respondToRequest={this.props.respondToRequest}
+            assignStaffToRequest={this.props.assignStaffToRequest}
+            id={request.request_id}
+            nurse_id={request.nurse_id}
+            staffSelected={this.props.staffSelected}
             />
         }
         )}

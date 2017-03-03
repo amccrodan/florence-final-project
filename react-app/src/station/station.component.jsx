@@ -9,8 +9,7 @@ import RequestQueue from './request-queue.component.jsx';
 import NurseList from './nurse-list.component.jsx';
 import CareAideList from './care-aid-list.component.jsx';
 
-
-class Nurse extends Component {
+class Station extends Component {
   constructor(props){
     super(props);
     this.state = {
@@ -18,6 +17,7 @@ class Nurse extends Component {
       requests: [],
       nurses: [],
       time: '',
+      staffSelected: 0,
       loggedIn: false
     };
 
@@ -31,25 +31,42 @@ class Nurse extends Component {
     this.getRequests = this.getRequests.bind(this);
     this.respondToRequest = this.respondToRequest.bind(this);
     this.getCurrentTime = this.getCurrentTime.bind(this);
+    this.assignStaffToRequest = this.assignStaffToRequest.bind(this);
+    this.clickOnStaff = this.clickOnStaff.bind(this);
   }
 
   getRequests() {
     this.serverRequest.get("requests").then((result) => {
-      this.setState({requests: result.data}, () => {
-        // console.log(this.state.requests);
-      });
+      this.setState({requests: result.data}, () => {});
     });
   }
 
-  getCurrentTime (){
+  getCurrentTime() {
     const currentTime = moment().format("ddd, MMMM Do YYYY, HH:mm:ss a");
-    this.setState({ time: currentTime })
+    this.setState({ time: currentTime });
   }
 
-  respondToRequest(bed_id) {
+  respondToRequest(bed_id, id) {
     // send WS message that will go to specified bed_id
-    console.log("Clicked respond on Bed " + bed_id);
+    console.log("Clicked respond on Bed " + bed_id +''+ id);
+    this.serverRequest.put((`requests/${id}`), {status_id: 2}).then(() => {
+      this.props.route.webSocket.send(JSON.stringify({type: 'updateRequest', bed_id: bed_id}));
+      this.getRequests();
+    });
   }
+
+  assignStaffToRequest(request_id, nurse_id){
+    this.setState( {requestAck: true});
+    this.serverRequest.put((`requests/${request_id}`), {nurse_id: nurse_id}).then(() => {
+      this.getRequests();
+    });
+  }
+
+  clickOnStaff(nurse_id){
+    console.log("The state should be updated to", nurse_id);
+    this.setState({ staffSelected: nurse_id });
+  }
+
 
   componentDidMount() {
     this.serverRequest
@@ -69,16 +86,24 @@ class Nurse extends Component {
       });
     })
 
-    setInterval(this.getCurrentTime, 1000);
+    this.getCurrentTime();
+    this.clockTimer = setInterval(this.getCurrentTime, 1000);
 
     this.props.route.assignWebSocketId(this.state.stationId);
 
     this.props.route.webSocket.onmessage = (event) => {
       const incomingObj = JSON.parse(event.data);
-      if (incomingObj.type === "refreshRequests") {
+      if (incomingObj.type === 'refreshRequests') {
         this.getRequests();
       }
+      if (incomingObj.type === 'assignId') {
+        console.log(incomingObj);
+      }
     }
+  }
+
+  componentWillUnmount () {
+    clearInterval(this.clockTimer);
   }
 
   render(){
@@ -96,10 +121,14 @@ class Nurse extends Component {
           </div>
         </nav>
         <div className='tile is-ancestor nurse-station'>
-          <RequestQueue requests={this.state.requests} respondToRequest={this.respondToRequest}/>
+          <RequestQueue requests={this.state.requests}
+            assignStaffToRequest={this.assignStaffToRequest}
+            respondToRequest={this.respondToRequest}
+            staffSelected={this.state.staffSelected}
+            />
           <div className='tile is-vertical is-parent staff-list'>
             <h1 className='title has-text-centered'>Care-aides</h1>
-            <CareAideList nurses={this.state.nurses} />
+            <CareAideList clickOnStaff={this.clickOnStaff} nurses={this.state.nurses} />
             <hr className='divider'/>
             <h1 className='title has-text-centered'>Nurses</h1>
             <NurseList nurses={this.state.nurses} />
@@ -131,4 +160,4 @@ class Nurse extends Component {
   }
 }
 
-export default Nurse
+export default Station

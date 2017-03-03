@@ -51,6 +51,16 @@ class Bed extends Component {
         console.log('Beds state set.');
       });
     })
+
+    this.props.route.webSocket.onmessage = (event) => {
+      const incomingObj = JSON.parse(event.data);
+      if (incomingObj.type === 'updateRequest') {
+        this.setState({view: 'requestAcknowledged'});
+      }
+      if (incomingObj.type === 'assignId') {
+        console.log(incomingObj);
+      }
+    }
   }
 
   changeViewState (stateName) {
@@ -90,7 +100,7 @@ class Bed extends Component {
   }
 
   putRequest () {
-    this.serverRequest.put(`requests/${this.state.request.bed_id}`, this.state.request)
+    this.serverRequest.put(`requests/${this.state.request.request_id}`, this.state.request)
     .then(() => {
       console.log('Put:');
       console.log(this.state.request);

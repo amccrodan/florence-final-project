@@ -1,16 +1,23 @@
 import React, { Component } from 'react';
 import moment  from 'moment';
+import AssignStaffBox from './assign-staff-box.component.jsx';
 
 class Request extends Component {
   constructor(props){
     super(props);
     this.state = {
+      requestAck: false
     };
     this.handleRespond = this.handleRespond.bind(this);
+    this.changeRequestAck = this.changeRequestAck.bind(this);
   }
 
   handleRespond () {
-    this.props.respondToRequest(this.props.bed_id);
+    this.props.respondToRequest(this.props.bed_id, this.props.id);
+  }
+
+  changeRequestAck(){
+    this.setState({ requestAck: true});
   }
 
   render(){
@@ -125,12 +132,17 @@ class Request extends Component {
             {reqCategory(this.props.request_type_id)}
           </div>
           <div className="level-item column is-2">
-            { this.props.img ? (
+            { this.state.requestAck === true ||
+              this.props.status_id === 2 ||
+              this.props.status_id === 3 ||
+              this.props.request_type_id === 5 ||
+              this.props.request_type_id === 3 ? (
               <img className="staff-picture" src={`http://localhost:8080/images/nurses/${this.props.img}`} />
             ) : (
-              <div className="assign-staff-box">
-                <i className="fa fa-user" aria-hidden="true"></i>
-              </div>
+              <AssignStaffBox id={this.props.id} assignStaffToRequest={this.props.assignStaffToRequest}
+              staffSelected={this.props.staffSelected}
+              changeRequestAck={this.changeRequestAck}
+              />
             )
           }
           </div>
