@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import moment  from 'moment';
-import DragulaComponent from './dragula.component.jsx';
+import AssignStaffBox from './assign-staff-box.component.jsx';
 
 class Request extends Component {
   constructor(props){
