@@ -25,7 +25,9 @@ class Login extends Component {
     const first_name = document.getElementsByClassName('first-name')[0].value;
     const last_name = document.getElementsByClassName('last-name')[0].value;
     const password = document.getElementsByClassName('password')[0].value;
-    console.log(password);
+
+    // check if fields are valid - not empty
+    // lowercase and capitalize
 
     axios
     .post('http://localhost:8080/api/authenticate', {
@@ -34,9 +36,14 @@ class Login extends Component {
       password: password
     })
     .then((response) => {
-      console.log('you should have a cookie now?');
+      console.log(response.data);
+      if (!response.data.success) {
+        console.log(response.data.message);
+      }
       this.props.logIn(response.data.success);
       cookie.save('session', response.data.token, { path: '/' });
+    }).catch(err => {
+      console.log(err);
     })
   }
 
