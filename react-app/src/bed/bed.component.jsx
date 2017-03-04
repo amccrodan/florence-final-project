@@ -128,8 +128,8 @@ class Bed extends Component {
   putRequest() {
     this.serverRequest.put(`requests/${this.state.request.request_id}`, this.state.request)
     .then(() => {
-      // console.log('Put:');
-      // console.log(this.state.request);
+      console.log('Put:');
+      console.log(this.state.request);
       this.props.route.webSocket.send(JSON.stringify({type: 'refreshRequests'}));
     });
   }
