@@ -5,10 +5,10 @@ exports.seed = function(knex, Promise) {
     .then(function () {
       // Inserts seed entries
       return knex('statuses').insert([
-        {id: 1, title: 'Pending'},
-        {id: 2, title: 'In Progress'},
-        {id: 3, title: 'Completed'},
-        {id: 4, title: 'Cancelled'}
+        {title: 'Pending'},
+        {title: 'In Progress'},
+        {title: 'Completed'},
+        {title: 'Cancelled'}
       ]);
     });
 };
