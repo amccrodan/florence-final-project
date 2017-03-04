@@ -8,22 +8,18 @@ class RequestPending extends Component {
       time: ''
     };
   this.handleClick = this.handleClick.bind(this);
+  this.getElapsedTime = this.getElapsedTime.bind(this);
   }
 
-  getCurrentTime() {
-    const currentTime = moment().format('ddd, MMMM Do YYYY, HH:mm:ss a');
-    this.setState({ time: currentTime });
+  getElapsedTime() {
+    const elapsedTime = moment().format('HH:mm:ss');
+    this.setState({ time: elapsedTime });
   }
 
   handleClick (event) {
     this.props.changeRequestState({status_id: 4}, () => {
       this.props.putRequest();
-      // this.props.changeRequestState({
-      //   request_type_id: null,
-      //   request_id: null
-      // }, () => {
-        this.props.changeViewState('requestButton');
-      //});
+      this.props.changeViewState('requestButton');
     });
   }
 
