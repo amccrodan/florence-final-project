@@ -10,9 +10,13 @@
 }
 
 .complete-button{
+  position: absolute;
+  top: 2%;
+  right: 1%;
+}
+.complete-button-content{
   display: flex;
   align-items: center;
-
 }
 
 .request-acknowledged-container{

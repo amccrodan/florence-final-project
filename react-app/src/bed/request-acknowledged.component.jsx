@@ -29,20 +29,20 @@ class RequestAcknowledged extends Component {
                 transitionAppearTimeout={500}
                 transitionEnterTimeout={500}
                 transitionLeaveTimeout={300}>
-          <div className='button is-large is-success container has-text-centered'>
-              <a className='complete-button'>
+          <div className='button is-large is-success container has-text-centered complete-button'>
+              <a className='complete-button-content'>
                 <span>Complete</span>
                 <span className='icon'>
                   <i className='fa fa-check'></i>
                 </span>
               </a>
           </div>
-          <div className='container has-text-centered request-acknowledged-container'>
+          <div className='container is-outlined has-text-centered request-acknowledged-container'>
               <div className='container has-text-centered'>
                   <img className='is-focused big-circle' src={`http://localhost:8080/images/nurses/${this.props.requestState.image}`} />
               </div>
               <div className='container has-text-centered'>
-                <h1 className='title'> {this.props.requestState.first_name} is coming to help you.</h1>
+                <h1 className='title is-2'> {this.props.requestState.first_name} is coming to help you.</h1>
               </div>
           </div>
         </ReactCSSTransitionGroup>
