@@ -5,9 +5,14 @@ class RequestPending extends Component {
   constructor(props){
     super(props);
     this.state = {
+      time: ''
     };
   this.handleClick = this.handleClick.bind(this);
+  }
 
+  getCurrentTime() {
+    const currentTime = moment().format('ddd, MMMM Do YYYY, HH:mm:ss a');
+    this.setState({ time: currentTime });
   }
 
   handleClick (event) {
