@@ -61,15 +61,19 @@ class Station extends Component {
     });
   }
 
-  assignStaffToRequest(request_id, nurse_id){
-    this.setState( {requestAck: true});
+  assignStaffToRequest(request_id, nurse_id) {
     this.serverRequest.put((`requests/${request_id}`), {nurse_id: nurse_id}).then(() => {
+      this.setState( {staffSelected: 0});
       this.getRequests();
     });
   }
 
   clickOnStaff(nurse_id){
-    this.setState({ staffSelected: nurse_id });
+    let id_to_set = nurse_id;
+    if (this.state.staffSelected === nurse_id) {
+      id_to_set = 0;
+    }
+    this.setState({ staffSelected: id_to_set });
   }
 
 
@@ -83,6 +87,7 @@ class Station extends Component {
       }
     })
 
+    this.setState({ staffSelected: 0 });
     this.getRequests();
 
     this.serverRequest.get('nurses').then((result) => {
@@ -133,7 +138,9 @@ class Station extends Component {
             />
           <div className='tile is-vertical is-parent staff-list'>
             <h1 className='title has-text-centered'>Care-aides</h1>
-            <CareAideList clickOnStaff={this.clickOnStaff} nurses={this.state.nurses} />
+            <CareAideList clickOnStaff={this.clickOnStaff}
+              nurses={this.state.nurses}
+              staffSelected={this.state.staffSelected}/>
             <hr className='divider'/>
             <h1 className='title has-text-centered'>Nurses</h1>
             <NurseList nurses={this.state.nurses} />
