@@ -19,8 +19,13 @@ class RequestAcknowledged extends Component {
 
   componentDidMount(){
     this.props.getNurseInfo();
-    // console.log("request state should now be", this.props.requestState);
+    this.clockTimer = setInterval(this.getElapsedTime, 990);
   }
+
+  componentWillUnmount() {
+    clearInterval(this.clockTimer);
+  }
+
 
   render(){
     return (
