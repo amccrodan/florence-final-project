@@ -8,7 +8,6 @@ module.exports = (knex, jwt, app) => {
 
   router.get('/', function(req, res, next) {
     let token = req.headers['x-access-token'];
-    console.log(token);
     jwt.verify(token, app.get('superSecret'), function(err, decoded) {
       if (err) {
         return res.json({ success: false, message: 'Failed to authenticate token.' });
@@ -22,7 +21,6 @@ module.exports = (knex, jwt, app) => {
   })
 
   router.post('/', function(req, res) {
-    console.log('body', req.body)
     // find the user
     knex
       .select("*")
@@ -36,7 +34,6 @@ module.exports = (knex, jwt, app) => {
       .then((results) => {
         const passwordString = results[0].password;
         let passwordMatch = bcrypt.compareSync(req.body.password, passwordString);
-        console.log(passwordMatch);
 
         if (!results[0]) {
           console.log('No Nurse Found');
