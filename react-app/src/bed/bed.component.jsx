@@ -143,7 +143,8 @@ class Bed extends Component {
       putRequest: this.putRequest,
       requestState: this.state.request,
       getNurseInfo: this.getNurseInfo,
-      nurseInfo: this.state.nurseInfo
+      nurseInfo: this.state.nurseInfo,
+      getRequest: this.state.getRequest
     }
 
     switch(this.state.view) {

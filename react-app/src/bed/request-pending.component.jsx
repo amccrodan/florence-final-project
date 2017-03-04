@@ -12,10 +12,18 @@ class RequestPending extends Component {
   }
 
   getElapsedTime() {
-    const createdAt = this.props.createdAt;
+    this.props.getRequest();
+    const createdAt = this.props.requestState.createdAt;
     const now = moment();
     const elapsedTime = moment.duration(now.diff(createdAt));
     this.setState({ time: elapsedTime });
+  }
+
+  this.getElapsedTime();
+  this.clockTimer = setInterval(this.getElapsedTime, 1000);
+
+  componentWillUnmount () {
+    clearInterval(this.clockTimer);
   }
 
   handleClick (event) {
@@ -55,6 +63,7 @@ class RequestPending extends Component {
                       </div>
                   </div>
                   <div className='column'>
+                    <p> Hello {this.state.time}</p>
                   </div>
                 </div>
               </div>
