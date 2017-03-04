@@ -14,7 +14,6 @@ class RequestPending extends Component {
   }
 
   getElapsedTime() {
-    console.log('Getting time');
     let createdAt = moment(this.props.requestState.createdAt);
     let now = moment();
     let time = moment.utc(moment(now, "HH:mm:ss").diff(moment(createdAt, "HH:mm:ss"))).format("mm:ss");

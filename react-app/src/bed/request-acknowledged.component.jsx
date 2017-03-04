@@ -8,7 +8,7 @@ class RequestAcknowledged extends Component {
     this.state = {
       time: '00:00'
     };
-
+    this.getElapsedTime = this.getElapsedTime.bind(this);
     this.handleClick = this.handleClick.bind(this);
   }
 
@@ -20,7 +20,6 @@ class RequestAcknowledged extends Component {
   }
 
   getElapsedTime() {
-    console.log('Getting time');
     let createdAt = moment(this.props.requestState.createdAt);
     let now = moment();
     let time = moment.utc(moment(now, "HH:mm:ss").diff(moment(createdAt, "HH:mm:ss"))).format("mm:ss");
