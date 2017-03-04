@@ -35,9 +35,16 @@ class Station extends Component {
     this.clickOnStaff = this.clickOnStaff.bind(this);
   }
 
+  filterRequests(request) {
+    if (request.status_id === 1 || request.status_id === 2){
+      return request;
+    }
+  }
+
   getRequests() {
     this.serverRequest.get('requests').then((result) => {
-      this.setState({requests: result.data}, () => {});
+      const filtered = result.data.filter(this.filterRequests);
+      this.setState({requests: filtered});
     });
   }
 
