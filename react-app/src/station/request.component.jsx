@@ -10,6 +10,7 @@ class Request extends Component {
     };
     this.handleRespond = this.handleRespond.bind(this);
     this.showDescription = this.showDescription.bind(this);
+    this.patientHistoryClickHandler = this.patientHistoryClickHandler.bind(this);
   }
 
   handleRespond (event) {
@@ -24,7 +25,10 @@ class Request extends Component {
     else {
       this.setState({showDescription: ''});
     }
+  }
 
+  patientHistoryClickHandler (event){
+    event.stopPropagation();
   }
 
   render(){
@@ -173,8 +177,10 @@ class Request extends Component {
               <p>{this.props.nurse_first_name} {this.props.nurse_last_name}</p>
             </div>
             <div className='level-item column is-2'>
-              <p>Medical History:</p>
-              <p>{this.props.med_hist}</p>
+              <div className='block'>
+                <a onClick={this.patientHistoryClickHandler} className='button'>Medical History</a>
+                <p>{this.props.med_hist}</p>
+              </div>
             </div>
           </div>
         </div>
