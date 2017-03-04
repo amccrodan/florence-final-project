@@ -104,18 +104,23 @@ class Bed extends Component {
   postRequest() {
     this.serverRequest.post('requests', this.state.request).then((response) => {
       console.log('Posted:');
-      console.log(this.state.request);
-      this.changeRequestState({request_id: response.data[0]}, () => {});
+      this.changeRequestState({request_id: response.data[0]}, () => {
+        console.log(this.state.request);
+      });
       this.props.route.webSocket.send(JSON.stringify({type: 'refreshRequests'}));
     });
   }
 
   getNurseInfo() {
-      this.serverRequest.get(`requests/${this.state.request.request_id}`).then((result) => {
-        this.setState({nurseInfo: result.data[0]}, ()=> {
-          console.log(this.state.request);
+    this.serverRequest.get(`requests/${this.state.request.request_id}`).then((result) => {
+      this.changeRequestState({
+        nurse_id: result.data[0].nurse_id
+      }, () => {
+        this.serverRequest.get(`nurses/${this.state.request.nurse_id}`).then((result) => {
+          this.setState({nurseInfo: result.data[0]});
         });
-    })
+      })
+    });
   }
 
   putRequest() {

@@ -18,7 +18,8 @@ class Station extends Component {
       nurses: [],
       time: '',
       staffSelected: 0,
-      loggedIn: false
+      loggedIn: false,
+      requestsAssigned: []
     };
 
     this.serverRequest = axios.create({
@@ -41,10 +42,14 @@ class Station extends Component {
     }
   }
 
-  getRequests() {
+  getRequests(callback) {
     this.serverRequest.get('requests').then((result) => {
       const filtered = result.data.filter(this.filterRequests);
-      this.setState({requests: filtered});
+      this.setState({requests: filtered}, () => {
+        if (callback) {
+          callback();
+        }
+      });
     });
   }
 
@@ -61,15 +66,22 @@ class Station extends Component {
     });
   }
 
-  assignStaffToRequest(request_id, nurse_id){
-    this.setState( {requestAck: true});
+  assignStaffToRequest(request_id, nurse_id) {
     this.serverRequest.put((`requests/${request_id}`), {nurse_id: nurse_id}).then(() => {
-      this.getRequests();
+      const newAssigned = this.state.requestsAssigned.slice(0);
+      newAssigned.push(request_id);
+      this.getRequests(() => {
+        this.setState({staffSelected: 0, requestsAssigned: newAssigned});
+      });
     });
   }
 
   clickOnStaff(nurse_id){
-    this.setState({ staffSelected: nurse_id });
+    let id_to_set = nurse_id;
+    if (this.state.staffSelected === nurse_id) {
+      id_to_set = 0;
+    }
+    this.setState({ staffSelected: id_to_set });
   }
 
 
@@ -83,6 +95,7 @@ class Station extends Component {
       }
     })
 
+    this.setState({ staffSelected: 0 });
     this.getRequests();
 
     this.serverRequest.get('nurses').then((result) => {
@@ -130,10 +143,13 @@ class Station extends Component {
             assignStaffToRequest={this.assignStaffToRequest}
             respondToRequest={this.respondToRequest}
             staffSelected={this.state.staffSelected}
+            requestsAssigned={this.state.requestsAssigned}
             />
           <div className='tile is-vertical is-parent staff-list'>
             <h1 className='title has-text-centered'>Care-aides</h1>
-            <CareAideList clickOnStaff={this.clickOnStaff} nurses={this.state.nurses} />
+            <CareAideList clickOnStaff={this.clickOnStaff}
+              nurses={this.state.nurses}
+              staffSelected={this.state.staffSelected}/>
             <hr className='divider'/>
             <h1 className='title has-text-centered'>Nurses</h1>
             <NurseList nurses={this.state.nurses} />

@@ -16,7 +16,13 @@ class CareAideList extends Component {
       <div className='is-child tile nurse-list'>
         {this.props.nurses.map(nurse => {
           if (!nurse.is_nurse) {
-            return <CareAid key={nurse.id} id={nurse.id} first_name={nurse.first_name} img={nurse.image} clickOnStaff={this.props.clickOnStaff} />
+            return <CareAid key={nurse.id}
+              id={nurse.id}
+              first_name={nurse.first_name}
+              img={nurse.image}
+              clickOnStaff={this.props.clickOnStaff}
+              staffSelected={this.props.staffSelected}
+            />
           }
         }
         )}

@@ -14,8 +14,7 @@ class Request extends Component {
     this.showDescription =  this.showDescription.bind(this);
   }
 
-  handleRespond (event) {
-    event.stopPropagation();
+  handleRespond () {
     this.props.respondToRequest(this.props.bed_id, this.props.id);
   }
 
