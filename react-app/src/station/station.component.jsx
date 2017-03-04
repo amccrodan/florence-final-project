@@ -35,15 +35,23 @@ class Station extends Component {
     this.clickOnStaff = this.clickOnStaff.bind(this);
   }
 
-  filterRequests() {
-    this.state.requests.map(request => {
-      
+  filterRequests(result) {
+    const sortedRequests = result.map((request) => {
+      if (request.status_id != 3 || request.status_id != 4){
+        console.log('hi');
+        console.log(request);
+        return request;
+      }
     })
+    console.log(sortedRequests);
+    return sortedRequests;
   }
 
   getRequests() {
     this.serverRequest.get('requests').then((result) => {
-      this.setState({requests: result.data}, () => {});
+      const filtered = this.filterRequests(result.data);
+      this.setState({requests: filtered}, () => {
+      });
     });
   }
 
