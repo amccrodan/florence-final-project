@@ -56,19 +56,9 @@ module.exports = (knex) => {
   //Get a specific request by id
   router.get('/:id', (req, res) => {
     knex
-       .select(
-       'requests.id AS request_id',
-       'requests.bed_id',
-       'status_id',
-       'request_type_id',
-       'nurses.image',
-       'nurses.first_name',
-       'nurses.last_name',
-       'requests.created_at',
-       'requests.updated_at')
+      .select('*')
       .from('requests')
       .where('requests.id', req.params.id)
-      .join('nurses', 'requests.nurse_id', 'nurses.id')
       .then((results) => {
         res.json(results);
       });
