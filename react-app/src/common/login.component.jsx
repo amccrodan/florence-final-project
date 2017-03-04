@@ -9,9 +9,15 @@ class Login extends Component {
     this.state = {
       clicked: false,
       hidden: '',
+      errors: {
+        firstNameBlank: false,
+        lastNameBlank: false,
+        passwordBlank: false,
+      }
     }
     this.dropDown = this.dropDown.bind(this);
     this.postLogin = this.postLogin.bind(this);
+    this.removeError = this.removeError.bind(this);
   }
 
   dropDown () {
@@ -26,25 +32,36 @@ class Login extends Component {
     const last_name = document.getElementsByClassName('last-name')[0].value;
     const password = document.getElementsByClassName('password')[0].value;
 
-    // check if fields are valid - not empty
-    // lowercase and capitalize
-
-    axios
-    .post('http://localhost:8080/api/authenticate', {
-      first_name: first_name,
-      last_name: last_name,
-      password: password
-    })
-    .then((response) => {
-      console.log(response.data);
-      if (!response.data.success) {
-        console.log(response.data.message);
+    if (first_name == '') {
+      this.setState({errors: {firstNameBlank: true}})
+    } else if (last_name === '') {
+      this.setState({errors:{firstNameBlank: true}})
+    } else if (password === '') {
+      this.setState({errors: {firstNameBlank: true}})
+    } else {
+      axios
+      .post('http://localhost:8080/api/authenticate', {
+        first_name: first_name,
+        last_name: last_name,
+        password: password
+      })
+      .then((response) => {
+        console.log(response.data);
+        if (!response.data.success) {
+          console.log(response.data.message);
+        }
+        this.props.logIn(response.data.success);
+        cookie.save('session', response.data.token, { path: '/' });
+      }).catch(err => {
+        console.log(err);
       }
-      this.props.logIn(response.data.success);
-      cookie.save('session', response.data.token, { path: '/' });
-    }).catch(err => {
-      console.log(err);
-    })
+    )}
+  }
+
+  removeError (errorName) {
+    console.log(this.state.errors);
+    this.setState({errors: {errorName: false}})
+    console.log(this.state.errors);
   }
 
   render() {
@@ -87,6 +104,34 @@ class Login extends Component {
         </div>
       )
     }
+
+    let errorFirstNameBlank = '';
+    let errorLastNameBlank = '';
+    let errorPasswordBlank = '';
+    if (this.state.errors.firstNameBlank) {
+      errorFirstNameBlank = (
+        <div className="notification is-danger">
+          <button className="delete" onClick={this.removeError.bind(this,'firstNameBlank')}></button>
+          First name is blank
+        </div>
+      )
+    }
+    if (this.state.errors.firstNameBlank) {
+      errorLastNameBlank = (
+        <div className="notification is-danger">
+          <button className="delete"></button>
+          Last name is blank
+        </div>
+      )
+    }
+    if (this.state.errors.firstNameBlank) {
+      errorPasswordBlank = (
+        <div className="notification is-danger">
+          <button className="delete"></button>
+          Password is blank
+        </div>
+      )
+    }
     return (
       <div>
         <div className='level'>
@@ -99,6 +144,10 @@ class Login extends Component {
               transitionName='fadeTransition'
               transitionEnterTimeout={500}
               transitionLeaveTimeout={100}>
+
+                {errorFirstNameBlank}
+                {errorLastNameBlank}
+                {errorPasswordBlank}
                 {loginForm}
             </ReactCSSTransitionGroup>
           </div>
