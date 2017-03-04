@@ -36,7 +36,7 @@ class Bed extends Component {
     this.postRequest = this.postRequest.bind(this);
     this.putRequest = this.putRequest.bind(this);
     this.getNurseInfo = this.getNurseInfo.bind(this);
-    this.getRequests = this.getRequests.bind(this);
+    this.getRequest = this.getRequest.bind(this);
   }
 
   componentDidMount() {
@@ -100,6 +100,12 @@ class Bed extends Component {
         });
       });
     }
+  }
+
+  getRequest() {
+    this.serverRequest.get(`request/${this.state.request.request_id}`).then((result) => {
+      this.changeRequestState({createdAt: result.data.created_at}, ()=>{});
+    });
   }
 
   postRequest() {
