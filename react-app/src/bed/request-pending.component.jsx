@@ -1,28 +1,33 @@
 import React, { Component } from 'react';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import moment from 'moment';
 
 class RequestPending extends Component {
   constructor(props){
     super(props);
     this.state = {
-      time: ''
+      time: '',
+
     };
   this.handleClick = this.handleClick.bind(this);
   this.getElapsedTime = this.getElapsedTime.bind(this);
   }
 
   getElapsedTime() {
-    this.props.getRequest();
+    console.log('Getting time');
     const createdAt = this.props.requestState.createdAt;
     const now = moment();
     const elapsedTime = moment.duration(now.diff(createdAt));
     this.setState({ time: elapsedTime });
+    console.log('set time')
   }
 
-  this.getElapsedTime();
-  this.clockTimer = setInterval(this.getElapsedTime, 1000);
+  componentDidMount() {
+    console.log("the request id should be", this.props.requestState.request_id);
+    // this.clockTimer = setInterval(this.getElapsedTime, 1000);
+  }
 
-  componentWillUnmount () {
+  componentWillUnmount() {
     clearInterval(this.clockTimer);
   }
 
@@ -63,7 +68,9 @@ class RequestPending extends Component {
                       </div>
                   </div>
                   <div className='column'>
-                    <p> Hello {this.state.time}</p>
+                    <p> Hello
+                      // {this.state.time}
+                    </p>
                   </div>
                 </div>
               </div>

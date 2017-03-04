@@ -7,6 +7,7 @@ import RequestForm from './request-form.component.jsx';
 import RequestPending from './request-pending.component.jsx';
 import RequestAcknowledged from './request-acknowledged.component.jsx';
 
+import moment from 'moment';
 import axios from 'axios';
 import { Link } from 'react-router';
 import cookie from 'react-cookie';
@@ -103,8 +104,9 @@ class Bed extends Component {
   }
 
   getRequest() {
-    this.serverRequest.get(`request/${this.state.request.request_id}`).then((result) => {
-      this.changeRequestState({createdAt: result.data.created_at}, ()=>{});
+    this.serverRequest.get(`requests/${this.state.request.request_id}`).then((result) => {
+      console.log('results', result)
+      this.changeRequestState({createdAt: result.data}, ()=>{});
     });
   }
 
@@ -112,7 +114,7 @@ class Bed extends Component {
     this.serverRequest.post('requests', this.state.request).then((response) => {
       console.log('Posted:');
       console.log(this.state.request);
-      this.changeRequestState({request_id: response.data[0]}, () => {});
+      this.changeRequestState({request_id: response.data[0]}, () => {this.getRequest()});
       this.props.route.webSocket.send(JSON.stringify({type: 'refreshRequests'}));
     });
   }
@@ -144,7 +146,7 @@ class Bed extends Component {
       requestState: this.state.request,
       getNurseInfo: this.getNurseInfo,
       nurseInfo: this.state.nurseInfo,
-      getRequest: this.state.getRequest
+      getRequest: this.getRequest
     }
 
     switch(this.state.view) {
