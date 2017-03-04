@@ -112,17 +112,14 @@ class Bed extends Component {
 
   getNurseInfo() {
     this.serverRequest.get(`requests/${this.state.request.request_id}`).then((result) => {
-      const new_nurse_id = result.data[0].nurse_id;
-      const request = this.state.request;
-      request.nurse_id = new_nurse_id;
-      this.setState({request: request}, () => {
+      this.changeRequestState({
+        nurse_id: result.data[0].nurse_id
+      }, () => {
         this.serverRequest.get(`nurses/${this.state.request.nurse_id}`).then((result) => {
-          this.setState({nurseInfo: result.data[0]}, () => {
-            console.log('nurse info should be:', this.state.nurseInfo);
-          });
-        })
+          this.setState({nurseInfo: result.data[0]});
+        });
       })
-    })
+    });
   }
 
   putRequest() {
