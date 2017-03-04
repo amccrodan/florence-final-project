@@ -52,38 +52,35 @@ class Bed extends Component {
 
   render() {
     let nav = (
-      <aside className="menu">
+      <aside className="menu menu-spacing">
         <p className="menu-label">
-          General
+          Admin Dashboard
         </p>
         <ul className="menu-list">
-          <li><a>Dashboard</a></li>
-          <li><a>Customers</a></li>
-        </ul>
-        <p className="menu-label">
-          Administration
-        </p>
-        <ul className="menu-list">
-          <li><a>Team Settings</a></li>
           <li>
-            <a className="is-active">Manage Your Team</a>
+            <a className="is-active">Manage Patients</a>
             <ul>
-              <li><a>Members</a></li>
-              <li><a>Plugins</a></li>
-              <li><a>Add a member</a></li>
+              <li><a>View/Assign Patients</a></li>
+              <li><a>Add Bed</a></li>
+              <li><a>Add Patient</a></li>
             </ul>
           </li>
-          <li><a>Invitations</a></li>
-          <li><a>Cloud Storage Environment Settings</a></li>
-          <li><a>Authentication</a></li>
-        </ul>
-        <p className="menu-label">
-          Transactions
-        </p>
-        <ul className="menu-list">
-          <li><a>Payments</a></li>
-          <li><a>Transfers</a></li>
-          <li><a>Balance</a></li>
+          <li>
+            <a className="">Manage Nurses</a>
+            <ul>
+              <li><a>View/Assign Nurses</a></li>
+              <li><a>Add a Nurse</a></li>
+            </ul>
+          </li>
+          <li>
+            <a className="">Manage Care Aides</a>
+            <ul>
+              <li><a>View Care Aides</a></li>
+              <li><a>Add a Care Aide</a></li>
+            </ul>
+          </li>
+          <li><a>Scheduling</a></li>
+          <li><a>Charts</a></li>
         </ul>
       </aside>
     )
@@ -96,16 +93,14 @@ class Bed extends Component {
         transitionAppearTimeout={500}
         transitionEnterTimeout={500}
         transitionLeaveTimeout={300}>
-        </ReactCSSTransitionGroup>
         <div className='columns'>
           <div className='column is-one-quarter'>
             {nav}
           </div>
           <div className='column '>
           </div>
-          <div className='column'>
-          </div>
         </div>
+        </ReactCSSTransitionGroup>
       </div>
     );
   }
