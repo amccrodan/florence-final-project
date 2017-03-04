@@ -38,7 +38,7 @@ class RequestPending extends Component {
 
   render(){
     return (
-      <div>
+      <div className='hero is-light'>
         <ReactCSSTransitionGroup
             transitionName='fadeTransition'
             transitionAppear={true}
@@ -46,7 +46,7 @@ class RequestPending extends Component {
             transitionEnterTimeout={500}
             transitionLeaveTimeout={300}>
           <section className='container'>
-            <div className='hero'>
+            <div className='hero is-light'>
               <div className='hero-body'>
                 <div className='container has-text-centered'>
                   <h1 className='title'>Awaiting response</h1>
@@ -57,6 +57,7 @@ class RequestPending extends Component {
           <section className='hero is-light is-fullheight'>
             <div className='hero-body'>
               <div className='container has-text-centered'>
+                <p className='title'>{this.state.time}</p>
                 <div className='columns'>
                   <div className='column is-one-third'>
                   </div>
@@ -66,9 +67,6 @@ class RequestPending extends Component {
                       </div>
                   </div>
                   <div className='column'>
-                    <p> Hello
-                      {this.state.time}
-                    </p>
                   </div>
                 </div>
               </div>
