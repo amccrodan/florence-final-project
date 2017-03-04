@@ -12,7 +12,9 @@ class RequestPending extends Component {
   }
 
   getElapsedTime() {
-    const elapsedTime = moment().format('HH:mm:ss');
+    const createdAt = this.props.createdAt;
+    const now = moment();
+    const elapsedTime = moment.duration(now.diff(createdAt));
     this.setState({ time: elapsedTime });
   }
 
