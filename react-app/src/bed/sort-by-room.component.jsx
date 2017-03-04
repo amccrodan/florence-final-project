@@ -53,7 +53,8 @@ class SortByRoom extends Component {
 
     //add them to state
     this.state.buttons.splice.apply(this.state.buttons, [parseInt(event.target.value), 0].concat(bedButtons));
-    this.forceUpdate();
+    const newButtons = this.state.buttons;
+    this.setState({buttons: newButtons});
   }
 
   render() {

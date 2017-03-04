@@ -9,9 +9,10 @@ class Nurse extends Component {
   }
 
   render(){
+
     return (
       <article className='container has-text-centered'>
-        <img className='staff-picture' src={ `http://localhost:8080/images/nurses/${this.props.img}`} />
+        <img className='staff-picture' src={this.props.img} />
         <p> {this.props.first_name} </p>
       </article>
     );
