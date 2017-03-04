@@ -9,8 +9,12 @@
   width: 200px;
 }
 
-.complete {
+.complete-button{
   display: flex;
-  justify-content: flex-start;
-  align-self: flex-start;
+  align-items: center;
+
+}
+
+.request-acknowledged-container{
+  margin-top:12.5%;
 }

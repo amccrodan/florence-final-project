@@ -23,36 +23,28 @@ class RequestAcknowledged extends Component {
   render(){
     return (
       <section className='hero is-light is-fullheight'>
-      <ReactCSSTransitionGroup
-              transitionName='fadeTransition'
-              transitionAppear={true}
-              transitionAppearTimeout={500}
-              transitionEnterTimeout={500}
-              transitionLeaveTimeout={300}>
-        <div className='hero-body'>
-          <div className='complete'>
-            <a className='button is-success'>
-              <span className='icon is-small'>
-                <i className='fa fa-check'></i>
-              </span>
-              <span>Complete</span>
-            </a>
+        <ReactCSSTransitionGroup
+                transitionName='fadeTransition'
+                transitionAppear={true}
+                transitionAppearTimeout={500}
+                transitionEnterTimeout={500}
+                transitionLeaveTimeout={300}>
+          <div className='button is-large is-success container has-text-centered'>
+              <a className='complete-button'>
+                <span>Complete</span>
+                <span className='icon'>
+                  <i className='fa fa-check'></i>
+                </span>
+              </a>
           </div>
-          <div className='container has-text-centered'>
-            <div className='columns'>
-              <div className='column is-one-third'>
-              </div>
-              <div className='column'>
+          <div className='container has-text-centered request-acknowledged-container'>
+              <div className='container has-text-centered'>
                   <img className='is-focused big-circle' src={`http://localhost:8080/images/nurses/${this.props.requestState.image}`} />
               </div>
-              <div className='column'>
+              <div className='container has-text-centered'>
+                <h1 className='title'> {this.props.requestState.first_name} is coming to help you.</h1>
               </div>
-            </div>
           </div>
-        </div>
-        <div className='container has-text-centered'>
-          <h1 className='title'> {this.props.requestState.first_name} is coming to help you </h1>
-        </div>
         </ReactCSSTransitionGroup>
       </section>
     );
