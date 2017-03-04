@@ -22,7 +22,7 @@ class AssignStaffBox extends Component {
           <i className='fa fa-user' aria-hidden='true'></i>
         </div>
       </div>
-    )
+    );
   }
 
 }

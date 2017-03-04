@@ -45,8 +45,7 @@ i.patient-request{
   box-shadow: 0px 0px 5px grey;
   margin-top:12.5px;
   margin-bottom:12.5px;
-  padding-top:12.5px;
-  padding-bottom:12.5px;
+  padding-top:20px;
 }
 
 .in-progress{
@@ -86,11 +85,23 @@ i.patient-request{
   }
 
   .title{
-    color: white;
+    color: #363636;
   }
 
-  background-color: rgb(255, 56, 96);
-  color:white;
+  animation: pulse 1s infinite;
+  animation-direction: alternate;
+  animation-timing-function: linear;
+}
+
+@keyframes pulse {
+  0% {
+    background-color: white;
+  }
+
+  100% {
+    background-color: rgb(255, 56, 96);
+    //transform: rotate(360deg);
+  }
 }
 
 .nav.nav.navbar.level{
@@ -99,4 +110,12 @@ i.patient-request{
 
 .nav-item{
   font-size:1em;
+}
+
+.request-description{
+  display: none;
+  :active{
+    display: flex;
+    padding-bottom: 12.5px;
+  }
 }

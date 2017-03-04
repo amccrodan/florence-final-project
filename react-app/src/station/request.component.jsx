@@ -6,10 +6,12 @@ class Request extends Component {
   constructor(props){
     super(props);
     this.state = {
-      requestAck: false
+      requestAck: false,
+      showDescription: ''
     };
     this.handleRespond = this.handleRespond.bind(this);
     this.changeRequestAck = this.changeRequestAck.bind(this);
+    this.showDescription =  this.showDescription.bind(this);
   }
 
   handleRespond () {
@@ -18,6 +20,16 @@ class Request extends Component {
 
   changeRequestAck(){
     this.setState({ requestAck: true});
+  }
+
+  showDescription () {
+    if (!this.state.showDescription) {
+      this.setState({showDescription: ':active'});
+    }
+    else {
+      this.setState({showDescription: ''});
+    }
+
   }
 
   render(){
@@ -119,7 +131,7 @@ class Request extends Component {
     }
 
     return (
-      <article className={`is-child request-content ${reqStatusBorderColour(this.props.status_id)} ${checkReqType(this.props.request_type_id)}`} key={this.props.id}>
+      <article className={`is-child request-content ${reqStatusBorderColour(this.props.status_id)} ${checkReqType(this.props.request_type_id)}`} key={this.props.id} onClick={this.showDescription}>
         <div className='level columns'>
           <div className='level-item column is-1 has-text-centered'>
             <p className='title'>{moment(this.props.created_at).format('HH:mm')}</p>
@@ -148,6 +160,28 @@ class Request extends Component {
           </div>
           <div className='level-item column is-2'>
             {showRespond(this.props.status_id)}
+          </div>
+        </div>
+        <div className={`request-description${this.state.showDescription}`}>
+          <div className='level columns'>
+            <div className='level-item column is-1 has-text-centered'>
+              <p>Updated {moment(this.props.updated_at).format('HH:mm')}</p>
+            </div>
+            <div className='level-item column is-4'>
+              <p>Room: {this.props.room_num}</p>
+            </div>
+            <div className='level-item column is-2'>
+              <p>Description:</p>
+              <p>{this.props.description}</p>
+            </div>
+            <div className='level-item column is-2'>
+              <p>Nurse:</p>
+              <p>{this.props.nurse_first_name} {this.props.nurse_last_name}</p>
+            </div>
+            <div className='level-item column is-2'>
+              <p>Medical History:</p>
+              <p>{this.props.med_hist}</p>
+            </div>
           </div>
         </div>
       </article>

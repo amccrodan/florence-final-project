@@ -79,19 +79,22 @@ class Bed extends Component {
     });
   }
 
-  getPatientInfo() {
+  getPatientInfo(callback) {
     if (!this.state.request.patient_id) {
       this.serverRequest.get(`beds/${this.state.request.bed_id}`).then((response) => {
 
         // No Patient assigned to bed
         if (!response.data[0]) {
+          callback();
           return;
         }
 
         this.changeRequestState({
           patient_id: response.data[0].patient_id,
           nurse_id: response.data[0].nurse_id
-        }, () => {});
+        }, () => {
+          callback();
+        });
       });
     }
   }
@@ -128,13 +131,13 @@ class Bed extends Component {
       case 'chooseBed':
         output = <ChooseBed
           bedList={this.state.beds}
+          getPatientInfo={this.getPatientInfo}
           assignWebSocketId={this.props.route.assignWebSocketId}
           {...outputProps}
         />
         break;
       case 'requestButton':
         output = <RequestButton
-          getPatientInfo={this.getPatientInfo}
           {...outputProps} />
         break;
       case 'requestForm':

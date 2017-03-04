@@ -29,8 +29,11 @@ class ChooseBed extends Component {
 
   handleClick (event) {
     this.props.assignWebSocketId(parseInt(event.target.value));
-    this.props.changeRequestState({bed_id: event.target.value}, () => {});
-    this.props.changeViewState('requestButton');
+    this.props.changeRequestState({bed_id: event.target.value}, () => {
+      this.props.getPatientInfo(() => {
+        this.props.changeViewState('requestButton');
+      });
+    });
   }
 
   handleSort(event) {
