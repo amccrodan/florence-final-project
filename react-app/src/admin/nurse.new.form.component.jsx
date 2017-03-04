@@ -1,12 +1,13 @@
 import React, { PropTypes } from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import axios from 'axios';
 
 class NurseNewForm extends React.Component {
   constructor(props){
     super(props);
     this.state = {
     };
-    this.register = this.register.bind(this);
+    // this.register = this.register.bind(this);
   }
 
   register () {
@@ -17,10 +18,12 @@ class NurseNewForm extends React.Component {
     const password_confirmation = document.getElementsByClassName('password-confirmation')[0].value;
 
     axios
-    .post('http://localhost:8080/api/authenticate', {
+    .post('http://localhost:8080/api/nurses/', {
       first_name: first_name,
       last_name: last_name,
-      password: password
+      image: image,
+      is_nurse: true,
+      password: password,
     })
     .then((response) => {
       console.log(response.data);
@@ -63,7 +66,7 @@ class NurseNewForm extends React.Component {
           </span>
         </p>
         <p className='control has-icon'>
-          <input className='input password-confirmation' type='password_confirmation' name='password_confirmation' placeholder='Confirm Password' />
+          <input className='input password-confirmation' type='password' name='password_confirmation' placeholder='Confirm Password' />
           <span className='icon is-small'>
             <i className='fa fa-lock' />
           </span>
