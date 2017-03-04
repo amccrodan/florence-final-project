@@ -14,11 +14,12 @@ class CareAid extends Component {
   }
 
   render(){
+    const isSelected = (this.props.id === this.props.staffSelected) ? 'staff-selected' : '';
     return (
       <div className='container'>
       <article className='has-text-centered'>
         <div>
-        <img onClick={this.clickHandler} className='staff-picture' src={ `http://localhost:8080/images/nurses/${this.props.img}`} />
+        <img onClick={this.clickHandler} className={`staff-picture ${isSelected}`} src={ `http://localhost:8080/images/nurses/${this.props.img}`} />
         <p> {this.props.first_name} </p>
         </div>
       </article>

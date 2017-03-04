@@ -104,8 +104,9 @@ class Bed extends Component {
   postRequest() {
     this.serverRequest.post('requests', this.state.request).then((response) => {
       console.log('Posted:');
-      console.log(this.state.request);
-      this.changeRequestState({request_id: response.data[0]}, () => {});
+      this.changeRequestState({request_id: response.data[0]}, () => {
+        console.log(this.state.request);
+      });
       this.props.route.webSocket.send(JSON.stringify({type: 'refreshRequests'}));
     });
   }

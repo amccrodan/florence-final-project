@@ -35,7 +35,7 @@
   &.tile.is-vertical > .tile.is-child:not(:last-child) {
      margin-bottom: 0px !important;
   }
-  .staff-picture:active {
+  .staff-picture.staff-selected {
     border: 5px solid blue;
   }
 }

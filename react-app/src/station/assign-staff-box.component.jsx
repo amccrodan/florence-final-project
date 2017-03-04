@@ -2,20 +2,21 @@ import React, { Component } from 'react';
 
 class AssignStaffBox extends Component {
 
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
     };
     this.assignStaff = this.assignStaff.bind(this);
   }
 
-   assignStaff (event) {
+  assignStaff(event) {
     event.stopPropagation();
-    this.props.changeRequestAck();
-    this.props.assignStaffToRequest(this.props.id, this.props.staffSelected);
+    if (this.props.staffSelected !== 0) {
+      this.props.assignStaffToRequest(this.props.id, this.props.staffSelected);
+    }
   }
 
-  render (){
+  render() {
 
     return (
       <div className='container'>
