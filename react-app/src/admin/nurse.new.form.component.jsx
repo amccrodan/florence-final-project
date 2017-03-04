@@ -27,13 +27,6 @@ class NurseNewForm extends React.Component {
     })
     .then((response) => {
       console.log(response.data);
-      if (!response.data.success) {
-        console.log(response.data.message);
-      }
-      this.props.logIn(response.data.success);
-      cookie.save('session', response.data.token, { path: '/' });
-    }).catch(err => {
-      console.log(err);
     })
 
   }
