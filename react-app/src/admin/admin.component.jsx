@@ -3,7 +3,16 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group' // ES6
 import axios from 'axios';
 import cookie from 'react-cookie';
 import { Link } from 'react-router';
-import activeComponent from 'react-router-active-component'
+
+import CareAideNewForm from './careAide.new.form.component.jsx';
+import CareAideView from './careAide.view.component.jsx';
+import NurseNewForm from './nurse.new.form.component.jsx';
+import NurseView from './nurse.view.component.jsx';
+import PatientBedForm from './patient.bed.form.component.jsx';
+import PatientNewForm from './patient.new.form.component.jsx';
+import PatientView from './patient.view.component.jsx';
+import Scheduling from './scheduling.component.jsx';
+import Charts from './charts.component.jsx';
 
 class Admin extends Component {
   constructor(props){
@@ -103,6 +112,35 @@ class Admin extends Component {
       </aside>
     )
 
+    let component = '';
+    if (this.state.patientView === 'is-active') {
+      component = <PatientView />
+    }
+    if (this.state.patientBedForm === 'is-active') {
+      component = <PatientBedForm />
+    }
+    if (this.state.patientNewForm === 'is-active') {
+      component = <PatientNewForm />
+    }
+    if (this.state.nurseView === 'is-active') {
+      component = <NurseView />
+    }
+    if (this.state.nurseNewForm === 'is-active') {
+      component = <NurseNewForm />
+    }
+    if (this.state.careAideView === 'is-active') {
+      component = <CareAideView />
+    }
+    if (this.state.careAideNewForm === 'is-active') {
+      component = <CareAideNewForm />
+    }
+    if (this.state.manageScheduling === 'is-active') {
+      component = <Scheduling />
+    }
+    if (this.state.manageCharts === 'is-active') {
+      component = <Charts />
+    }
+
     return (
       <div>
       <ReactCSSTransitionGroup
@@ -116,7 +154,7 @@ class Admin extends Component {
             {nav}
           </div>
           <div className='column '>
-
+            {component}
           </div>
         </div>
         </ReactCSSTransitionGroup>
