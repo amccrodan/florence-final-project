@@ -7,6 +7,7 @@ import RequestForm from './request-form.component.jsx';
 import RequestPending from './request-pending.component.jsx';
 import RequestAcknowledged from './request-acknowledged.component.jsx';
 
+import moment from 'moment';
 import axios from 'axios';
 import { Link } from 'react-router';
 import cookie from 'react-cookie';
@@ -36,6 +37,7 @@ class Bed extends Component {
     this.postRequest = this.postRequest.bind(this);
     this.putRequest = this.putRequest.bind(this);
     this.getNurseInfo = this.getNurseInfo.bind(this);
+    this.getRequest = this.getRequest.bind(this);
   }
 
   componentDidMount() {
@@ -76,8 +78,6 @@ class Bed extends Component {
     }
     this.setState({request: newRequest}, () => {
       callback();
-      console.log('Local request:');
-      console.log(this.state.request);
     });
   }
 
@@ -101,12 +101,15 @@ class Bed extends Component {
     }
   }
 
+  getRequest() {
+    this.serverRequest.get(`requests/${this.state.request.request_id}`).then((result) => {
+      this.changeRequestState({createdAt: result.data[0].created_at}, ()=>{});
+    });
+  }
+
   postRequest() {
     this.serverRequest.post('requests', this.state.request).then((response) => {
-      console.log('Posted:');
-      this.changeRequestState({request_id: response.data[0]}, () => {
-        console.log(this.state.request);
-      });
+      this.changeRequestState({request_id: response.data[0]}, () => {this.getRequest()});
       this.props.route.webSocket.send(JSON.stringify({type: 'refreshRequests'}));
     });
   }
@@ -126,8 +129,6 @@ class Bed extends Component {
   putRequest() {
     this.serverRequest.put(`requests/${this.state.request.request_id}`, this.state.request)
     .then(() => {
-      console.log('Put:');
-      console.log(this.state.request);
       this.props.route.webSocket.send(JSON.stringify({type: 'refreshRequests'}));
     });
   }
@@ -141,7 +142,8 @@ class Bed extends Component {
       putRequest: this.putRequest,
       requestState: this.state.request,
       getNurseInfo: this.getNurseInfo,
-      nurseInfo: this.state.nurseInfo
+      nurseInfo: this.state.nurseInfo,
+      getRequest: this.getRequest
     }
 
     switch(this.state.view) {
