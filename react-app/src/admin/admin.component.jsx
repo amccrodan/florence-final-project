@@ -13,7 +13,16 @@ class Admin extends Component {
       request: {
         //bed_id, patient_id, nurse_id, status_id, request_type_id, description
       },
-      loggedIn: false
+      loggedIn: false,
+      patientView: false,
+      patientBedForm: false,
+      patientNewForm: false,
+      nurseView: false,
+      nurseNewForm: false,
+      careAideView: false,
+      careAideNewForm: false,
+      manageScheduling: false,
+      manageCharts: false,
     };
 
     this.serverRequest = axios.create({
@@ -22,6 +31,7 @@ class Admin extends Component {
       headers: {'x-access-token': cookie.load('session')},
     });
 
+    this.handleActiveClick = this.handleActiveClick.bind(this);
   }
 
   componentDidMount() {
@@ -34,54 +44,61 @@ class Admin extends Component {
       }
     })
 
-    this.serverRequest.get('beds').then((result) => {
-      this.setState({beds: result.data}, () => {
-        console.log('Beds state set.');
-      });
-    })
+  }
 
-    this.props.route.webSocket.onmessage = (event) => {
-      const incomingObj = JSON.parse(event.data);
-      if (incomingObj.type === 'updateRequest') {
-        this.setState({view: 'requestAcknowledged'});
-      }
-      if (incomingObj.type === 'assignId') {
-        console.log(incomingObj);
-      }
-    }
+  handleActiveClick (menuItem) {
+
+    this.state.patientView = false;
+    this.state.patientBedForm = false;
+    this.state.patientNewForm = false;
+
+    this.state.nurseView = false;
+    this.state.nurseNewForm = false;
+
+    this.state.careAideView = false;
+    this.state.careAideNewForm = false;
+
+    this.state.manageScheduling = false;
+    this.state.manageCharts = false;
+
+    this.setState({[menuItem]: 'is-active'})
   }
 
   render() {
     let nav = (
-      <aside className="menu menu-spacing">
-        <p className="menu-label">
+      <aside className='menu menu-spacing'>
+        <p className='menu-label'>
           Admin Dashboard
         </p>
-        <ul className="menu-list">
+        <ul className='menu-list'>
           <li>
-            <a className="is-active">Manage Patients</a>
+            <p>Manage Patients</p>
             <ul>
-              <li><a>View/Assign Patients</a></li>
-              <li><a>Add Bed</a></li>
-              <li><a>Add Patient</a></li>
+              <li><a className={this.state.patientView} onClick={this.handleActiveClick.bind(this, 'patientView')}>View/Assign Patients</a></li>
+              <li><a className={this.state.patientBedForm} onClick={this.handleActiveClick.bind(this, 'patientBedForm')}>Add Bed</a></li>
+              <li><a className={this.state.patientNewForm} onClick={this.handleActiveClick.bind(this, 'patientNewForm')}>Add Patient</a></li>
             </ul>
           </li>
           <li>
-            <a className="">Manage Nurses</a>
+            <p>Manage Nurses</p>
             <ul>
-              <li><a>View/Assign Nurses</a></li>
-              <li><a>Add a Nurse</a></li>
+              <li><a className={this.state.nurseView} onClick={this.handleActiveClick.bind(this, 'nurseView')}>View/Assign Nurses</a></li>
+              <li><a className={this.state.nurseNewForm} onClick={this.handleActiveClick.bind(this, 'nurseNewForm')}>Add a Nurse</a></li>
             </ul>
           </li>
           <li>
-            <a className="">Manage Care Aides</a>
+            <p>Manage Care Aides</p>
             <ul>
-              <li><a>View Care Aides</a></li>
-              <li><a>Add a Care Aide</a></li>
+              <li><a className={this.state.careAideView} onClick={this.handleActiveClick.bind(this, 'careAideView')}>View Care Aides</a></li>
+              <li><a className={this.state.careAideNewForm} onClick={this.handleActiveClick.bind(this, 'careAideNewForm')}>Add a Care Aide</a></li>
             </ul>
           </li>
-          <li><a>Scheduling</a></li>
-          <li><a>Charts</a></li>
+          <li>
+            <a className={this.state.manageScheduling} onClick={this.handleActiveClick.bind(this, 'manageScheduling')}>Scheduling</a>
+          </li>
+          <li>
+            <a className={this.state.manageCharts} onClick={this.handleActiveClick.bind(this, 'manageCharts')}>Charts</a>
+          </li>
         </ul>
       </aside>
     )
@@ -99,6 +116,7 @@ class Admin extends Component {
             {nav}
           </div>
           <div className='column '>
+
           </div>
         </div>
         </ReactCSSTransitionGroup>
