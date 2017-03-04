@@ -9,7 +9,8 @@ class AssignStaffBox extends Component {
     this.assignStaff = this.assignStaff.bind(this);
   }
 
-   assignStaff () {
+   assignStaff (event) {
+    event.stopPropagation();
     this.props.changeRequestAck();
     this.props.assignStaffToRequest(this.props.id, this.props.staffSelected);
   }
