@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import moment from 'moment';
 
 class RequestAcknowledged extends Component {
   constructor(props){
     super(props);
     this.state = {
+      time: '00:00'
     };
 
     this.handleClick = this.handleClick.bind(this);
@@ -15,6 +17,14 @@ class RequestAcknowledged extends Component {
       this.props.putRequest();
       this.props.changeViewState('requestButton');
     });
+  }
+
+  getElapsedTime() {
+    console.log('Getting time');
+    let createdAt = moment(this.props.requestState.createdAt);
+    let now = moment();
+    let time = moment.utc(moment(now, "HH:mm:ss").diff(moment(createdAt, "HH:mm:ss"))).format("mm:ss");
+    this.setState({time: time});
   }
 
   componentDidMount(){
