@@ -44,8 +44,7 @@ class Station extends Component {
   getRequests() {
     this.serverRequest.get('requests').then((result) => {
       const filtered = result.data.filter(this.filterRequests);
-      this.setState({requests: filtered}, () => {
-      });
+      this.setState({requests: filtered});
     });
   }
 
