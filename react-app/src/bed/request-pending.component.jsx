@@ -15,16 +15,16 @@ class RequestPending extends Component {
 
   getElapsedTime() {
     console.log('Getting time');
-    const createdAt = this.props.requestState.createdAt;
-    const now = moment();
-    const elapsedTime = moment.duration(now.diff(createdAt));
-    this.setState({ time: elapsedTime });
-    console.log('set time')
+    let createdAt = this.props.requestState.createdAt;
+    let now = moment();
+    // console.log(createdAt, now);
+    // const elapsedTime = moment.duration(now.diff(createdAt));
+    // this.setState({ time: elapsedTime });
+    console.log('times', now, createdAt);
   }
 
   componentDidMount() {
-    console.log("the request id should be", this.props.requestState.request_id);
-    // this.clockTimer = setInterval(this.getElapsedTime, 1000);
+    this.clockTimer = setInterval(this.getElapsedTime, 10000);
   }
 
   componentWillUnmount() {
@@ -69,7 +69,7 @@ class RequestPending extends Component {
                   </div>
                   <div className='column'>
                     <p> Hello
-                      // {this.state.time}
+                      {this.state.time}
                     </p>
                   </div>
                 </div>

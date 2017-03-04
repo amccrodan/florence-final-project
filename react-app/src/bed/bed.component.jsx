@@ -78,8 +78,6 @@ class Bed extends Component {
     }
     this.setState({request: newRequest}, () => {
       callback();
-      console.log('Local request:');
-      console.log(this.state.request);
     });
   }
 
@@ -105,15 +103,12 @@ class Bed extends Component {
 
   getRequest() {
     this.serverRequest.get(`requests/${this.state.request.request_id}`).then((result) => {
-      console.log('results', result)
-      this.changeRequestState({createdAt: result.data}, ()=>{});
+      this.changeRequestState({createdAt: result.data[0].created_at}, ()=>{});
     });
   }
 
   postRequest() {
     this.serverRequest.post('requests', this.state.request).then((response) => {
-      console.log('Posted:');
-      console.log(this.state.request);
       this.changeRequestState({request_id: response.data[0]}, () => {this.getRequest()});
       this.props.route.webSocket.send(JSON.stringify({type: 'refreshRequests'}));
     });
@@ -122,7 +117,6 @@ class Bed extends Component {
   getNurseInfo() {
       this.serverRequest.get(`requests/${this.state.request.request_id}`).then((result) => {
         this.setState({nurseInfo: result.data[0]}, ()=> {
-          console.log(this.state.request);
         });
     })
   }
@@ -130,8 +124,6 @@ class Bed extends Component {
   putRequest() {
     this.serverRequest.put(`requests/${this.state.request.request_id}`, this.state.request)
     .then(() => {
-      console.log('Put:');
-      console.log(this.state.request);
       this.props.route.webSocket.send(JSON.stringify({type: 'refreshRequests'}));
     });
   }
