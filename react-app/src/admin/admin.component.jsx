@@ -49,7 +49,7 @@ class Admin extends Component {
     .then(result => {
       console.log(result.data);
       if (result.data.success) {
-        this.setState({loggedIn: true});
+        this.setState({loggedIn: true, patientView: 'is-active'});
       }
     })
 
@@ -139,6 +139,16 @@ class Admin extends Component {
     }
     if (this.state.manageCharts === 'is-active') {
       component = <Charts />
+    }
+    if (!this.state.loggedIn) {
+      component = (
+      <Link to="/" activeClassName="active" >
+        <p className='nav-item is-white center-stage'>
+          Please Login
+        </p>
+      </Link>
+      )
+      nav = '';
     }
 
     return (
