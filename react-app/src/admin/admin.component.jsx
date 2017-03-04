@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group' // ES6
 import axios from 'axios';
-import { Link } from 'react-router';
 import cookie from 'react-cookie';
+import { Link } from 'react-router';
+import activeComponent from 'react-router-active-component'
 
-class Bed extends Component {
+class Admin extends Component {
   constructor(props){
     super(props);
     this.state = {
@@ -107,4 +108,4 @@ class Bed extends Component {
 
 }
 
-export default Bed
+export default Admin
