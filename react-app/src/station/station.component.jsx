@@ -35,6 +35,12 @@ class Station extends Component {
     this.clickOnStaff = this.clickOnStaff.bind(this);
   }
 
+  filterRequests() {
+    this.state.requests.map(request => {
+      
+    })
+  }
+
   getRequests() {
     this.serverRequest.get('requests').then((result) => {
       this.setState({requests: result.data}, () => {});
