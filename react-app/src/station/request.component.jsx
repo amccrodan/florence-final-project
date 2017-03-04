@@ -9,7 +9,7 @@ class Request extends Component {
       showDescription: ''
     };
     this.handleRespond = this.handleRespond.bind(this);
-    this.changeRequestAck = this.changeRequestAck.bind(this);
+    this.showDescription = this.showDescription.bind(this);
   }
 
   handleRespond (event) {
