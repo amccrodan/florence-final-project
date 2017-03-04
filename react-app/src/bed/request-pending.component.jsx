@@ -6,7 +6,7 @@ class RequestPending extends Component {
   constructor(props){
     super(props);
     this.state = {
-      time: '',
+      time: '00:00',
 
     };
   this.handleClick = this.handleClick.bind(this);
@@ -15,16 +15,14 @@ class RequestPending extends Component {
 
   getElapsedTime() {
     console.log('Getting time');
-    let createdAt = this.props.requestState.createdAt;
+    let createdAt = moment(this.props.requestState.createdAt);
     let now = moment();
-    // console.log(createdAt, now);
-    // const elapsedTime = moment.duration(now.diff(createdAt));
-    // this.setState({ time: elapsedTime });
-    console.log('times', now, createdAt);
+    let time = moment.utc(moment(now, "HH:mm:ss").diff(moment(createdAt, "HH:mm:ss"))).format("mm:ss")
+    this.setState({time: time})
   }
 
   componentDidMount() {
-    this.clockTimer = setInterval(this.getElapsedTime, 10000);
+    this.clockTimer = setInterval(this.getElapsedTime, 990);
   }
 
   componentWillUnmount() {
