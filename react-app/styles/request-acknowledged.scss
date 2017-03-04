@@ -9,8 +9,16 @@
   width: 200px;
 }
 
-.complete {
+.complete-button{
+  position: absolute;
+  top: 2%;
+  right: 1%;
+}
+.complete-button-content{
   display: flex;
-  justify-content: flex-start;
-  align-self: flex-start;
+  align-items: center;
+}
+
+.request-acknowledged-container{
+  margin-top:12.5%;
 }

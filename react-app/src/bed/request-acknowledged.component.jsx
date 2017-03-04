@@ -17,39 +17,36 @@ class RequestAcknowledged extends Component {
     });
   }
 
+  componentDidMount(){
+    this.props.getNurseInfo();
+    // console.log("request state should now be", this.props.requestState);
+  }
+
   render(){
     return (
       <section className='hero is-light is-fullheight'>
-      <ReactCSSTransitionGroup
-              transitionName='fadeTransition'
-              transitionAppear={true}
-              transitionAppearTimeout={500}
-              transitionEnterTimeout={500}
-              transitionLeaveTimeout={300}>
-        <div className='hero-body'>
-          <div className='complete' onClick={this.handleClick}>
-            <a className='button is-success'>
-              <span className='icon is-small'>
-                <i className='fa fa-check'></i>
-              </span>
-              <span>Complete</span>
-            </a>
+        <ReactCSSTransitionGroup
+                transitionName='fadeTransition'
+                transitionAppear={true}
+                transitionAppearTimeout={500}
+                transitionEnterTimeout={500}
+                transitionLeaveTimeout={300}>
+          <div onClick={this.handleClick} className='button is-large is-success container has-text-centered complete-button'>
+              <a className='complete-button-content'>
+                <span>Complete</span>
+                <span className='icon'>
+                  <i className='fa fa-check'></i>
+                </span>
+              </a>
           </div>
-          <div className='container has-text-centered'>
-            <div className='columns'>
-              <div className='column is-one-third'>
+          <div className='container is-outlined has-text-centered request-acknowledged-container'>
+              <div className='container has-text-centered'>
+                  <img className='is-focused big-circle' src={`http://localhost:8080/images/nurses/${this.props.nurseInfo.image}`} />
               </div>
-              <div className='column'>
-                  <img className='is-focused big-circle' src='http://www.fillmurray.com/300/200'/>
+              <div className='container has-text-centered'>
+                <h1 className='title is-2'> {this.props.nurseInfo.first_name} is coming to help you.</h1>
               </div>
-              <div className='column'>
-              </div>
-            </div>
           </div>
-        </div>
-        <div className='container has-text-centered'>
-          <h1 className='title'>Insert nurses name here is coming to help you </h1>
-        </div>
         </ReactCSSTransitionGroup>
       </section>
     );

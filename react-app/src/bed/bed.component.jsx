@@ -20,7 +20,8 @@ class Bed extends Component {
       request: {
         //bed_id, patient_id, nurse_id, status_id, request_type_id, description
       },
-      loggedIn: false
+      loggedIn: false,
+      nurseInfo: {}
     };
 
     this.serverRequest = axios.create({
@@ -34,6 +35,7 @@ class Bed extends Component {
     this.getPatientInfo = this.getPatientInfo.bind(this);
     this.postRequest = this.postRequest.bind(this);
     this.putRequest = this.putRequest.bind(this);
+    this.getNurseInfo = this.getNurseInfo.bind(this);
   }
 
   componentDidMount() {
@@ -108,6 +110,14 @@ class Bed extends Component {
     });
   }
 
+  getNurseInfo() {
+      this.serverRequest.get(`requests/${this.state.request.request_id}`).then((result) => {
+        this.setState({nurseInfo: result.data[0]}, ()=> {
+          console.log(this.state.request);
+        });
+    })
+  }
+
   putRequest() {
     this.serverRequest.put(`requests/${this.state.request.request_id}`, this.state.request)
     .then(() => {
@@ -124,7 +134,9 @@ class Bed extends Component {
       changeRequestState: this.changeRequestState,
       postRequest: this.postRequest,
       putRequest: this.putRequest,
-      requestState: this.state.request
+      requestState: this.state.request,
+      getNurseInfo: this.getNurseInfo,
+      nurseInfo: this.state.nurseInfo
     }
 
     switch(this.state.view) {
