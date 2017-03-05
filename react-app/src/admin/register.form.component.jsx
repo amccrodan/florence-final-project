@@ -4,6 +4,7 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 class RegisterForm extends React.Component {
 
   render () {
+    console.log(this.props);
     const registerForm = (
       <div className='login-form is-80-wide' key='login-form'>
         <p className='control has-icon'>

@@ -7,16 +7,29 @@ class NurseNewForm extends React.Component {
   constructor(props){
     super(props);
     this.state = {
+      passwordDoesNotMatch: false,
+      fieldsEmpty: false,
+      insertSuccess: false,
     };
-    // this.register = this.register.bind(this);
+    this.register = this.register.bind(this);
+    this.handleClose = this.handleClose.bind(this);
   }
 
   register () {
-    const image = document.getElementsByClassName('image')[0].value;
-    const first_name = document.getElementsByClassName('first-name')[0].value;
-    const last_name = document.getElementsByClassName('last-name')[0].value;
-    const password = document.getElementsByClassName('password')[0].value;
-    const password_confirmation = document.getElementsByClassName('password-confirmation')[0].value;
+    let image = document.getElementsByClassName('image')[0].value;
+    let first_name = document.getElementsByClassName('first-name')[0].value;
+    let last_name = document.getElementsByClassName('last-name')[0].value;
+    let password = document.getElementsByClassName('password')[0].value;
+    let password_confirmation = document.getElementsByClassName('password-confirmation')[0].value;
+
+    if (image === '') {image = null}
+    if (first_name === '') {first_name = null}
+    if (last_name === '') {last_name = null}
+    if (password !== password_confirmation) {
+      this.setState({passwordDoesNotMatch: true});
+      return;
+    }
+    if (password === '') {password = null}
 
     axios
     .post('http://localhost:8080/api/nurses/', {
@@ -28,11 +41,55 @@ class NurseNewForm extends React.Component {
     })
     .then((response) => {
       console.log(response.data);
+      if (response.data.success) {
+        document.getElementsByClassName('image')[0].value = '';
+        document.getElementsByClassName('first-name')[0].value = '';
+        document.getElementsByClassName('last-name')[0].value = '';
+        document.getElementsByClassName('password')[0].value = '';
+        document.getElementsByClassName('password-confirmation')[0].value= '';
+        this.setState({insertSuccess: true});
+      } else {
+        this.setState({fieldsEmpty: true});
+      }
     })
+  }
 
+  handleClose () {
+    console.log('in handleClose');
+    this.setState({
+      passwordDoesNotMatch: false,
+      fieldsEmpty: false,
+      insertSuccess: false,
+    })
   }
 
   render () {
+
+    let notification = '';
+    if (this.state.passwordDoesNotMatch) {
+      notification = (
+        <div className="notification is-danger is-80-wide" >
+          <button className="delete" onClick={this.handleClose}></button>
+          Error: Password Does Not Match.
+        </div>
+      )
+    }
+    if (this.state.fieldsEmpty) {
+      notification = (
+        <div className="notification is-danger is-80-wide">
+          <button className="delete" onClick={this.handleClose}></button>
+          Error: Field(s) empty.
+        </div>
+      )
+    }
+    if (this.state.insertSuccess) {
+      notification = (
+        <div className="notification is-success is-80-wide">
+          <button className="delete" onClick={this.handleClose}></button>
+          Sucess!
+        </div>
+      )
+    }
     return (
       <ReactCSSTransitionGroup
         transitionName="fadeTransition"
@@ -42,7 +99,8 @@ class NurseNewForm extends React.Component {
         transitionLeaveTimeout={300}>
         <div>
           <h1 className='title is-1'>Add a New Nurse</h1>
-          <RegisterForm register={this.props.register}/>
+          {notification}
+          <RegisterForm register={this.register}/>
         </div>
       </ReactCSSTransitionGroup>
     );
