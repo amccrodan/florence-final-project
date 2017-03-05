@@ -55,7 +55,7 @@ class RequestAcknowledged extends Component {
           </div>
           <div className='container is-outlined has-text-centered request-acknowledged-container'>
               <div className='container has-text-centered'>
-                  <img className='is-focused big-circle' src={`http://localhost:8080/images/nurses/${this.props.nurseInfo.image}`} />
+                  <img className='is-focused big-circle' src={this.props.nurseInfo.image} />
               </div>
               <div className='container has-text-centered'>
                 <p className='title'>{this.state.time}</p>
