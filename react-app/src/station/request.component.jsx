@@ -144,7 +144,7 @@ class Request extends Component {
               this.props.status_id === 3 ||
               this.props.request_type_id === 5 ||
               this.props.request_type_id === 3 ? (
-              <img className='staff-picture' src={this.props.img}} />
+              <img className='staff-picture' src={this.props.img} />
             ) : (
               <AssignStaffBox id={this.props.id} assignStaffToRequest={this.props.assignStaffToRequest}
               staffSelected={this.props.staffSelected}
