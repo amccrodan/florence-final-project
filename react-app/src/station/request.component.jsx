@@ -6,20 +6,15 @@ class Request extends Component {
   constructor(props){
     super(props);
     this.state = {
-      requestAck: false,
       showDescription: ''
     };
     this.handleRespond = this.handleRespond.bind(this);
-    this.changeRequestAck = this.changeRequestAck.bind(this);
-    this.showDescription =  this.showDescription.bind(this);
+    this.showDescription = this.showDescription.bind(this);
   }
 
-  handleRespond () {
+  handleRespond (event) {
+    event.stopPropagation();
     this.props.respondToRequest(this.props.bed_id, this.props.id);
-  }
-
-  changeRequestAck(){
-    this.setState({ requestAck: true});
   }
 
   showDescription () {
@@ -144,16 +139,15 @@ class Request extends Component {
             {reqCategory(this.props.request_type_id)}
           </div>
           <div className='level-item column is-2'>
-            { this.state.requestAck === true ||
+            { this.props.requestsAssigned.indexOf(this.props.id) !== -1 ||
               this.props.status_id === 2 ||
               this.props.status_id === 3 ||
               this.props.request_type_id === 5 ||
               this.props.request_type_id === 3 ? (
-              <img className='staff-picture' src={this.props.img} />
+              <img className='staff-picture' src={this.props.img}} />
             ) : (
               <AssignStaffBox id={this.props.id} assignStaffToRequest={this.props.assignStaffToRequest}
               staffSelected={this.props.staffSelected}
-              changeRequestAck={this.changeRequestAck}
               />
             )
           }
