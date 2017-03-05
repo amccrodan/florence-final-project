@@ -17,7 +17,7 @@ class PatientNewForm extends React.Component {
         transitionEnterTimeout={500}
         transitionLeaveTimeout={300}>
         <div>
-          <h1 className='title is-1'>PatientNewForm</h1>
+          <h1 className='title is-1'>Add a New Patient</h1>
         </div>
       </ReactCSSTransitionGroup>
     );

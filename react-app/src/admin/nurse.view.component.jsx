@@ -17,7 +17,7 @@ class NurseView extends React.Component {
         transitionEnterTimeout={500}
         transitionLeaveTimeout={300}>
         <div>
-          <h1 className='title is-1'>NurseView</h1>
+          <h1 className='title is-1'>View Nurses</h1>
         </div>
       </ReactCSSTransitionGroup>
     );
