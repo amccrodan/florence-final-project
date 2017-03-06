@@ -21,7 +21,7 @@ class Request extends Component {
 
   showDescription () {
     if (!this.state.showDescription) {
-      this.setState({showDescription: ':active'});
+      this.setState({showDescription: 'is-active'});
 
       if(this.state.showPatientHistory){
         this.setState({showPatientHistory: ''});
@@ -169,7 +169,7 @@ class Request extends Component {
             {showRespond(this.props.status_id)}
           </div>
         </div>
-        <div className={`request-description${this.state.showDescription}`}>
+        <div className={`request-description ${this.state.showDescription}`}>
           <div className='level columns'>
             <div className='level-item column is-1 has-text-centered'>
               <p>Updated {moment(this.props.updated_at).format('HH:mm')}</p>

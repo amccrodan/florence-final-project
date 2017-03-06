@@ -114,8 +114,9 @@ i.patient-request{
 
 .request-description{
   display: none;
-  :active{
-    display: flex;
-    padding-bottom: 12.5px;
-  }
+}
+
+.request-description.is-active{
+  display: block;
+  padding-bottom: 12.5px;
 }
