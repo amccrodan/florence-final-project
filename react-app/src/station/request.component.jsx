@@ -138,6 +138,11 @@ class Request extends Component {
       }
     }
 
+    function getNumber(number) {
+      let num = '(' + number.slice(0,3) + ')' + number.slice(3,6) + '-' + number.slice(6,10);
+      return num;
+    }
+
     return (
       <article className={`is-child request-content ${reqStatusBorderColour(this.props.status_id)} ${checkReqType(this.props.request_type_id)}`} key={this.props.id} onClick={this.showDescription}>
         <div className='level columns'>
@@ -192,7 +197,13 @@ class Request extends Component {
                   <div className='modal-background'></div>
                   <div className='modal-content'>
                     <div className='title'> {this.props.first_name} {this.props.last_name}</div>
-                    <div>Medical history: {this.props.med_hist}</div>
+                    <hr></hr>
+                    <div>Doctor: {this.props.doctor}</div>
+                    <div>Emergency Contact: {this.props.emerg_name} {getNumber(this.props.emerg_number)}</div>
+                    <div>Allergies: {this.props.allergies}</div>
+                    <div>Recent Illness: {this.props.illness}</div>
+                    <div>Previous Injuries: {this.props.injury}</div>
+                    <div>Patient Notes: {this.props.notes}</div>
                   </div>
                   <button className='modal-close'></button>
                 </div>
