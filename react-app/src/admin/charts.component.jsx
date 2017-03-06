@@ -33,6 +33,7 @@ class Charts extends React.Component {
   }
 
   doughtnutData(sinceTime) {
+
     let food = 0;
     let bathroom = 0;
     let medicine = 0;
@@ -57,6 +58,11 @@ class Charts extends React.Component {
           break;
       }
     })
+    // TODO sort by value
+    let sortData = [food, bathroom, medicine, other, emergency].sort(function (a, b) {
+      return a.value - b.value;
+    });
+    let colorArr = []
     return {
       labels: [
         'Food',
@@ -68,18 +74,18 @@ class Charts extends React.Component {
       datasets: [{
         data: [food, bathroom, medicine, other, emergency],
         backgroundColor: [
-        '#FF6384',
-        '#36A2EB',
-        '#FFCE56',
-        '#4BC0C0',
-        '#F0623B',
+        '#3273DC',
+        '#F5B278',
+        '#00C4A7',
+        '#FFDD57',
+        '#FF3860',
         ],
         hoverBackgroundColor: [
-        '#FF6384',
-        '#36A2EB',
-        '#FFCE56',
-        '#4BC0C0',
-        '#F0623B',
+        '#3273DC',
+        '#F5B278',
+        '#00C4A7',
+        '#FFDD57',
+        '#FF3860',
         ]
       }]
     };
