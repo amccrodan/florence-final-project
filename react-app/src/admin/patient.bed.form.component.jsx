@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
-class PatientBedForm extends React.Component {
+class CareAideNewForm extends React.Component {
   constructor(props){
     super(props);
     this.state = {
@@ -17,11 +17,11 @@ class PatientBedForm extends React.Component {
         transitionEnterTimeout={500}
         transitionLeaveTimeout={300}>
         <div>
-          <h1 className='title is-1'>PatientBedForm</h1>
+          <h1 className='title is-1'>Add a New Bed</h1>
         </div>
       </ReactCSSTransitionGroup>
     );
   }
 }
 
-export default PatientBedForm;
+export default CareAideNewForm;

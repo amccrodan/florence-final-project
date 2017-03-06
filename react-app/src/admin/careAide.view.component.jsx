@@ -17,7 +17,7 @@ class CareAideView extends React.Component {
         transitionEnterTimeout={500}
         transitionLeaveTimeout={300}>
         <div>
-          <h1 className='title is-1'>CareAideView</h1>
+          <h1 className='title is-1'>View Care Aides</h1>
         </div>
       </ReactCSSTransitionGroup>
     );
