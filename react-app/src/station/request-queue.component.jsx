@@ -27,7 +27,13 @@ class RequestQueue extends Component {
             nurse_last_name={request.nurse_last_name}
             description={request.description}
             room_num={request.room_id}
-            med_hist={request.medical_history}
+            notes={request.notes}
+            emerg_name={request.emergency_contact_name}
+            emerg_number={request.emergency_contact_number}
+            doctor={request.doctor}
+            allergies={request.allergies}
+            injury={request.previous_injuries}
+            illness={request.recent_illness}
             respondToRequest={this.props.respondToRequest}
             assignStaffToRequest={this.props.assignStaffToRequest}
             staffSelected={this.props.staffSelected}
