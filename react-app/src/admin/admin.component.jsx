@@ -18,20 +18,22 @@ class Admin extends Component {
   constructor(props){
     super(props);
     this.state = {
-      view: 'adminDashboard',
+      activeView: 0,
       request: {
         //bed_id, patient_id, nurse_id, status_id, request_type_id, description
       },
       loggedIn: false,
-      patientView: false,
-      patientBedForm: false,
-      patientNewForm: false,
-      nurseView: false,
-      nurseNewForm: false,
-      careAideView: false,
-      careAideNewForm: false,
-      manageScheduling: false,
-      manageCharts: false,
+      views: [
+        <PatientView />,
+        <PatientBedForm />,
+        <PatientNewForm />,
+        <NurseView />,
+        <NurseNewForm />,
+        <CareAideView />,
+        <CareAideNewForm />,
+        <Scheduling />,
+        <Charts />
+      ]
     };
 
     this.serverRequest = axios.create({
@@ -49,31 +51,18 @@ class Admin extends Component {
     .then(result => {
       console.log(result.data);
       if (result.data.success) {
-        this.setState({loggedIn: true, patientView: 'is-active'});
+        this.setState({loggedIn: true, activeView: 0});
       }
     })
 
   }
 
   handleActiveClick (menuItem) {
-
-    this.state.patientView = false;
-    this.state.patientBedForm = false;
-    this.state.patientNewForm = false;
-
-    this.state.nurseView = false;
-    this.state.nurseNewForm = false;
-
-    this.state.careAideView = false;
-    this.state.careAideNewForm = false;
-
-    this.state.manageScheduling = false;
-    this.state.manageCharts = false;
-
-    this.setState({[menuItem]: 'is-active'})
+    this.setState({activeView: menuItem})
   }
 
   render() {
+    const active = this.state.activeView;
     let nav = (
       <aside className='menu menu-spacing'>
         <p className='menu-label'>
@@ -83,63 +72,37 @@ class Admin extends Component {
           <li>
             <p>Manage Patients</p>
             <ul>
-              <li><a className={this.state.patientView} onClick={this.handleActiveClick.bind(this, 'patientView')}>View/Assign Patients</a></li>
-              <li><a className={this.state.patientBedForm} onClick={this.handleActiveClick.bind(this, 'patientBedForm')}>Add Bed</a></li>
-              <li><a className={this.state.patientNewForm} onClick={this.handleActiveClick.bind(this, 'patientNewForm')}>Add Patient</a></li>
+              <li><a className={(active === 0) ? 'is-active' : ''} onClick={() => this.handleActiveClick(0)}>View/Assign Patients</a></li>
+              <li><a className={(active === 1) ? 'is-active' : ''} onClick={() => this.handleActiveClick(1)}>Add Bed</a></li>
+              <li><a className={(active === 2) ? 'is-active' : ''} onClick={() => this.handleActiveClick(2)}>Add Patient</a></li>
             </ul>
           </li>
           <li>
             <p>Manage Nurses</p>
             <ul>
-              <li><a className={this.state.nurseView} onClick={this.handleActiveClick.bind(this, 'nurseView')}>View/Assign Nurses</a></li>
-              <li><a className={this.state.nurseNewForm} onClick={this.handleActiveClick.bind(this, 'nurseNewForm')}>Add a Nurse</a></li>
+              <li><a className={(active === 3) ? 'is-active' : ''} onClick={() => this.handleActiveClick(3)}>View/Assign Nurses</a></li>
+              <li><a className={(active === 4) ? 'is-active' : ''} onClick={() => this.handleActiveClick(4)}>Add a Nurse</a></li>
             </ul>
           </li>
           <li>
             <p>Manage Care Aides</p>
             <ul>
-              <li><a className={this.state.careAideView} onClick={this.handleActiveClick.bind(this, 'careAideView')}>View Care Aides</a></li>
-              <li><a className={this.state.careAideNewForm} onClick={this.handleActiveClick.bind(this, 'careAideNewForm')}>Add a Care Aide</a></li>
+              <li><a className={(active === 5) ? 'is-active' : ''} onClick={() => this.handleActiveClick(5)}>View Care Aides</a></li>
+              <li><a className={(active === 6) ? 'is-active' : ''} onClick={() => this.handleActiveClick(6)}>Add a Care Aide</a></li>
             </ul>
           </li>
           <li>
-            <a className={this.state.manageScheduling} onClick={this.handleActiveClick.bind(this, 'manageScheduling')}>Scheduling</a>
+            <a className={(active === 7) ? 'is-active' : ''} onClick={() => this.handleActiveClick(7)}>Scheduling</a>
           </li>
           <li>
-            <a className={this.state.manageCharts} onClick={this.handleActiveClick.bind(this, 'manageCharts')}>Charts</a>
+            <a className={(active === 8) ? 'is-active' : ''} onClick={() => this.handleActiveClick(8)}>Charts</a>
           </li>
         </ul>
       </aside>
     )
 
     let component = '';
-    if (this.state.patientView === 'is-active') {
-      component = <PatientView />
-    }
-    if (this.state.patientBedForm === 'is-active') {
-      component = <PatientBedForm />
-    }
-    if (this.state.patientNewForm === 'is-active') {
-      component = <PatientNewForm />
-    }
-    if (this.state.nurseView === 'is-active') {
-      component = <NurseView />
-    }
-    if (this.state.nurseNewForm === 'is-active') {
-      component = <NurseNewForm />
-    }
-    if (this.state.careAideView === 'is-active') {
-      component = <CareAideView />
-    }
-    if (this.state.careAideNewForm === 'is-active') {
-      component = <CareAideNewForm />
-    }
-    if (this.state.manageScheduling === 'is-active') {
-      component = <Scheduling />
-    }
-    if (this.state.manageCharts === 'is-active') {
-      component = <Charts />
-    }
+
     if (!this.state.loggedIn) {
       component = (
       <Link to="/" activeClassName="active" >
@@ -149,6 +112,8 @@ class Admin extends Component {
       </Link>
       )
       nav = '';
+    } else {
+      component = this.state.views[this.state.activeView];
     }
 
     return (
