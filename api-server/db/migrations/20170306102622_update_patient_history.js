@@ -10,7 +10,8 @@ exports.up = function(knex, Promise) {
           t.string('previous_injuries').notNull(),
           t.string('recent_illness').notNull(),
           t.string('notes');
-      }),
+      })
+    ]);
 };
 
 exports.down = function(knex, Promise) {
