@@ -1,0 +1,24 @@
+div.modal.is-active{
+  position: absolute;
+  top: 70px;
+  right: 17%;
+  width: 83.3333%;
+  align-items:center;
+  justify-content: center;
+}
+
+.modal-background{
+  right: 17%;
+  background-color: rgba(10, 10, 10, 0.5);
+  width: 100%;
+}
+
+.modal-close{
+  top: 70px;
+  right: 17%;
+}
+.modal-content {
+  background-color: white;
+  border-radius: 5px;
+  padding: 10px;
+}
