@@ -138,6 +138,11 @@ class Request extends Component {
       }
     }
 
+    function getNumber(number) {
+      let num = '(' + number.slice(0,3) + ')' + number.slice(3,6) + '-' + number.slice(6,10);
+      return num;
+    }
+
     return (
       <div>
         <article className={`is-child request-content ${reqStatusBorderColour(this.props.status_id)} ${checkReqType(this.props.request_type_id)}`} key={this.props.id} onClick={this.showDescription}>
@@ -167,6 +172,7 @@ class Request extends Component {
             }
             </div>
             <div className='level-item column is-2'>
+<<<<<<< HEAD
               {showRespond(this.props.status_id)}
             </div>
           </div>
@@ -189,6 +195,23 @@ class Request extends Component {
               <div className='level-item column is-2'>
                 <div className='block'>
                   <a onClick={this.patientHistoryClickHandler} className='button'>Medical History</a>
+=======
+              <div className='block'>
+                <a onClick={this.patientHistoryClickHandler} className='button'>Medical History</a>
+                <div className={`modal ${this.state.showPatientHistory}`}>
+                  <div className='modal-background'></div>
+                  <div className='modal-content'>
+                    <div className='title'> {this.props.first_name} {this.props.last_name}</div>
+                    <hr></hr>
+                    <div>Doctor: {this.props.doctor}</div>
+                    <div>Emergency Contact: {this.props.emerg_name} {getNumber(this.props.emerg_number)}</div>
+                    <div>Allergies: {this.props.allergies}</div>
+                    <div>Recent Illness: {this.props.illness}</div>
+                    <div>Previous Injuries: {this.props.injury}</div>
+                    <div>Patient Notes: {this.props.notes}</div>
+                  </div>
+                  <button className='modal-close'></button>
+>>>>>>> 1992d89b6aafef7308a097a837015275862e9c2e
                 </div>
               </div>
             </div>
