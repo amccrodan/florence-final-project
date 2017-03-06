@@ -19,9 +19,12 @@ module.exports = (knex) => {
 
   //Create a new nurse
   router.post('/', (req, res) => {
-    console.log('req body', req.body);
-    let hashedPass = bcrypt.hashSync(req.body.password, saltRounds);
-    // todo hash password
+    let hashedPass;
+    if (!req.body.password) {
+      hashedPass = null
+    } else {
+      hashedPass = bcrypt.hashSync(req.body.password, saltRounds);
+    }
     knex('nurses').insert({
       first_name: req.body.first_name,
       last_name: req.body.last_name,
@@ -30,8 +33,17 @@ module.exports = (knex) => {
       password: hashedPass
     })
     .then((results) => {
-      res.json(results);
-    });
+      res.json({
+        success: true,
+        message: 'Inserted into database!',
+      });
+    })
+    .catch((error) => {
+      // error.name just sends string 'error' if something goes wrong
+      res.json({
+        error: error.name
+      })
+    })
   });
 
   //Get a specific nurse's info when displaying who is assigned to a request

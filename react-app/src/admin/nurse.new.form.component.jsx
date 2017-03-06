@@ -1,21 +1,35 @@
 import React, { PropTypes } from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import axios from 'axios';
+import RegisterForm from './register.form.component.jsx';
 
 class NurseNewForm extends React.Component {
   constructor(props){
     super(props);
     this.state = {
+      passwordDoesNotMatch: false,
+      fieldsEmpty: false,
+      insertSuccess: false,
     };
-    // this.register = this.register.bind(this);
+    this.register = this.register.bind(this);
+    this.handleClose = this.handleClose.bind(this);
   }
 
   register () {
-    const image = document.getElementsByClassName('image')[0].value;
-    const first_name = document.getElementsByClassName('first-name')[0].value;
-    const last_name = document.getElementsByClassName('last-name')[0].value;
-    const password = document.getElementsByClassName('password')[0].value;
-    const password_confirmation = document.getElementsByClassName('password-confirmation')[0].value;
+    let image = document.getElementsByClassName('image')[0].value;
+    let first_name = document.getElementsByClassName('first-name')[0].value;
+    let last_name = document.getElementsByClassName('last-name')[0].value;
+    let password = document.getElementsByClassName('password')[0].value;
+    let password_confirmation = document.getElementsByClassName('password-confirmation')[0].value;
+
+    if (image === '') {image = null}
+    if (first_name === '') {first_name = null}
+    if (last_name === '') {last_name = null}
+    if (password !== password_confirmation) {
+      this.setState({passwordDoesNotMatch: true});
+      return;
+    }
+    if (password === '') {password = null}
 
     axios
     .post('http://localhost:8080/api/nurses/', {
@@ -27,57 +41,55 @@ class NurseNewForm extends React.Component {
     })
     .then((response) => {
       console.log(response.data);
-      if (!response.data.success) {
-        console.log(response.data.message);
+      if (response.data.success) {
+        document.getElementsByClassName('image')[0].value = '';
+        document.getElementsByClassName('first-name')[0].value = '';
+        document.getElementsByClassName('last-name')[0].value = '';
+        document.getElementsByClassName('password')[0].value = '';
+        document.getElementsByClassName('password-confirmation')[0].value= '';
+        this.setState({insertSuccess: true});
+      } else {
+        this.setState({fieldsEmpty: true});
       }
-      this.props.logIn(response.data.success);
-      cookie.save('session', response.data.token, { path: '/' });
-    }).catch(err => {
-      console.log(err);
     })
+  }
 
+  handleClose () {
+    console.log('in handleClose');
+    this.setState({
+      passwordDoesNotMatch: false,
+      fieldsEmpty: false,
+      insertSuccess: false,
+    })
   }
 
   render () {
-    const loginForm = (
-      <div className='login-form is-80-wide' key='login-form'>
-        <p className='control has-icon'>
-          <input className='input image' type='text' name='image' placeholder='Add An Image link' />
-          <span className='icon is-small'>
-            <i className='fa fa-picture-o' />
-          </span>
-        </p>
-        <p className='control has-icon'>
-          <input className='input first-name' type='text' name='first_name' placeholder='First Name' />
-          <span className='icon is-small'>
-            <i className='fa fa-user' />
-          </span>
-        </p>
-        <p className='control has-icon'>
-          <input className='input last-name' type='text' name='last_name' placeholder='Last Name' />
-          <span className='icon is-small'>
-            <i className='fa fa-user' />
-          </span>
-        </p>
-        <p className='control has-icon'>
-          <input className='input password' type='password' name='password' placeholder='Password' />
-          <span className='icon is-small'>
-            <i className='fa fa-lock' />
-          </span>
-        </p>
-        <p className='control has-icon'>
-          <input className='input password-confirmation' type='password' name='password_confirmation' placeholder='Confirm Password' />
-          <span className='icon is-small'>
-            <i className='fa fa-lock' />
-          </span>
-        </p>
-        <p className='control'>
-        <button type='submit' className='button is-success' onClick={this.register}>
-          Submit
-        </button>
-        </p>
-      </div>
-    )
+
+    let notification = '';
+    if (this.state.passwordDoesNotMatch) {
+      notification = (
+        <div className="notification is-danger is-80-wide" >
+          <button className="delete" onClick={this.handleClose}></button>
+          Error: Password Does Not Match.
+        </div>
+      )
+    }
+    if (this.state.fieldsEmpty) {
+      notification = (
+        <div className="notification is-danger is-80-wide">
+          <button className="delete" onClick={this.handleClose}></button>
+          Error: Field(s) empty.
+        </div>
+      )
+    }
+    if (this.state.insertSuccess) {
+      notification = (
+        <div className="notification is-success is-80-wide">
+          <button className="delete" onClick={this.handleClose}></button>
+          Sucess!
+        </div>
+      )
+    }
     return (
       <ReactCSSTransitionGroup
         transitionName="fadeTransition"
@@ -86,8 +98,9 @@ class NurseNewForm extends React.Component {
         transitionEnterTimeout={500}
         transitionLeaveTimeout={300}>
         <div>
-          <h1 className='title is-1'>NurseNewForm</h1>
-          {loginForm}
+          <h1 className='title is-1'>Add a New Nurse</h1>
+          {notification}
+          <RegisterForm register={this.register}/>
         </div>
       </ReactCSSTransitionGroup>
     );
