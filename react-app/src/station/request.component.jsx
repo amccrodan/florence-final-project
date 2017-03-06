@@ -6,7 +6,8 @@ class Request extends Component {
   constructor(props){
     super(props);
     this.state = {
-      showDescription: ''
+      showDescription: '',
+      showPatientHistory: ''
     };
     this.handleRespond = this.handleRespond.bind(this);
     this.showDescription = this.showDescription.bind(this);
@@ -21,14 +22,22 @@ class Request extends Component {
   showDescription () {
     if (!this.state.showDescription) {
       this.setState({showDescription: ':active'});
-    }
-    else {
+
+      if(this.state.showPatientHistory){
+        this.setState({showPatientHistory: ''});
+      }
+    } else {
       this.setState({showDescription: ''});
     }
   }
 
   patientHistoryClickHandler (event){
     event.stopPropagation();
+    if(!this.state.showPatientHistory){
+      this.setState({showPatientHistory: 'is-active'})
+    }else{
+      this.setState({showPatientHistory: ''});
+    }
   }
 
   render(){
@@ -179,7 +188,14 @@ class Request extends Component {
             <div className='level-item column is-2'>
               <div className='block'>
                 <a onClick={this.patientHistoryClickHandler} className='button'>Medical History</a>
-                <p>{this.props.med_hist}</p>
+                <div className={`modal ${this.state.showPatientHistory}`}>
+                  <div className='modal-background'></div>
+                  <div className='modal-content'>
+                    <div className='title'> {this.props.first_name} {this.props.last_name}</div>
+                    <div>Medical history: {this.props.med_hist}</div>
+                  </div>
+                  <button className='modal-close'></button>
+                </div>
               </div>
             </div>
           </div>
