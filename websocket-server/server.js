@@ -59,12 +59,12 @@ wss.on('connection', (ws) => {
         wss.sendToFlorence(receivedMsg.bed_id, JSON.stringify(receivedMsg));
         break;
       case 'assignId':
-        ws.florenceId = receivedMsg.id
+        ws.florenceId = receivedMsg.id;
         console.log(`Assigning id ${receivedMsg.id}`);
-        ws.send(JSON.stringify(receivedMsg))
+        ws.send(JSON.stringify(receivedMsg));
         break;
       default:
-        console.log(`Unknown message type: ${receivedMsg.type}`)
+        console.log(`Unknown message type: ${receivedMsg.type}`);
     }
 
   });
