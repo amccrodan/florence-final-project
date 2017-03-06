@@ -19,9 +19,6 @@ class Admin extends Component {
     super(props);
     this.state = {
       activeView: 0,
-      request: {
-        //bed_id, patient_id, nurse_id, status_id, request_type_id, description
-      },
       loggedIn: false,
       views: [
         <PatientView />,
@@ -54,7 +51,6 @@ class Admin extends Component {
         this.setState({loggedIn: true, activeView: 0});
       }
     })
-
   }
 
   handleActiveClick (menuItem) {

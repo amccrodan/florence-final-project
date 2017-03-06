@@ -10,29 +10,46 @@ class Charts extends React.Component {
     super(props);
     this.state = {
       data: [],
+      stationId: 'master'
     };
     this.getNewData = this.getNewData.bind(this);
-    this.doughtnutData = this.doughtnutData.bind(this);
+    this.doughnutData = this.doughnutData.bind(this);
   }
 
   componentDidMount () {
     this.getNewData();
-    setInterval(() => {
-      this.getNewData();
-    }, 5000);
+    this.webSocket = new WebSocket('ws://localhost:4000');
+
+    this.webSocket.onopen = () => {
+      this.assignWebSocketId(this.state.stationId);
+
+      this.webSocket.onmessage = (event) => {
+        const incomingObj = JSON.parse(event.data);
+        if (incomingObj.type === 'refreshRequests') {
+          this.getNewData();
+        }
+        if (incomingObj.type === 'assignId') {
+          console.log(incomingObj);
+        }
+      }
+    }
   }
 
-  getNewData () {
-    axios
-    .get('http://localhost:8080/api/requests')
+  assignWebSocketId (stationId) {
+    this.webSocket.send(JSON.stringify({
+      type: 'assignId',
+      id: stationId
+    }))
+  }
+
+  getNewData() {
+    axios.get('http://localhost:8080/api/requests')
     .then((results) => {
-      console.log('request results', results);
       this.setState({data: results.data});
-      console.log('state', this.state);
     })
   }
 
-  doughtnutData(sinceTime) {
+  doughnutData(sinceTime) {
 
     let food = 0;
     let bathroom = 0;
@@ -92,7 +109,7 @@ class Charts extends React.Component {
   }
   render () {
 
-    let requestTypeData = this.doughtnutData()
+    let requestTypeData = this.doughnutData()
 
     return (
       <ReactCSSTransitionGroup
