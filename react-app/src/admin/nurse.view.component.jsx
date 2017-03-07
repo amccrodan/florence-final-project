@@ -12,6 +12,8 @@ class NurseView extends React.Component {
       nurses: []
     };
 
+    this.getNurses = this.getNurses.bind(this);
+
     this.serverRequest = axios.create({
       baseURL: 'http://localhost:8080/api/',
       withCredentials: false, // default
@@ -20,9 +22,16 @@ class NurseView extends React.Component {
 
   }
 
-  getNurses(callback) {
-    this.serverRequest.get('nurses').then((results) => {
-      this.setState({nurses: results.data}, () => {
+  filterNurses(nurse) {
+    if (nurse.is_nurse === true){
+      return nurse;
+    }
+  }
+
+  getCareAides(callback) {
+    this.serverRequest.get('nurses').then((result) => {
+      const filtered = result.data.filter(this.filterNurses);
+      this.setState({nurses: filtered}, () => {
         if (callback) {
           callback();
         }
@@ -31,10 +40,10 @@ class NurseView extends React.Component {
   }
 
   componentDidMount() {
-    this.getNurses();
+    this.getCareAides();
   }
 
-  }
+}
 
   render () {
     return (

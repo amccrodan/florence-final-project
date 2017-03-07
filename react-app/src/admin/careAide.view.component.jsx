@@ -11,6 +11,8 @@ class CareAideView extends React.Component {
       care_aides: []
     };
 
+    this.getCareAides = this.getCareAides.bind(this);
+
     this.serverRequest = axios.create({
       baseURL: 'http://localhost:8080/api/',
       withCredentials: false, // default
@@ -19,10 +21,16 @@ class CareAideView extends React.Component {
 
   }
 
-  getCareAides(callback) {
-    this.serverRequest.get('nurses').then((results) => {
+  filterNurses(nurse) {
+    if (nurse.is_nurse === false){
+      return nurse;
+    }
+  }
 
-      this.setState({care_aide: results.data}, () => {
+  getCareAides(callback) {
+    this.serverRequest.get('nurses').then((result) => {
+      const filtered = result.data.filter(this.filterNurses);
+      this.setState({care_aides: filtered}, () => {
         if (callback) {
           callback();
         }
@@ -34,7 +42,7 @@ class CareAideView extends React.Component {
     this.getCareAides();
   }
 
-  }
+}
 
   render () {
     return (
@@ -54,6 +62,9 @@ class CareAideView extends React.Component {
           <tbody className='admin-table-body'>
           {this.state.care_aides.map(care_aide => {
             return <CareAide key={care_aide.id}
+              first_name={care_aide.first_name}
+              last_name={care_aide.last_name}
+              id={care_aide.id}
               />
           }
           )}
