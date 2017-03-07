@@ -64,14 +64,14 @@ class Admin extends Component {
           <li>
             <p>Manage Patients</p>
             <ul>
-              <li><a className={(active === 0) ? 'is-active' : ''} onClick={() => this.handleActiveClick(0)}>View/Assign Patients</a></li>
+              <li><a className={(active === 0) ? 'is-active' : ''} onClick={() => this.handleActiveClick(0)}>View Patients</a></li>
               <li><a className={(active === 1) ? 'is-active' : ''} onClick={() => this.handleActiveClick(1)}>Add Patient</a></li>
             </ul>
           </li>
           <li>
             <p>Manage Nurses</p>
             <ul>
-              <li><a className={(active === 2) ? 'is-active' : ''} onClick={() => this.handleActiveClick(2)}>View/Assign Nurses</a></li>
+              <li><a className={(active === 2) ? 'is-active' : ''} onClick={() => this.handleActiveClick(2)}>View Nurses</a></li>
               <li><a className={(active === 3) ? 'is-active' : ''} onClick={() => this.handleActiveClick(3)}>Add a Nurse</a></li>
             </ul>
           </li>
