@@ -202,14 +202,38 @@ class Request extends Component {
         <div className={`modal ${this.state.showPatientHistory}`}>
           <div className='modal-background' onClick={this.patientHistoryClickHandler}></div>
             <div className='modal-content'>
-              <div className='title'> {this.props.first_name} {this.props.last_name}</div>
+              <div className='title patient-history-title'> {this.props.first_name} {this.props.last_name}</div>
               <hr></hr>
-              <div>Doctor: {this.props.doctor}</div>
-              <div>Emergency Contact: {this.props.emerg_name} {getNumber(this.props.emerg_number)}</div>
-              <div>Allergies: {this.props.allergies}</div>
-              <div>Recent Illness: {this.props.illness}</div>
-              <div>Previous Injuries: {this.props.injury}</div>
-              <div>Patient Notes: {this.props.notes}</div>
+              <table className='table is-striped'>
+                <thead>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th>Doctor</th>
+                    <td>{this.props.doctor}</td>
+                  </tr>
+                  <tr>
+                    <th>Emergency Contact </th>
+                    <td>{this.props.emerg_name} {getNumber(this.props.emerg_number)}</td>
+                  </tr>
+                  <tr>
+                    <th>Allergies</th>
+                    <td>{this.props.allergies}</td>
+                  </tr>
+                  <tr>
+                    <th>Recent Illnesses</th>
+                    <td>{this.props.illness}</td>
+                  </tr>
+                  <tr>
+                    <th>Previous Injuries</th>
+                    <td>{this.props.injury}</td>
+                  </tr>
+                  <tr>
+                    <th>Patient notes</th>
+                    <td>{this.props.notes}</td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
           <button className='modal-close' onClick={this.patientHistoryClickHandler}></button>
         </div>
