@@ -124,7 +124,7 @@ class Admin extends Component {
           <div className='column is-one-quarter'>
             {nav}
           </div>
-          <div className='column '>
+          <div className='column'>
             {component}
           </div>
         </div>

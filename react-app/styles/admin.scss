@@ -1,3 +1,33 @@
 .menu-spacing {
   padding: 2em 0 1em 1em;
 }
+
+.admin-table {
+  border-collapse: collapse;
+  min-width: 100%;
+  min-height: 100%;
+  table-layout: fixed;
+}
+
+.admin-table-row {
+  min-width: 100%;
+  display: table;
+}
+
+.admin-table-header, .admin-table-data {
+  padding: .3vw;
+  text-align: left;
+  width: 25%;
+}
+
+.admin-table-body {
+  min-width: 100%;
+  display: block;
+  overflow-y: scroll;
+  max-height: 95vh;
+}
+
+.admin-table-head {
+  display: block;
+  min-width: 100%;
+}
