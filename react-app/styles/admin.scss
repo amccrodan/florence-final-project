@@ -2,6 +2,23 @@
   padding: 2em 0 1em 1em;
 }
 
-.patient-table {
-  overflow: auto;
+table {
+  border-collapse: collapse;
+}
+
+th, td {
+  min-width: 35vh;
+  padding: .3vw;
+  text-align: center;
+}
+
+tbody {
+  min-width: 100%;
+  display: block;
+  overflow-y: scroll;
+  max-height: 95vh;
+}
+
+thead {
+  display: block;
 }
