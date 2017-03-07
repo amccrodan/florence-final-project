@@ -12,7 +12,7 @@ class NurseView extends React.Component {
       nurses: []
     };
 
-    this.getNurses = this.getNurses.bind(this);
+    // this.getNurses = this.getNurses.bind(this);
 
     this.serverRequest = axios.create({
       baseURL: 'http://localhost:8080/api/',
@@ -28,7 +28,7 @@ class NurseView extends React.Component {
     }
   }
 
-  getCareAides(callback) {
+  getNurses(callback) {
     this.serverRequest.get('nurses').then((result) => {
       const filtered = result.data.filter(this.filterNurses);
       this.setState({nurses: filtered}, () => {
@@ -40,10 +40,8 @@ class NurseView extends React.Component {
   }
 
   componentDidMount() {
-    this.getCareAides();
+    this.getNurses();
   }
-
-}
 
   render () {
     return (
@@ -61,8 +59,11 @@ class NurseView extends React.Component {
             </tr>
           </thead>
           <tbody className='admin-table-body'>
-          {this.state.nurses.map(nurses => {
+          {this.state.nurses.map(nurse => {
             return <Nurse key={nurse.id}
+              first_name={nurse.first_name}
+              last_name={nurse.last_name}
+              id={nurse.id}
               />
           }
           )}

@@ -11,7 +11,7 @@ class CareAideView extends React.Component {
       care_aides: []
     };
 
-    this.getCareAides = this.getCareAides.bind(this);
+    // this.getCareAides = this.getCareAides.bind(this);
 
     this.serverRequest = axios.create({
       baseURL: 'http://localhost:8080/api/',
@@ -41,8 +41,6 @@ class CareAideView extends React.Component {
   componentDidMount() {
     this.getCareAides();
   }
-
-}
 
   render () {
     return (
