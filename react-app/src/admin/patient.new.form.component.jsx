@@ -1,7 +1,6 @@
 import React, { PropTypes } from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import axios from 'axios';
-import SelectSearch from 'react-select-search'
 
 class PatientNewForm extends React.Component {
   constructor(props){
@@ -18,22 +17,19 @@ class PatientNewForm extends React.Component {
   }
 
   componentDidMount () {
-    // get request for all nurses and beds
-    // I want to return an  list of
-    // [
-    // {name: 'Swedish', value: 'sv'},
-    // {name: 'English', value: 'en'}
-    // ]
-    let nurseList = [{name: '', value: ''}];
-    let bedList = [{name: '', value: ''}];
+
+    let nurseList = [{name: 'Choose a Nurse', value: null}];
+    let bedList = [{name: 'Choose a Bed', value: null}];
     axios
     .get('http://localhost:8080/api/nurses')
     .then(results => {
       results.data.forEach(item => {
-        let nurse = {}
-        nurse.name = `${item.first_name} ${item.last_name}`;
-        nurse.value = item.id;
-        nurseList.push(nurse);
+        if (item.is_nurse) {
+          let nurse = {}
+          nurse.name = `${item.first_name} ${item.last_name}`;
+          nurse.value = item.id;
+          nurseList.push(nurse);
+        }
       })
     })
     .then(() => {
@@ -59,17 +55,11 @@ class PatientNewForm extends React.Component {
   }
 
   register () {
-      // first_name:  'Phil',
-      // last_name: 'Doe',
-      // doctor: 'Dr. Abraham Kennedy',
-      // emergency_contact_name: 'Ken Doe',
-      // emergency_contact_number: '(123)456-7890',
-      // allergies: 'Poor indentation',
-      // previous_injuries: 'none',
-      // recent_illness: 'Strep throat',
-      // notes: 'Thinks Annie is his long lost love', -- can be null
-      // bed_id: 2,
-      // nurse_id: 3
+    console.log('in register');''
+
+    // TODO get index of selected component
+
+
     let first_name = document.getElementsByClassName('first-name')[0].value;
     let last_name = document.getElementsByClassName('last-name')[0].value;
     let doctor = document.getElementsByClassName('doctor')[0].value;
@@ -79,9 +69,24 @@ class PatientNewForm extends React.Component {
     let previous_injuries = document.getElementsByClassName('previous-injuries')[0].value;
     let recent_illness = document.getElementsByClassName('recent-illness')[0].value;
     let notes = document.getElementsByClassName('notes')[0].value;
-    let bed_id = document.getElementsByClassName('bed-id')[0].value;
-    let nurse_id = document.getElementsByClassName('nurse-id')[0].value;
+    let nurse_id = null;
+    let bed_id = null;
 
+    let nurseCollection =  document.getElementsByClassName('nurse-id');
+    for (let nurse in nurseCollection) {
+      if (nurseCollection[nurse].selected) {
+        nurse_id = nurseCollection[nurse].value;
+      }
+    }
+    let bedCollection = document.getElementsByClassName('bed-id');
+    for (let bed in bedCollection) {
+      if (bedCollection[bed].selected) {
+        bed_id = bedCollection[bed].value;
+      }
+    }
+
+    console.log('bed', bed_id);
+    console.log('nurse', nurse_id);
     // TODO this is validation checking if you leave a required field blank
     if (first_name === '') {first_name = null}
     if (last_name === '') {last_name = null}
@@ -225,14 +230,29 @@ class PatientNewForm extends React.Component {
             <i className='fa fa-sticky-note' />
           </span>
         </p>
-        <div className='control space-below'>
-          <SelectSearch options={nurseOptions} className='search-input' multiple={false} value='nurse-list' name='nurse-list' placeholder="Search for a nurse" />
-        </div>
-        <div className='control'>
-          <SelectSearch options={bedOptions} className='search-input' multiple={false} value='bed-list' name='bed-list' placeholder='Pick a Bed' />
-        </div>
+        <p className="control">
+          <span className="select">
+            <select>
+              {this.state.nurseList.map(item => {
+                return <option className='nurse-id' value={item.value} key={item.value}>{item.name}</option>
+              })}
+
+            </select>
+          </span>
+        </p>
+        <p className="control">
+          <span className="select">
+            <select>
+              {this.state.bedList.map(item => {
+                return <option className='bed-id' value={item.value} key={item.value}>{item.name}</option>
+              })}
+
+            </select>
+          </span>
+        </p>
+
         <p className='control'>
-          <button type='submit' className='button is-success' onClick={this.props.register}>
+          <button type='submit' className='button is-success' onClick={this.register}>
             Submit
           </button>
         </p>
