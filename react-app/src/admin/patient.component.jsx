@@ -7,15 +7,6 @@ import React, { Component } from 'react';
 
    render () {
      return (
-       <table className="table is-striped">
-         <thead>
-           <tr>
-             <th>ID</th>
-             <th>Name</th>
-             <th>Bed</th>
-             <th>Room</th>
-           </tr>
-         </thead>
          <tbody>
            <tr>
              <th>{this.props.id}</th>
@@ -24,8 +15,6 @@ import React, { Component } from 'react';
              <td>{this.props.room}</td>
            </tr>
          </tbody>
-       </table>
-
      );
    }
  }
