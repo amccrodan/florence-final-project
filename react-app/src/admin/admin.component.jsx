@@ -8,10 +8,8 @@ import CareAideNewForm from './careAide.new.form.component.jsx';
 import CareAideView from './careAide.view.component.jsx';
 import NurseNewForm from './nurse.new.form.component.jsx';
 import NurseView from './nurse.view.component.jsx';
-import PatientBedForm from './patient.bed.form.component.jsx';
 import PatientNewForm from './patient.new.form.component.jsx';
 import PatientView from './patient.view.component.jsx';
-import Scheduling from './scheduling.component.jsx';
 import Charts from './charts.component.jsx';
 
 class Admin extends Component {
@@ -22,13 +20,11 @@ class Admin extends Component {
       loggedIn: false,
       views: [
         <PatientView />,
-        <PatientBedForm />,
         <PatientNewForm />,
         <NurseView />,
         <NurseNewForm />,
         <CareAideView />,
         <CareAideNewForm />,
-        <Scheduling />,
         <Charts />
       ]
     };
@@ -69,29 +65,25 @@ class Admin extends Component {
             <p>Manage Patients</p>
             <ul>
               <li><a className={(active === 0) ? 'is-active' : ''} onClick={() => this.handleActiveClick(0)}>View/Assign Patients</a></li>
-              <li><a className={(active === 1) ? 'is-active' : ''} onClick={() => this.handleActiveClick(1)}>Add Bed</a></li>
-              <li><a className={(active === 2) ? 'is-active' : ''} onClick={() => this.handleActiveClick(2)}>Add Patient</a></li>
+              <li><a className={(active === 1) ? 'is-active' : ''} onClick={() => this.handleActiveClick(1)}>Add Patient</a></li>
             </ul>
           </li>
           <li>
             <p>Manage Nurses</p>
             <ul>
-              <li><a className={(active === 3) ? 'is-active' : ''} onClick={() => this.handleActiveClick(3)}>View/Assign Nurses</a></li>
-              <li><a className={(active === 4) ? 'is-active' : ''} onClick={() => this.handleActiveClick(4)}>Add a Nurse</a></li>
+              <li><a className={(active === 2) ? 'is-active' : ''} onClick={() => this.handleActiveClick(2)}>View/Assign Nurses</a></li>
+              <li><a className={(active === 3) ? 'is-active' : ''} onClick={() => this.handleActiveClick(3)}>Add a Nurse</a></li>
             </ul>
           </li>
           <li>
             <p>Manage Care Aides</p>
             <ul>
-              <li><a className={(active === 5) ? 'is-active' : ''} onClick={() => this.handleActiveClick(5)}>View Care Aides</a></li>
-              <li><a className={(active === 6) ? 'is-active' : ''} onClick={() => this.handleActiveClick(6)}>Add a Care Aide</a></li>
+              <li><a className={(active === 4) ? 'is-active' : ''} onClick={() => this.handleActiveClick(4)}>View Care Aides</a></li>
+              <li><a className={(active === 5) ? 'is-active' : ''} onClick={() => this.handleActiveClick(5)}>Add a Care Aide</a></li>
             </ul>
           </li>
           <li>
-            <a className={(active === 7) ? 'is-active' : ''} onClick={() => this.handleActiveClick(7)}>Scheduling</a>
-          </li>
-          <li>
-            <a className={(active === 8) ? 'is-active' : ''} onClick={() => this.handleActiveClick(8)}>Charts</a>
+            <a className={(active === 6) ? 'is-active' : ''} onClick={() => this.handleActiveClick(6)}>Charts</a>
           </li>
         </ul>
       </aside>

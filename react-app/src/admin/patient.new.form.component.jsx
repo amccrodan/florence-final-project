@@ -40,7 +40,7 @@ class PatientNewForm extends React.Component {
     })
   }
 
-  updateEmptyBeds(){
+  updateEmptyBeds () {
     let bedList = [{name: 'Choose a Bed', value: null}];
     axios
     .get('http://localhost:8080/api/beds')
