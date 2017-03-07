@@ -44,6 +44,7 @@ class Station extends Component {
 
   getRequests(callback) {
     this.serverRequest.get('requests').then((result) => {
+      console.log('results here', result);
       const filtered = result.data.filter(this.filterRequests);
       this.setState({requests: filtered}, () => {
         if (callback) {

@@ -5,18 +5,44 @@ const router  = express.Router();
 
 module.exports = (knex) => {
 
+
   // Create a new patient
-  router.post('/'), (req, res) => {
+  router.post('/', (req, res) => {
+
+    console.log('req.body', req.body);
     knex('patients').insert({
       first_name: req.body.first_name,
       last_name: req.body.last_name,
-      medical_history: req.body.medical_history,
-      bed_id: req.body.bed_id
-    })
+      doctor: req.body.doctor,
+      emergency_contact_name: req.body.emergency_contact_name,
+      emergency_contact_number: req.body.emergency_contact_number,
+      allergies: req.body.allergies,
+      previous_injuries: req.body.previous_injuries,
+      recent_illness: req.body.recent_illness,
+      notes: req.body.notes,
+      bed_id: req.body.bed_id,
+      nurse_id: req.body.nurse_id
+    }, 'id')
     .then((results) => {
-      res.json(results);
-    });
-  }
+      knex('beds')
+      .where('id', '=', req.body.bed_id)
+      .update({
+        patient_id: results[0]
+      })
+      .then((results) => {
+        res.json({
+          success: true,
+          message: 'Inserted into database!',
+        });
+      })
+    })
+    .catch((error) => {
+      // error.name just sends string 'error' if something goes wrong
+      res.json({
+        error: error.name
+      })
+    })
+  })
 
   //Get a single patient by id
   router.get('/:id', (req, res) => {
