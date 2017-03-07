@@ -8,7 +8,31 @@ class CareAideView extends React.Component {
   constructor(props){
     super(props);
     this.state = {
+      care_aide: []
     };
+
+    this.serverRequest = axios.create({
+      baseURL: 'http://localhost:8080/api/',
+      withCredentials: false, // default
+      headers: {'x-access-token': cookie.load('session')},
+    });
+
+  }
+
+  getCareAides(callback) {
+    this.serverRequest.get('nurses').then((results) => {
+      this.setState({care_aide: results.data}, () => {
+        if (callback) {
+          callback();
+        }
+      });
+    });
+  }
+
+  componentDidMount() {
+    this.getCareAides();
+  }
+
   }
 
   render () {
