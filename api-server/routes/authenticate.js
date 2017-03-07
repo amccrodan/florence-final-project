@@ -40,7 +40,7 @@ module.exports = (knex, jwt, app) => {
           res.json({ success: false, message: 'Authentication failed. User not found.' });
         } else {
           if (!passwordMatch) {
-            console.log('Nurse Found, but password does not match').
+            console.log('Nurse Found, but password does not match');
             res.json({ success: false, message: 'Authentication failed. Password does not match.' });
           }
           else {
