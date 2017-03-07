@@ -1,6 +1,7 @@
 import React, { PropTypes } from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import axios from 'axios';
+import SelectSearch from 'react-select-search'
 
 class PatientNewForm extends React.Component {
   constructor(props){
@@ -9,12 +10,55 @@ class PatientNewForm extends React.Component {
       passwordDoesNotMatch: false,
       fieldsEmpty: false,
       insertSuccess: false,
+      nurseList: [{name: '', value: ''}],
+      bedList: [{name: '', value: ''}],
     };
     this.register = this.register.bind(this);
     this.handleClose = this.handleClose.bind(this);
   }
 
-    register () {
+  componentDidMount () {
+    // get request for all nurses and beds
+    // I want to return an  list of
+    // [
+    // {name: 'Swedish', value: 'sv'},
+    // {name: 'English', value: 'en'}
+    // ]
+    let nurseList = [{name: '', value: ''}];
+    let bedList = [{name: '', value: ''}];
+    axios
+    .get('http://localhost:8080/api/nurses')
+    .then(results => {
+      results.data.forEach(item => {
+        let nurse = {}
+        nurse.name = `${item.first_name} ${item.last_name}`;
+        nurse.value = item.id;
+        nurseList.push(nurse);
+      })
+    })
+    .then(() => {
+      axios
+      .get('http://localhost:8080/api/beds')
+      .then(results => {
+        console.log('bed data', results.data);
+        results.data.forEach(item => {
+          if (!item.patient_id) {
+            let bed = {};
+            bed.name = item.id
+            bed.value = item.id
+            bedList.push(bed);
+          }
+        })
+        this.setState({
+          nurseList: nurseList,
+          bedList: bedList,
+        })
+        console.log(this.state);
+      })
+    })
+  }
+
+  register () {
       // first_name:  'Phil',
       // last_name: 'Doe',
       // doctor: 'Dr. Abraham Kennedy',
@@ -119,16 +163,22 @@ class PatientNewForm extends React.Component {
         </div>
       )
     }
+    // const options = [
+    //   {name: 'Swedish', value: 'sv'},
+    //   {name: 'English', value: 'en'}
+    // ];
+    const nurseOptions = this.state.nurseList;
+    const bedOptions = this.state.bedList;
     const registerForm = (
-      <div className='login-form is-80-wide' key='login-form'>
+      <div className='login-form is-80-wide handle-overflow' key='login-form'>
         <p className='control has-icon'>
-          <input className='input first-name' type='text' name='first_name' placeholder='First Name' />
+          <input className='input first-name' type='text' name='first-name' placeholder='First Name' />
           <span className='icon is-small'>
             <i className='fa fa-user' />
           </span>
         </p>
         <p className='control has-icon'>
-          <input className='input last-name' type='text' name='last_name' placeholder='Last Name' />
+          <input className='input last-name' type='text' name='last-name' placeholder='Last Name' />
           <span className='icon is-small'>
             <i className='fa fa-user' />
           </span>
@@ -175,6 +225,12 @@ class PatientNewForm extends React.Component {
             <i className='fa fa-sticky-note' />
           </span>
         </p>
+        <div className='control space-below'>
+          <SelectSearch options={nurseOptions} className='search-input' multiple={false} value='nurse-list' name='nurse-list' placeholder="Search for a nurse" />
+        </div>
+        <div className='control'>
+          <SelectSearch options={bedOptions} className='search-input' multiple={false} value='bed-list' name='bed-list' placeholder='Pick a Bed' />
+        </div>
         <p className='control'>
           <button type='submit' className='button is-success' onClick={this.props.register}>
             Submit
