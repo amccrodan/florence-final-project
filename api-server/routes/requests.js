@@ -78,7 +78,8 @@ module.exports = (knex) => {
       .update({
         'nurse_id': req.body.nurse_id,
         'status_id': req.body.status_id,
-        'updated_at': 'now'
+        'updated_at': 'now',
+        'nurse_log': req.body.nurse_log
       })
       .then((results) => {
         res.json(results);

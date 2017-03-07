@@ -1,3 +1,8 @@
+.auth-modal-footer {
+  display: flex;
+  justify-content: flex-end;
+}
+
 .big-circle {
   border-radius: 100%;
   font-size: 1.5em;
@@ -9,16 +14,32 @@
   width: 200px;
 }
 
-.complete-button{
+.complete-button {
   position: absolute;
   top: 2%;
   right: 1%;
 }
-.complete-button-content{
+.complete-button-content {
   display: flex;
   align-items: center;
 }
 
-.request-acknowledged-container{
+.modal.is-active.auth {
+  position: absolute;
+  top: 0%;
+  width: 100%;
+  align-items:center;
+  justify-content: center;
+
+  textarea {
+    font-size: 14px;
+  }
+}
+
+.modal .auth-title {
+  font-size: 24px;
+}
+
+.request-acknowledged-container {
   margin-top:12.5%;
 }
