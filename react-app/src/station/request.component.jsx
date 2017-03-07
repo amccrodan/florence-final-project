@@ -204,12 +204,6 @@ class Request extends Component {
             <div className='modal-content'>
               <div className='title patient-history-title'> {this.props.first_name} {this.props.last_name}</div>
               <hr></hr>
-              {/*<div>Doctor: {this.props.doctor}</div>
-                            <div>Emergency Contact: {this.props.emerg_name} {getNumber(this.props.emerg_number)}</div>
-                            <div>Allergies: {this.props.allergies}</div>
-                            <div>Recent Illness: {this.props.illness}</div>
-                            <div>Previous Injuries: {this.props.injury}</div>
-                            <div>Patient Notes: {this.props.notes}</div>} */}
               <table className='table is-striped'>
                 <thead>
                 </thead>
