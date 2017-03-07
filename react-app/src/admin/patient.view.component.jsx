@@ -37,7 +37,7 @@ class PatientView extends React.Component {
   render () {
     return (
       <ReactCSSTransitionGroup
-        transitionName="fadeTransition"
+        transitionName='fadeTransition'
         transitionAppear={true}
         transitionAppearTimeout={500}
         transitionEnterTimeout={500}
