@@ -13,13 +13,15 @@ class RequestForm extends Component {
   }
 
   handleTypeButton (event) {
-    let currentType = 0;
+    let currentType = this.state.typeSelected;
     const requestTypes = ['food', 'bathroom', 'medicine', 'other'];
+
     requestTypes.forEach(function (item, index) {
       if (event.currentTarget.classList.contains(item)) {
-        currentType = index + 1;
+        currentType = (currentType === index + 1) ? 0 : index + 1;
       }
     });
+
     this.setState({typeSelected: currentType});
     this.props.changeRequestState({request_type_id: currentType}, () => {});
   }
@@ -90,7 +92,7 @@ class RequestForm extends Component {
               </div>
             </div>
             <div className='column'>
-              <div className={(this.state.typeSelected === 4) ? 'type-selected' : ''}> 
+              <div className={(this.state.typeSelected === 4) ? 'type-selected' : ''}>
                 <span className='button is-large is-warning options other' onClick={this.handleTypeButton}>
                   <i className='request-category fa fa-question' aria-hidden='true'></i>
                 </span>
