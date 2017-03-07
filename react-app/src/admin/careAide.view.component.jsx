@@ -8,7 +8,7 @@ class CareAideView extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      care_aide: []
+      care_aides: []
     };
 
     this.serverRequest = axios.create({
@@ -21,6 +21,7 @@ class CareAideView extends React.Component {
 
   getCareAides(callback) {
     this.serverRequest.get('nurses').then((results) => {
+
       this.setState({care_aide: results.data}, () => {
         if (callback) {
           callback();
@@ -43,9 +44,21 @@ class CareAideView extends React.Component {
         transitionAppearTimeout={500}
         transitionEnterTimeout={500}
         transitionLeaveTimeout={300}>
-        <div>
-          <h1 className='title is-1'>View Care Aides</h1>
-        </div>
+        <table className='table is-striped admin-table'>
+          <thead className='admin-table-head'>
+            <tr>
+              <th className='admin-table-header'>ID</th>
+              <th className='admin-table-header'>Name</th>
+            </tr>
+          </thead>
+          <tbody className='admin-table-body'>
+          {this.state.care_aides.map(care_aide => {
+            return <CareAide key={care_aide.id}
+              />
+          }
+          )}
+          </tbody>
+        </table>
       </ReactCSSTransitionGroup>
     );
   }

@@ -44,9 +44,21 @@ class NurseView extends React.Component {
         transitionAppearTimeout={500}
         transitionEnterTimeout={500}
         transitionLeaveTimeout={300}>
-        <div>
-          <h1 className='title is-1'>View Nurses</h1>
-        </div>
+        <table className='table is-striped admin-table'>
+          <thead className='admin-table-head'>
+            <tr>
+              <th className='admin-table-header'>ID</th>
+              <th className='admin-table-header'>Name</th>
+            </tr>
+          </thead>
+          <tbody className='admin-table-body'>
+          {this.state.nurses.map(nurses => {
+            return <Nurse key={nurse.id}
+              />
+          }
+          )}
+          </tbody>
+        </table>
       </ReactCSSTransitionGroup>
     );
   }
