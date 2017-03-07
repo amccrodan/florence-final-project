@@ -7,7 +7,7 @@ import React, { Component } from 'react';
 
    render () {
      return (
-           <tr>
+           <tr className='admin-table-row'>
              <th className='admin-table-header'>{this.props.id}</th>
              <td className='admin-table-data'>{this.props.first_name} {this.props.last_name}</td>
            </tr>

@@ -44,7 +44,7 @@ class PatientView extends React.Component {
         transitionLeaveTimeout={300}>
         <table className='table is-striped admin-table'>
           <thead className='admin-table-head'>
-            <tr>
+            <tr className='admin-table-row'>
               <th className='admin-table-header'>ID</th>
               <th className='admin-table-header'>Name</th>
               <th className='admin-table-header'>Bed</th>

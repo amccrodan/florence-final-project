@@ -4,12 +4,19 @@
 
 .admin-table {
   border-collapse: collapse;
+  min-width: 100%;
+  min-height: 100%;
+}
+
+.admin-table-row {
+  min-width: 100%;
+  display: table;
+  text-align: left;
 }
 
 .admin-table-header, .admin-table-data {
-  min-width: 35vh;
   padding: .3vw;
-  // text-align: center;
+  text-align: left;
 }
 
 .admin-table-body {
@@ -21,4 +28,5 @@
 
 .admin-table-head {
   display: block;
+  min-width: 100%;
 }
