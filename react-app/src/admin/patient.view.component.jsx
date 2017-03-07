@@ -1,5 +1,8 @@
 import React, { PropTypes } from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import Patient from './patient.component.jsx';
+import axios from 'axios';
+import cookie from 'react-cookie';
 
 class PatientView extends React.Component {
   constructor(props){
@@ -7,10 +10,17 @@ class PatientView extends React.Component {
     this.state = {
       patients: []
     };
+
+    this.serverRequest = axios.create({
+      baseURL: 'http://localhost:8080/api/',
+      withCredentials: false, // default
+      headers: {'x-access-token': cookie.load('session')},
+    });
+
   }
 
   getPatients(callback) {
-    this.serverRequest.get('patients').then((result) => {
+    this.serverRequest.get('patients').then((results) => {
       this.setState({patients: results.data}, () => {
         if (callback) {
           callback();
@@ -33,7 +43,7 @@ class PatientView extends React.Component {
         transitionEnterTimeout={500}
         transitionLeaveTimeout={300}>
         <div className='tile is-parent is-vertical is-10 request-queue'>
-          {this.props.patients.map(patient => {
+          {this.state.patients.map(patient => {
             return <Patient key={patient.id}
               id={patient.id}
               first_name={patient.first_name}
