@@ -40,7 +40,6 @@ class NurseNewForm extends React.Component {
       password: password,
     })
     .then((response) => {
-      console.log(response.data);
       if (response.data.success) {
         document.getElementsByClassName('image')[0].value = '';
         document.getElementsByClassName('first-name')[0].value = '';
@@ -55,12 +54,11 @@ class NurseNewForm extends React.Component {
   }
 
   handleClose () {
-    console.log('in handleClose');
     this.setState({
       passwordDoesNotMatch: false,
       fieldsEmpty: false,
       insertSuccess: false,
-    })
+    });
   }
 
   render () {
@@ -80,7 +78,7 @@ class NurseNewForm extends React.Component {
           <button className="delete" onClick={this.handleClose}></button>
           Error: Field(s) empty.
         </div>
-      )
+      );
     }
     if (this.state.insertSuccess) {
       notification = (

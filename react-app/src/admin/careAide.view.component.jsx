@@ -11,14 +11,11 @@ class CareAideView extends React.Component {
       care_aides: []
     };
 
-    // this.getCareAides = this.getCareAides.bind(this);
-
     this.serverRequest = axios.create({
       baseURL: 'http://localhost:8080/api/',
       withCredentials: false, // default
       headers: {'x-access-token': cookie.load('session')},
     });
-
   }
 
   filterNurses(nurse) {
