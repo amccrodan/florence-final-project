@@ -40,6 +40,7 @@ class Admin extends Component {
     });
 
     this.handleActiveClick = this.handleActiveClick.bind(this);
+    this.getPatients = this.getPatients.bind(this);
   }
 
   componentDidMount() {
