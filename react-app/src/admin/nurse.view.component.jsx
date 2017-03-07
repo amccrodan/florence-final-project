@@ -1,5 +1,9 @@
 import React, { PropTypes } from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import Nurse from './nurse.component.jsx';
+import axios from 'axios';
+import cookie from 'react-cookie';
+
 
 class NurseView extends React.Component {
   constructor(props){

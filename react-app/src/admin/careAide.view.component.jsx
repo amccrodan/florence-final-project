@@ -1,5 +1,8 @@
 import React, { PropTypes } from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import CareAide from './care-aide.component.jsx';
+import axios from 'axios';
+import cookie from 'react-cookie';
 
 class CareAideView extends React.Component {
   constructor(props){
