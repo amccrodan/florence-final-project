@@ -4,7 +4,8 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 class RequestForm extends Component {
   constructor(props){
     super(props);
-      this.state = {
+    this.state = {
+      typeSelected: 0
     };
     this.handleTypeButton = this.handleTypeButton.bind(this);
     this.handleCancel = this.handleCancel.bind(this);
@@ -19,6 +20,7 @@ class RequestForm extends Component {
         currentType = index + 1;
       }
     });
+    this.setState({typeSelected: currentType});
     this.props.changeRequestState({request_type_id: currentType}, () => {});
   }
 
@@ -35,6 +37,15 @@ class RequestForm extends Component {
   }
 
   render(){
+    const submitForm = (this.state.typeSelected) ? (
+      <p className='input-field'>
+        <textarea className='textarea' type='text' placeholder='Add a comment...'></textarea>
+        <button type='submit' className='button is-success submit' onClick={this.handleSubmit}>
+         <h1 className='title is-1'>Submit</h1>
+        </button>
+      </p>
+    ) : '';
+
     return (
         <div className='container'>
             <ReactCSSTransitionGroup
@@ -57,34 +68,37 @@ class RequestForm extends Component {
           </section>
           <div className='columns'>
             <div className='column'>
-              <span className='button is-large is-primary options medicine' onClick={this.handleTypeButton}>
-                <i className='request-category fa fa-medkit' aria-hidden='true'></i>
-              </span>
+              <div className={(this.state.typeSelected === 3) ? 'type-selected' : ''}>
+                <span className='button is-large is-primary options medicine' onClick={this.handleTypeButton}>
+                  <i className='request-category fa fa-medkit' aria-hidden='true'></i>
+                </span>
+              </div>
             </div>
             <div className='column'>
-              <span className='button is-large is-info options food' onClick={this.handleTypeButton}>
-                <i className='request-category fa fa-cutlery' aria-hidden='true'></i>
-              </span>
+              <div className={(this.state.typeSelected === 1) ? 'type-selected' : ''}>
+                <span className='button is-large is-info options food' onClick={this.handleTypeButton}>
+                  <i className='request-category fa fa-cutlery' aria-hidden='true'></i>
+                </span>
+              </div>
             </div>
             <div className='column'>
-              <span className='button is-large options bathroom' onClick={this.handleTypeButton}>
-                <i className='request-category fa fa-male' aria-hidden='true'></i>
-                <i className='request-category fa fa-female' aria-hidden='true'></i>
-              </span>
+              <div className={(this.state.typeSelected === 2) ? 'type-selected' : ''}>
+                <span className='button is-large options bathroom' onClick={this.handleTypeButton}>
+                  <i className='request-category fa fa-male' aria-hidden='true'></i>
+                  <i className='request-category fa fa-female' aria-hidden='true'></i>
+                </span>
+              </div>
             </div>
             <div className='column'>
-              <span className='button is-large is-warning options other' onClick={this.handleTypeButton}>
-                <i className='request-category fa fa-question' aria-hidden='true'></i>
-              </span>
+              <div className={(this.state.typeSelected === 4) ? 'type-selected' : ''}> 
+                <span className='button is-large is-warning options other' onClick={this.handleTypeButton}>
+                  <i className='request-category fa fa-question' aria-hidden='true'></i>
+                </span>
+              </div>
             </div>
           </div>
-          <p className='input-field'>
-            <textarea className='textarea' type='text' placeholder='Add a comment...'></textarea>
-            <button type='submit' className='button is-success submit' onClick={this.handleSubmit}>
-             <h1 className='title is-1'>Submit</h1>
-            </button>
-          </p>
-            </ReactCSSTransitionGroup>
+          {submitForm}
+          </ReactCSSTransitionGroup>
         </div>
     );
   }
