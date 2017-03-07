@@ -42,7 +42,7 @@ class PatientView extends React.Component {
         transitionAppearTimeout={500}
         transitionEnterTimeout={500}
         transitionLeaveTimeout={300}>
-        <table className="table is-striped">
+        <table className='table is-striped'>
           <thead>
             <tr>
               <th>ID</th>
@@ -51,6 +51,7 @@ class PatientView extends React.Component {
               <th>Room</th>
             </tr>
           </thead>
+          <tbody className='patient-table'>
           {this.state.patients.map(patient => {
             return <Patient key={patient.id}
               id={patient.id}
@@ -61,6 +62,7 @@ class PatientView extends React.Component {
               />
           }
           )}
+          </tbody>
         </table>
       </ReactCSSTransitionGroup>
     );

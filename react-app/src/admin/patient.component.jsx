@@ -7,15 +7,13 @@ import React, { Component } from 'react';
 
    render () {
      return (
-         <tbody>
            <tr>
              <th>{this.props.id}</th>
              <td>{this.props.first_name} {this.props.last_name}</td>
              <td>{this.props.bed}</td>
              <td>{this.props.room}</td>
            </tr>
-         </tbody>
-     );
+        );
    }
  }
 
