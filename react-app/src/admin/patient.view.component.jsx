@@ -36,37 +36,35 @@ class PatientView extends React.Component {
 
   render () {
     return (
-      <div className='patient-view'>
-        <ReactCSSTransitionGroup
-          transitionName="fadeTransition"
-          transitionAppear={true}
-          transitionAppearTimeout={500}
-          transitionEnterTimeout={500}
-          transitionLeaveTimeout={300}>
-          <table className='table is-striped'>
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Bed</th>
-                <th>Room</th>
-              </tr>
-            </thead>
-            <tbody className='patient-table'>
-            {this.state.patients.map(patient => {
-              return <Patient key={patient.id}
-                id={patient.id}
-                first_name={patient.first_name}
-                last_name={patient.last_name}
-                bed={patient.bed_id}
-                room={patient.room_id}
-                />
-            }
-            )}
-            </tbody>
-          </table>
-        </ReactCSSTransitionGroup>
-      </div>
+      <ReactCSSTransitionGroup
+        transitionName="fadeTransition"
+        transitionAppear={true}
+        transitionAppearTimeout={500}
+        transitionEnterTimeout={500}
+        transitionLeaveTimeout={300}>
+        <table className='table is-striped admin-table'>
+          <thead className='admin-table-head'>
+            <tr>
+              <th className='admin-table-header'>ID</th>
+              <th className='admin-table-header'>Name</th>
+              <th className='admin-table-header'>Bed</th>
+              <th className='admin-table-header'>Room</th>
+            </tr>
+          </thead>
+          <tbody className='admin-table-body'>
+          {this.state.patients.map(patient => {
+            return <Patient key={patient.id}
+              id={patient.id}
+              first_name={patient.first_name}
+              last_name={patient.last_name}
+              bed={patient.bed_id}
+              room={patient.room_id}
+              />
+          }
+          )}
+          </tbody>
+        </table>
+      </ReactCSSTransitionGroup>
     );
   }
 }

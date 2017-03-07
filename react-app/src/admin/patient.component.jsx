@@ -8,10 +8,10 @@ import React, { Component } from 'react';
    render () {
      return (
            <tr>
-             <th>{this.props.id}</th>
-             <td>{this.props.first_name} {this.props.last_name}</td>
-             <td>{this.props.bed}</td>
-             <td>{this.props.room}</td>
+             <th className='admin-table-header'>{this.props.id}</th>
+             <td className='admin-table-data'>{this.props.first_name} {this.props.last_name}</td>
+             <td className='admin-table-data'>{this.props.bed}</td>
+             <td className='admin-table-data'>{this.props.room}</td>
            </tr>
         );
    }

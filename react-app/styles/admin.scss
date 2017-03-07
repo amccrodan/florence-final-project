@@ -2,23 +2,23 @@
   padding: 2em 0 1em 1em;
 }
 
-table {
+.admin-table {
   border-collapse: collapse;
 }
 
-th, td {
+.admin-table-header, .admin-table-data {
   min-width: 35vh;
   padding: .3vw;
-  text-align: center;
+  // text-align: center;
 }
 
-tbody {
+.admin-table-body {
   min-width: 100%;
   display: block;
   overflow-y: scroll;
   max-height: 95vh;
 }
 
-thead {
+.admin-table-head {
   display: block;
 }
