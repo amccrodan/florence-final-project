@@ -5,7 +5,20 @@ const router  = express.Router();
 
 module.exports = (knex) => {
 
-
+  router.get('/', (req, res) => {
+    knex
+      .select('patients.id',
+      'patients.first_name',
+      'patients.last_name',
+      'patients.bed_id',
+      'beds.room_id')
+      .orderBy('patients.id')
+      .from('patients')
+      .join('beds', 'patients.bed_id', 'beds.id')
+      .then((results) => {
+        res.json(results);
+    });
+  });
   // Create a new patient
   router.post('/', (req, res) => {
 
