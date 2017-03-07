@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group' // ES6
-
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import RequestButton from './request-button.component.jsx';
 import ChooseBed from './choose-bed.component.jsx';
 import RequestForm from './request-form.component.jsx';
 import RequestPending from './request-pending.component.jsx';
 import RequestAcknowledged from './request-acknowledged.component.jsx';
-
 import moment from 'moment';
 import axios from 'axios';
 import { Link } from 'react-router';
@@ -18,13 +16,10 @@ class Bed extends Component {
     this.state = {
       view: 'chooseBed',
       beds: [],
-      request: {
-        //bed_id, patient_id, nurse_id, status_id, request_type_id, description
-      },
+      request: {},
       loggedIn: false,
       nurseInfo: {}
     };
-
     this.serverRequest = axios.create({
       baseURL: 'http://localhost:8080/api/',
       withCredentials: false, // default
@@ -48,13 +43,11 @@ class Bed extends Component {
       if (result.data.success) {
         this.setState({loggedIn: true});
       }
-    })
+    });
 
     this.serverRequest.get('beds').then((result) => {
-      this.setState({beds: result.data}, () => {
-        console.log('Beds state set.');
-      });
-    })
+      this.setState({beds: result.data}, () => {});
+    });
 
     this.props.route.webSocket.onmessage = (event) => {
       const incomingObj = JSON.parse(event.data);
@@ -122,7 +115,7 @@ class Bed extends Component {
         this.serverRequest.get(`nurses/${this.state.request.nurse_id}`).then((result) => {
           this.setState({nurseInfo: result.data[0]});
         });
-      })
+      });
     });
   }
 
@@ -193,7 +186,6 @@ class Bed extends Component {
       </div>
     );
   }
-
 }
 
 export default Bed
