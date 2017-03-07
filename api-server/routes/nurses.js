@@ -7,7 +7,6 @@ const saltRounds = 10;
 
 module.exports = (knex) => {
 
-  //Get a list of all nurses
   router.get('/', (req, res) => {
     knex
       .select('*')
@@ -17,7 +16,6 @@ module.exports = (knex) => {
       });
   });
 
-  //Create a new nurse
   router.post('/', (req, res) => {
     let hashedPass;
     if (!req.body.password) {
@@ -39,14 +37,12 @@ module.exports = (knex) => {
       });
     })
     .catch((error) => {
-      // error.name just sends string 'error' if something goes wrong
       res.json({
         error: error.name
       })
     })
   });
 
-  //Get a specific nurse's info when displaying who is assigned to a request
   router.get('/:id', (req, res) => {
     knex
       .select('*')
@@ -57,7 +53,6 @@ module.exports = (knex) => {
       });
   });
 
-  //Update a nurses status ie active: true -> active: false
   router.put('/:id', (req, res) => {
 
     function findNurseStatus(){
