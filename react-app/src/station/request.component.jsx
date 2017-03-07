@@ -185,7 +185,7 @@ class Request extends Component {
               </div>
               <div className='level-item column is-2'>
                 <p>Description:</p>
-                <p>{this.props.description}</p>
+                <p>{(this.props.description) ? this.props.description : '---'}</p>
               </div>
               <div className='level-item column is-2'>
                 <p>Nurse:</p>
