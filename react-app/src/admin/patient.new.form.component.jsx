@@ -14,12 +14,12 @@ class PatientNewForm extends React.Component {
     };
     this.register = this.register.bind(this);
     this.handleClose = this.handleClose.bind(this);
+    this.updateEmptyBeds = this.updateEmptyBeds.bind(this);
   }
 
   componentDidMount () {
 
     let nurseList = [{name: 'Choose a Nurse', value: null}];
-    let bedList = [{name: 'Choose a Bed', value: null}];
     axios
     .get('http://localhost:8080/api/nurses')
     .then(results => {
@@ -33,23 +33,28 @@ class PatientNewForm extends React.Component {
       })
     })
     .then(() => {
-      axios
-      .get('http://localhost:8080/api/beds')
-      .then(results => {
-        console.log('bed data', results.data);
-        results.data.forEach(item => {
-          if (!item.patient_id) {
-            let bed = {};
-            bed.name = item.id
-            bed.value = item.id
-            bedList.push(bed);
-          }
-        })
-        this.setState({
-          nurseList: nurseList,
-          bedList: bedList,
-        })
-        console.log(this.state);
+      this.setState({
+        nurseList: nurseList
+      })
+      this.updateEmptyBeds();
+    })
+  }
+
+  updateEmptyBeds(){
+    let bedList = [{name: 'Choose a Bed', value: null}];
+    axios
+    .get('http://localhost:8080/api/beds')
+    .then(results => {
+      results.data.forEach(item => {
+        if (!item.patient_id) {
+          let bed = {};
+          bed.name = item.id
+          bed.value = item.id
+          bedList.push(bed);
+        }
+      })
+      this.setState({
+        bedList: bedList,
       })
     })
   }
@@ -124,9 +129,10 @@ class PatientNewForm extends React.Component {
         document.getElementsByClassName('previous-injuries')[0].value = '';
         document.getElementsByClassName('recent-illness')[0].value = '';
         document.getElementsByClassName('notes')[0].value = '';
-        document.getElementsByClassName('bed-id')[0].value = '';
-        document.getElementsByClassName('nurse-id')[0].value = '';
+        document.getElementsByClassName('nurse-id')[0].selected = true;
+        document.getElementsByClassName('bed-id')[0].select = true;
         this.setState({insertSuccess: true});
+        this.updateEmptyBeds();
       } else {
         this.setState({fieldsEmpty: true});
       }
