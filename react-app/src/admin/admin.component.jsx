@@ -23,8 +23,8 @@ class Admin extends Component {
         <PatientNewForm />,
         <NurseView />,
         <NurseNewForm />,
-        <CareAideView />,
-        <CareAideNewForm />,
+        <CareAideView hostName={this.props.route.hostName}/>,
+        <CareAideNewForm hostName={this.props.route.hostName}/>,
         <Charts hostName={this.props.route.hostName}/>,
         <RequestLogView />
       ]
