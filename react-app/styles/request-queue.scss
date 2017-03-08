@@ -40,6 +40,37 @@ p.patient-request{
   line-height:70px;
 }
 
+.emergency-navbar{
+  align-items: center;
+  background-color:#ff3860;
+  border: 1px solid white;
+  border-radius: 5px;
+  color: white;
+  display: flex;
+  height: 2em;
+  justify-content:center;
+  opacity: 0;
+  width: 2em;
+  i {
+    font-size: 32px;
+  }
+  &.emergency-active {
+    animation: pulse-nav-emergency 1s infinite;
+    animation-direction: alternate;
+    animation-timing-function: linear;
+  }
+}
+
+@keyframes pulse-nav-emergency {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
 .nurse-station{
   .tile {
     max-height: 90vh;

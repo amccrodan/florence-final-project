@@ -18,7 +18,8 @@ class Station extends Component {
       time: '',
       staffSelected: 0,
       loggedIn: false,
-      requestsAssigned: []
+      requestsAssigned: [],
+      emergencyActive: ''
     };
     this.getRequests = this.getRequests.bind(this);
     this.respondToRequest = this.respondToRequest.bind(this);
@@ -42,7 +43,15 @@ class Station extends Component {
   getRequests(callback) {
     this.serverRequest.get('requests').then((result) => {
       const filtered = result.data.filter(this.filterRequests);
-      this.setState({requests: filtered}, () => {
+
+      let emergencyActive = '';
+      filtered.forEach((request) => {
+        if (request.request_type_id === 5) {
+          emergencyActive = 'emergency-active';
+        }
+      })
+
+      this.setState({requests: filtered, emergencyActive: emergencyActive}, () => {
         if (callback) {
           callback();
         }
@@ -126,6 +135,9 @@ class Station extends Component {
             <div className='nav-item'> Florence </div>
           </div>
           <div className='level-right'>
+            <div className={`emergency-navbar has-text-centered ${this.state.emergencyActive}`}>
+              <i className='fa fa-exclamation-triangle' aria-hidden='true'></i>
+            </div>
             <div className='nav-item'>
               {this.state.time}
             </div>
