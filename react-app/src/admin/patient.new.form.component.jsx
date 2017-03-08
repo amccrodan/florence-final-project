@@ -18,8 +18,8 @@ class PatientNewForm extends React.Component {
   }
 
   componentDidMount () {
-
     let nurseList = [{name: 'Choose a Nurse', value: null}];
+
     axios
     .get('http://localhost:8080/api/nurses')
     .then(results => {
@@ -42,6 +42,7 @@ class PatientNewForm extends React.Component {
 
   updateEmptyBeds () {
     let bedList = [{name: 'Choose a Bed', value: null}];
+
     axios
     .get('http://localhost:8080/api/beds')
     .then(results => {
@@ -60,11 +61,6 @@ class PatientNewForm extends React.Component {
   }
 
   register () {
-    console.log('in register');''
-
-    // TODO get index of selected component
-
-
     let first_name = document.getElementsByClassName('first-name')[0].value;
     let last_name = document.getElementsByClassName('last-name')[0].value;
     let doctor = document.getElementsByClassName('doctor')[0].value;
@@ -76,23 +72,21 @@ class PatientNewForm extends React.Component {
     let notes = document.getElementsByClassName('notes')[0].value;
     let nurse_id = null;
     let bed_id = null;
-
     let nurseCollection =  document.getElementsByClassName('nurse-id');
+    let bedCollection = document.getElementsByClassName('bed-id');
+
     for (let nurse in nurseCollection) {
       if (nurseCollection[nurse].selected) {
         nurse_id = nurseCollection[nurse].value;
       }
     }
-    let bedCollection = document.getElementsByClassName('bed-id');
+
     for (let bed in bedCollection) {
       if (bedCollection[bed].selected) {
         bed_id = bedCollection[bed].value;
       }
     }
 
-    console.log('bed', bed_id);
-    console.log('nurse', nurse_id);
-    // TODO this is validation checking if you leave a required field blank
     if (first_name === '') {first_name = null}
     if (last_name === '') {last_name = null}
     if (emergency_contact_name === '') {emergency_contact_name = null}
@@ -118,7 +112,6 @@ class PatientNewForm extends React.Component {
       nurse_id: nurse_id,
     })
     .then((response) => {
-      console.log(response.data);
       if (response.data.success) {
         document.getElementsByClassName('first-name')[0].value = '';
         document.getElementsByClassName('last-name')[0].value = '';
@@ -140,7 +133,6 @@ class PatientNewForm extends React.Component {
   }
 
   handleClose () {
-    console.log('in handleClose');
     this.setState({
       passwordDoesNotMatch: false,
       fieldsEmpty: false,
@@ -150,6 +142,7 @@ class PatientNewForm extends React.Component {
 
   render () {
     let notification = '';
+
     if (this.state.passwordDoesNotMatch) {
       notification = (
         <div className="notification is-danger is-80-wide" >
@@ -174,10 +167,7 @@ class PatientNewForm extends React.Component {
         </div>
       )
     }
-    // const options = [
-    //   {name: 'Swedish', value: 'sv'},
-    //   {name: 'English', value: 'en'}
-    // ];
+
     const nurseOptions = this.state.nurseList;
     const bedOptions = this.state.bedList;
     const registerForm = (
@@ -252,17 +242,14 @@ class PatientNewForm extends React.Component {
               {this.state.bedList.map(item => {
                 return <option className='bed-id' value={item.value} key={item.value}>{item.name}</option>
               })}
-
             </select>
           </span>
         </p>
-
         <p className='control'>
           <button type='submit' className='button is-success' onClick={this.register}>
             Submit
           </button>
         </p>
-
       </div>
     )
     return (

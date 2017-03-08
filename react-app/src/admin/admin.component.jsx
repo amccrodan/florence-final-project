@@ -3,7 +3,6 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group' // ES6
 import axios from 'axios';
 import cookie from 'react-cookie';
 import { Link } from 'react-router';
-
 import CareAideNewForm from './careAide.new.form.component.jsx';
 import CareAideView from './careAide.view.component.jsx';
 import NurseNewForm from './nurse.new.form.component.jsx';
@@ -42,7 +41,6 @@ class Admin extends Component {
     this.serverRequest
     .get('authenticate')
     .then(result => {
-      console.log(result.data);
       if (result.data.success) {
         this.setState({loggedIn: true, activeView: 0});
       }
@@ -124,7 +122,6 @@ class Admin extends Component {
       </div>
     );
   }
-
 }
 
 export default Admin

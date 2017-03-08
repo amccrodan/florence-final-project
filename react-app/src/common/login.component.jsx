@@ -46,9 +46,7 @@ class Login extends Component {
         password: password
       })
       .then((response) => {
-        console.log(response.data);
         if (!response.data.success) {
-          console.log(response.data.message);
         }
         this.props.logIn(response.data.success);
         cookie.save('session', response.data.token, { path: '/' });
@@ -59,9 +57,7 @@ class Login extends Component {
   }
 
   removeError (errorName) {
-    console.log(this.state.errors);
     this.setState({errors: {errorName: false}})
-    console.log(this.state.errors);
   }
 
   render() {
@@ -137,14 +133,12 @@ class Login extends Component {
         <div className='level'>
           {loginText}
         </div>
-
         <div className='level'>
           <div className='level-item has-text-centered'>
             <ReactCSSTransitionGroup
               transitionName='fadeTransition'
               transitionEnterTimeout={500}
               transitionLeaveTimeout={100}>
-
                 {errorFirstNameBlank}
                 {errorLastNameBlank}
                 {errorPasswordBlank}

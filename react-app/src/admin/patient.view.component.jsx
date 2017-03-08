@@ -10,13 +10,11 @@ class PatientView extends React.Component {
     this.state = {
       patients: []
     };
-
     this.serverRequest = axios.create({
       baseURL: 'http://localhost:8080/api/',
       withCredentials: false, // default
       headers: {'x-access-token': cookie.load('session')},
     });
-
   }
 
   getPatients(callback) {
@@ -32,7 +30,6 @@ class PatientView extends React.Component {
   componentDidMount() {
     this.getPatients();
   }
-
 
   render () {
     return (

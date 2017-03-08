@@ -13,24 +13,13 @@ const morgan      = require('morgan');
 const knexLogger  = require('knex-logger');
 const jwt         = require('jsonwebtoken');
 const cookieSession = require('cookie-session');
-
-app.use(cookieSession({
-  name: 'session',
-  secret: 'SuperSecureSecret'
-}));
-app.set('superSecret', 'secret'); // secret variable
-
-app.use(morgan('dev'));
-app.use(knexLogger(knex));
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
-app.use(express.static('public'));
-
 const bedRoutes = require('./routes/beds');
 const nurseRoutes = require('./routes/nurses');
 const patientRoutes = require('./routes/patients');
 const requestRoutes = require('./routes/requests');
 const authenticateRoutes = require('./routes/authenticate');
+
+app.set('superSecret', 'secret');
 
 app.use(function(req, res, next) {
   res.header('Access-Control-Allow-Origin', '*');
@@ -38,7 +27,15 @@ app.use(function(req, res, next) {
   res.header('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT');
   next();
 });
-// Mount all resource routes
+app.use(cookieSession({
+  name: 'session',
+  secret: 'SuperSecureSecret'
+}));
+app.use(morgan('dev'));
+app.use(knexLogger(knex));
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use(express.static('public'));
 app.use('/api/beds', bedRoutes(knex));
 app.use('/api/nurses', nurseRoutes(knex));
 app.use('/api/patients', patientRoutes(knex));

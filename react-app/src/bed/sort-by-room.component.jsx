@@ -29,16 +29,15 @@ class SortByRoom extends Component {
   }
 
   handleRoom (event) {
-    // build a new state
     const resetState = []
     this.state.buttons.forEach(button => {
       if (button.props['data'] === 'room') {
         resetState.push(button);
       }
     })
+
     this.state.buttons = resetState;
 
-    //make new buttons
     const bedButtons = this.state.rooms[event.target.value].map(item => {
       return (
           <button
@@ -51,7 +50,6 @@ class SortByRoom extends Component {
       )
     });
 
-    //add them to state
     this.state.buttons.splice.apply(this.state.buttons, [parseInt(event.target.value), 0].concat(bedButtons));
     const newButtons = this.state.buttons;
     this.setState({buttons: newButtons});

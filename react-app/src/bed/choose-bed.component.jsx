@@ -9,16 +9,13 @@ class ChooseBed extends Component {
       rooms: {},
       roomsClass: '',
       allClass: 'active',
-
     };
-
   this.handleClick = this.handleClick.bind(this);
   this.handleSort = this.handleSort.bind(this);
   this.isActive = this.isActive.bind(this);
   }
 
   isActive (bedSort) {
-    console.log('looking for this', bedSort);
     if (bedSort === 'all') {
       this.setState({roomsClass: '', allClass: 'active'})
     }
@@ -61,7 +58,6 @@ class ChooseBed extends Component {
         rooms={rooms}
         handleBedClick={this.handleClick}
         />
-
     }
     return (
       <section className='hero is-light is-fullheight'>
@@ -69,7 +65,6 @@ class ChooseBed extends Component {
           <div className='container has-text-centered'>
             <div>
               <div className='columns'>
-
                 <div className='column no-padding'>
                 </div>
                 <div className='column is-10 no-padding'>
@@ -94,7 +89,6 @@ class ChooseBed extends Component {
                 </div>
                 <div className='column no-padding'>
                 </div>
-
               </div>
             </div>
           </div>

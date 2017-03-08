@@ -6,11 +6,10 @@ class RequestPending extends Component {
   constructor(props){
     super(props);
     this.state = {
-      time: '00:00',
-
+      time: '00:00'
     };
-  this.handleClick = this.handleClick.bind(this);
-  this.getElapsedTime = this.getElapsedTime.bind(this);
+    this.handleClick = this.handleClick.bind(this);
+    this.getElapsedTime = this.getElapsedTime.bind(this);
   }
 
   getElapsedTime() {
