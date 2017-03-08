@@ -23,6 +23,15 @@ i.patient-request{
   font-size:60px;
 }
 
+p.patient-request{
+  font-size:60px;
+  display: flex;
+}
+
+.patient-request-img{
+  height: 1em;
+}
+
 .navbar{
   background-color:#757575;
   color: white;
