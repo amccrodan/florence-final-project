@@ -13,7 +13,7 @@ class Main extends Component {
     }
     this.logIn = this.logIn.bind(this);
     this.serverRequest = axios.create({
-      baseURL: 'http://localhost:8080/api/',
+      baseURL: `http://${this.props.route.hostName}:8080/api/`,
       withCredentials: false, // default
       headers: {'x-access-token': cookie.load('session')},
     });
@@ -88,8 +88,10 @@ class Main extends Component {
               </div>
             </div>
             <Login
-            logIn={this.logIn}
-            loggedIn={this.state.loggedIn} />
+              logIn={this.logIn}
+              loggedIn={this.state.loggedIn}
+              hostName={this.props.route.hostName}
+            />
             <ReactCSSTransitionGroup
               transitionName='fadeTransition'
               transitionAppear={true}

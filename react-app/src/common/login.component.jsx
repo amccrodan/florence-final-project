@@ -40,7 +40,7 @@ class Login extends Component {
       this.setState({errors: {firstNameBlank: true}})
     } else {
       axios
-      .post('http://localhost:8080/api/authenticate', {
+      .post(`http://${this.props.hostName}:8080/api/authenticate`, {
         first_name: first_name,
         last_name: last_name,
         password: password

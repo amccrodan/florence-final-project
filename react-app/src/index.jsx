@@ -8,7 +8,9 @@ import Station from './station/station.component.jsx'
 import Bed from './bed/bed.component.jsx'
 import Admin from './admin/admin.component.jsx'
 
-const webSocket = new WebSocket('ws://localhost:4000');
+const hostName = 'localhost';
+
+const webSocket = new WebSocket(`ws://${hostName}:4000`);
 const assignWebSocketId = function(stationId) {
   webSocket.send(JSON.stringify({
     type: 'assignId',
@@ -18,21 +20,27 @@ const assignWebSocketId = function(stationId) {
 
 ReactDOM.render(
   <Router history={browserHistory}>
-    <Route path='/' component={Main} />
+    <Route path='/'
+      component={Main}
+      hostName={hostName}
+    />
     <Route path='/nurse'
       component={Station}
       assignWebSocketId={assignWebSocketId}
       webSocket={webSocket}
+      hostName={hostName}
     />
     <Route path='/bed'
       component={Bed}
       assignWebSocketId={assignWebSocketId}
       webSocket={webSocket}
+      hostName={hostName}
     />
     <Route path='/admin'
       component={Admin}
       assignWebSocketId={assignWebSocketId}
       webSocket={webSocket}
+      hostName={hostName}
     />
   </Router>,
   document.getElementById('react-root')
