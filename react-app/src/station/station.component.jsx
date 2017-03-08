@@ -3,8 +3,7 @@ import axios from 'axios';
 import moment from 'moment';
 import cookie from 'react-cookie';
 import { Link } from 'react-router';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group' // ES6
-
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 import RequestQueue from './request-queue.component.jsx';
 import NurseList from './nurse-list.component.jsx';
 import CareAideList from './care-aid-list.component.jsx';
@@ -21,19 +20,17 @@ class Station extends Component {
       loggedIn: false,
       requestsAssigned: []
     };
-
+    this.getRequests = this.getRequests.bind(this);
+    this.respondToRequest = this.respondToRequest.bind(this);
+    this.getCurrentTime = this.getCurrentTime.bind(this);
+    this.assignStaffToRequest = this.assignStaffToRequest.bind(this);
+    this.clickOnStaff = this.clickOnStaff.bind(this);
     this.serverRequest = axios.create({
       baseURL: 'http://localhost:8080/api/',
       responseType: 'json', // default
       withCredentials: false, // default
       headers: {'x-access-token': cookie.load('session')}
     });
-
-    this.getRequests = this.getRequests.bind(this);
-    this.respondToRequest = this.respondToRequest.bind(this);
-    this.getCurrentTime = this.getCurrentTime.bind(this);
-    this.assignStaffToRequest = this.assignStaffToRequest.bind(this);
-    this.clickOnStaff = this.clickOnStaff.bind(this);
   }
 
   filterRequests(request) {
@@ -44,7 +41,6 @@ class Station extends Component {
 
   getRequests(callback) {
     this.serverRequest.get('requests').then((result) => {
-      console.log('results here', result);
       const filtered = result.data.filter(this.filterRequests);
       this.setState({requests: filtered}, () => {
         if (callback) {
@@ -60,7 +56,6 @@ class Station extends Component {
   }
 
   respondToRequest(bed_id, id) {
-    // send WS message that will go to specified bed_id
     this.serverRequest.put((`requests/${id}`), {status_id: 2}).then(() => {
       this.props.route.webSocket.send(JSON.stringify({type: 'updateRequest', bed_id: bed_id}));
       this.getRequests();
@@ -85,12 +80,10 @@ class Station extends Component {
     this.setState({ staffSelected: id_to_set });
   }
 
-
   componentDidMount() {
     this.serverRequest
     .get('authenticate')
     .then(result => {
-      console.log(result.data);
       if (result.data.success) {
         this.setState({loggedIn: true});
       }
@@ -101,7 +94,6 @@ class Station extends Component {
 
     this.serverRequest.get('nurses').then((result) => {
       this.setState({nurses: result.data}, () => {
-        // console.log(this.state.nurses);
       });
     })
 

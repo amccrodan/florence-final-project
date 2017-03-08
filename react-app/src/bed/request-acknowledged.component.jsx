@@ -21,7 +21,6 @@ class RequestAcknowledged extends Component {
     const last_name = this.props.nurseInfo.last_name;
     const password = document.getElementsByClassName('verifyPass')[0].value;
     const nurse_log = document.getElementsByClassName('nurse-log')[0].value;
-    console.log(first_name, last_name, password);
 
     axios.post('http://localhost:8080/api/authenticate', {
       first_name: first_name,
@@ -35,12 +34,10 @@ class RequestAcknowledged extends Component {
           this.props.changeViewState('requestButton');
         });
       } else {
-        console.log(response.data.message);
         this.setState({wrongPassword: 'is-danger'});
       }
     }).catch(err => {
       console.log(err);
-      console.log('Nope!');
     })
   }
 

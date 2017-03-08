@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-
 import ButtonSet from './button-set.component.jsx';
 import NoPatient from './no-patient.component.jsx';
 
