@@ -32,7 +32,7 @@ class RequestButton extends Component {
           <ButtonSet
           handleRequest={this.handleRequest}
           emergencyRequest={this.emergencyRequest}
-          currentBed={this.props.currentBed} />
+          currentBed={this.props.requestState.bed_id} />
       );
     } else {
       return (

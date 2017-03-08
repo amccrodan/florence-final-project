@@ -25,7 +25,6 @@ class ChooseBed extends Component {
   }
 
   handleClick (event) {
-    this.props.changeCurrentBed(parseInt(event.target.value));
     this.props.assignWebSocketId(parseInt(event.target.value));
     this.props.changeRequestState({bed_id: event.target.value}, () => {
       this.props.getPatientInfo(() => {
