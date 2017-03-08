@@ -3,7 +3,6 @@ import axios from 'axios';
 import CareAid from './care-aid.component.jsx';
 
 class CareAideList extends Component {
-
   constructor(props){
     super(props);
     this.state = {
@@ -29,8 +28,6 @@ class CareAideList extends Component {
       </div>
     );
   }
-
-
 }
 
 export default CareAideList

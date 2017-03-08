@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 
 class AssignStaffBox extends Component {
-
   constructor(props) {
     super(props);
     this.state = {
@@ -17,7 +16,6 @@ class AssignStaffBox extends Component {
   }
 
   render() {
-
     return (
       <div className='container'>
         <div className='assign-staff-box' onClick={this.assignStaff}>
@@ -26,7 +24,6 @@ class AssignStaffBox extends Component {
       </div>
     );
   }
-
 }
 
 export default AssignStaffBox

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 
 class Nurse extends Component {
-
   constructor(props){
     super(props);
     this.state = {
@@ -9,7 +8,6 @@ class Nurse extends Component {
   }
 
   render(){
-
     return (
       <article className='container has-text-centered'>
         <img className='staff-picture' src={this.props.img} />

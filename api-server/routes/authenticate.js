@@ -12,7 +12,6 @@ module.exports = (knex, jwt, app) => {
       if (err) {
         return res.json({ success: false, message: 'Failed to authenticate token.' });
       } else {
-        // if everything is good, save to request for use in other routes
         req.decoded = decoded;
         res.json({ success: true, message: 'You are good to go' })
         next();
@@ -21,7 +20,6 @@ module.exports = (knex, jwt, app) => {
   })
 
   router.post('/', function(req, res) {
-    // find the user
     knex
       .select("*")
       .from("nurses")
@@ -45,7 +43,6 @@ module.exports = (knex, jwt, app) => {
           }
           else {
             if (passwordMatch) {
-              // create a token
               const token = jwt.sign(results[0], app.get('superSecret'), {
                 // expiresIn: 1440 // expires in 24 hours
               });
@@ -55,12 +52,10 @@ module.exports = (knex, jwt, app) => {
                 message: 'Enjoy your token!',
                 token: token
               });
-
             }
           }
         }
       });
-
   });
  return router;
 }

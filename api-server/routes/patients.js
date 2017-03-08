@@ -19,10 +19,9 @@ module.exports = (knex) => {
         res.json(results);
     });
   });
-  // Create a new patient
+
   router.post('/', (req, res) => {
 
-    console.log('req.body', req.body);
     knex('patients').insert({
       first_name: req.body.first_name,
       last_name: req.body.last_name,
@@ -50,14 +49,12 @@ module.exports = (knex) => {
       })
     })
     .catch((error) => {
-      // error.name just sends string 'error' if something goes wrong
       res.json({
         error: error.name
       })
     })
   })
 
-  //Get a single patient by id
   router.get('/:id', (req, res) => {
     knex
       .select('*')

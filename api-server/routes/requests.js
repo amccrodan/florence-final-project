@@ -5,7 +5,6 @@ const router  = express.Router();
 
 module.exports = (knex) => {
 
-  //Get all requests
   router.get('/', (req, res) => {
     knex
       .select('requests.id as request_id',
@@ -40,7 +39,6 @@ module.exports = (knex) => {
     });
   });
 
-  //Create a new request
   router.post('/', (req, res) => {
     knex('requests').insert({
       bed_id: req.body.bed_id,
@@ -59,7 +57,6 @@ module.exports = (knex) => {
     });
   });
 
-  //Get a specific request by id
   router.get('/:id', (req, res) => {
     knex
       .select('*')
@@ -70,9 +67,7 @@ module.exports = (knex) => {
       });
   });
 
-  //Update a request status ie. pending -> complete
   router.put('/:id', (req, res) => {
-    console.log(req.body);
     knex('requests')
       .where('id', req.params.id)
       .update({

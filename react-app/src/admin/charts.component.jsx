@@ -22,7 +22,6 @@ class Charts extends React.Component {
 
     this.webSocket.onopen = () => {
       this.assignWebSocketId(this.state.stationId);
-
       this.webSocket.onmessage = (event) => {
         const incomingObj = JSON.parse(event.data);
         if (incomingObj.type === 'refreshRequests') {
@@ -74,8 +73,7 @@ class Charts extends React.Component {
           emergency += 1;
           break;
       }
-    })
-    // TODO sort by value
+    });
     let sortData = [food, bathroom, medicine, other, emergency].sort(function (a, b) {
       return a.value - b.value;
     });

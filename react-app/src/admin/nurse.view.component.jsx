@@ -4,15 +4,12 @@ import Nurse from './nurse.component.jsx';
 import axios from 'axios';
 import cookie from 'react-cookie';
 
-
 class NurseView extends React.Component {
   constructor(props){
     super(props);
     this.state = {
       nurses: []
     };
-
-    // this.getNurses = this.getNurses.bind(this);
 
     this.serverRequest = axios.create({
       baseURL: 'http://localhost:8080/api/',
