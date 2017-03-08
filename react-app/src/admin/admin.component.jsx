@@ -10,6 +10,7 @@ import NurseView from './nurse.view.component.jsx';
 import PatientNewForm from './patient.new.form.component.jsx';
 import PatientView from './patient.view.component.jsx';
 import Charts from './charts.component.jsx';
+import RequestLog from './request_log.component.jsx';
 
 class Admin extends Component {
   constructor(props){
@@ -24,7 +25,8 @@ class Admin extends Component {
         <NurseNewForm />,
         <CareAideView />,
         <CareAideNewForm />,
-        <Charts />
+        <Charts />,
+        <RequestLog>
       ]
     };
 
@@ -82,6 +84,9 @@ class Admin extends Component {
           </li>
           <li>
             <a className={(active === 6) ? 'is-active' : ''} onClick={() => this.handleActiveClick(6)}>Charts</a>
+          </li>
+          <li>
+            <a className={(active === 7) ? 'is-active' : ''} onClick={() => this.handleActiveClick(7)}>Request Log</a>
           </li>
         </ul>
       </aside>
