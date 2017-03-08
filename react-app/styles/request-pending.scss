@@ -1,5 +1,15 @@
+
+.awaiting-title {
+  padding-bottom: 15vh;
+}
+
 .cancel-request {
+  border-radius: $rounded-corners;
   height: 200px;
-  margin-bottom: 25px;
+  margin-bottom: 15vh;
   width: 100%;
+}
+
+.full-height {
+  height: 100vh;
 }

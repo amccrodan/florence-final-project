@@ -43,26 +43,19 @@ class RequestPending extends Component {
             transitionAppearTimeout={500}
             transitionEnterTimeout={500}
             transitionLeaveTimeout={300}>
-          <section className='container'>
-            <div className='hero is-light'>
-              <div className='hero-body'>
-                <div className='container has-text-centered'>
-                  <h1 className='title'>Awaiting response</h1>
-                </div>
-              </div>
-            </div>
-          </section>
-          <section className='hero is-light is-fullheight'>
+
+          <section className='hero is-light full-height'>
             <div className='hero-body'>
               <div className='container has-text-centered'>
-                <p className='title'>{this.state.time}</p>
                 <div className='columns'>
                   <div className='column is-one-third'>
                   </div>
                   <div className='column'>
+                   <h1 className='title awaiting-title'>Awaiting response...</h1>
                     <div className='button is-danger cancel-request' onClick={this.handleClick}>
-                        <h1 className='title is-1'>Cancel</h1>
-                      </div>
+                      <h1 className='title is-1'>Cancel</h1>
+                    </div>
+                      <p className='title '>{this.state.time}</p>
                   </div>
                   <div className='column'>
                   </div>

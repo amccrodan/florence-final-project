@@ -12,7 +12,12 @@ The goal is to reduce patient uncertainty and increase nurse efficiency.
   1. Run npm install in /api-server, /react-app and /websocket-server
   2. Change .env.example to .env
   3. Create a postgres database and update .env
+  4. in /api-server run:
+    * knex migrate:latest
+    * knex seed:run
   4. Run npm start in the 3 folders
+  5. Go to http://localhost:3000
+  6. Login in as any nurse with password '1234' (i.e. Julia Wong 1234)
 
 #### Stack Requirements
 

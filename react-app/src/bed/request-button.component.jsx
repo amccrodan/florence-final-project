@@ -29,7 +29,10 @@ class RequestButton extends Component {
   render() {
     if (this.props.requestState.patient_id) {
       return (
-        <ButtonSet handleRequest={this.handleRequest} emergencyRequest={this.emergencyRequest}/>
+          <ButtonSet
+          handleRequest={this.handleRequest}
+          emergencyRequest={this.emergencyRequest}
+          currentBed={this.props.requestState.bed_id} />
       );
     } else {
       return (

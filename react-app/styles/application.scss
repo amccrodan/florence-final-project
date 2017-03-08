@@ -13,6 +13,9 @@
 // Animate CSS
 @import url('https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css');
 
+// Variables
+@import 'variables';
+
 @import 'home';
 @import 'react-transitions';
 @import 'request-queue';
@@ -25,6 +28,7 @@
 @import 'admin';
 @import 'no-patient';
 @import 'patient-history';
+
 
 body {
   font-family: 'Questrial', sans-serif;
