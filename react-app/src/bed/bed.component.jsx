@@ -18,7 +18,7 @@ class Bed extends Component {
       beds: [],
       request: {},
       loggedIn: false,
-      nurseInfo: {},
+      nurseInfo: {}
     };
     this.serverRequest = axios.create({
       baseURL: 'http://localhost:8080/api/',
@@ -60,7 +60,7 @@ class Bed extends Component {
     }
   }
 
-  changeViewState(stateName, currentBed) {
+  changeViewState(stateName) {
     this.setState({view: stateName});
   }
 
@@ -150,7 +150,6 @@ class Bed extends Component {
         break;
       case 'requestButton':
         output = <RequestButton
-          currentBed={this.state.currentBed}
           {...outputProps} />
         break;
       case 'requestForm':
