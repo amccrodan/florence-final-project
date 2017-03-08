@@ -20,7 +20,7 @@ class RequestLogView extends Component {
 
   filterRequests(request) {
     if (request.status_id === 3 || request.status_id === 4){
-      return nurse;
+      return request;
     }
   }
 
@@ -65,7 +65,7 @@ class RequestLogView extends Component {
           </thead>
           <tbody className='admin-table-body'>
           {this.state.requests.map(request => {
-            return <RequestLog key={request.id}
+            return <RequestLog key={request.request_id}
               id={request.request_id}
               patient_first_name={request.first_name}
               patient_last_name={request.last_name}
@@ -89,4 +89,4 @@ class RequestLogView extends Component {
   }
 }
 
-export default ReqiestLogView;
+export default RequestLogView;

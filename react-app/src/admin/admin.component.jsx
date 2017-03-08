@@ -26,14 +26,14 @@ class Admin extends Component {
         <CareAideView />,
         <CareAideNewForm />,
         <Charts />,
-        <RequestLog>
+        <RequestLogView/>
       ]
     };
 
     this.serverRequest = axios.create({
       baseURL: 'http://localhost:8080/api/',
       withCredentials: false, // default
-      headers: {'x-access-token': cookie.load('session')},
+      headers: {'x-access-token': cookie.load('session')}
     });
 
     this.handleActiveClick = this.handleActiveClick.bind(this);
