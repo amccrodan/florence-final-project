@@ -18,7 +18,8 @@ class Bed extends Component {
       beds: [],
       request: {},
       loggedIn: false,
-      nurseInfo: {}
+      nurseInfo: {},
+      currentBed: ''
     };
     this.serverRequest = axios.create({
       baseURL: 'http://localhost:8080/api/',
@@ -33,6 +34,7 @@ class Bed extends Component {
     this.putRequest = this.putRequest.bind(this);
     this.getNurseInfo = this.getNurseInfo.bind(this);
     this.getRequest = this.getRequest.bind(this);
+    this.changeCurrentBed = this.changeCurrentBed.bind(this);
   }
 
   componentDidMount() {
@@ -60,7 +62,11 @@ class Bed extends Component {
     }
   }
 
-  changeViewState(stateName) {
+  changeCurrentBed(currentBed) {
+    this.setState({currentBed: currentBed})
+  }
+
+  changeViewState(stateName, currentBed) {
     this.setState({view: stateName});
   }
 
@@ -145,11 +151,13 @@ class Bed extends Component {
           bedList={this.state.beds}
           getPatientInfo={this.getPatientInfo}
           assignWebSocketId={this.props.route.assignWebSocketId}
+          changeCurrentBed={this.changeCurrentBed}
           {...outputProps}
         />
         break;
       case 'requestButton':
         output = <RequestButton
+          currentBed={this.state.currentBed}
           {...outputProps} />
         break;
       case 'requestForm':

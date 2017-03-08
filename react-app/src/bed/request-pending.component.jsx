@@ -51,7 +51,7 @@ class RequestPending extends Component {
                   <div className='column is-one-third'>
                   </div>
                   <div className='column'>
-                   <h1 className='title awaiting-title'>Awaiting response</h1>
+                   <h1 className='title awaiting-title'>Awaiting response...</h1>
                     <div className='button is-danger cancel-request' onClick={this.handleClick}>
                       <h1 className='title is-1'>Cancel</h1>
                     </div>
