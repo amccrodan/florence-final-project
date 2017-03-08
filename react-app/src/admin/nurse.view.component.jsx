@@ -12,7 +12,7 @@ class NurseView extends Component {
     };
 
     this.serverRequest = axios.create({
-      baseURL: 'http://localhost:8080/api/',
+      baseURL: `http://${this.props.hostName}:8080/api/`,
       withCredentials: false, // default
       headers: {'x-access-token': cookie.load('session')},
     });

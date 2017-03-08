@@ -19,14 +19,14 @@ class Admin extends Component {
       activeView: 0,
       loggedIn: false,
       views: [
-        <PatientView />,
-        <PatientNewForm />,
-        <NurseView />,
-        <NurseNewForm />,
+        <PatientView hostName={this.props.route.hostName}/>,
+        <PatientNewForm hostName={this.props.route.hostName}/>,
+        <NurseView hostName={this.props.route.hostName}/>,
+        <NurseNewForm hostName={this.props.route.hostName}/>,
         <CareAideView hostName={this.props.route.hostName}/>,
         <CareAideNewForm hostName={this.props.route.hostName}/>,
         <Charts hostName={this.props.route.hostName}/>,
-        <RequestLogView />
+        <RequestLogView hostName={this.props.route.hostName}/>
       ]
     };
 

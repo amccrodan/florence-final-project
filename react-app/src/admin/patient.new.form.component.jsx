@@ -21,7 +21,7 @@ class PatientNewForm extends React.Component {
     let nurseList = [{name: 'Choose a Nurse', value: null}];
 
     axios
-    .get('http://localhost:8080/api/nurses')
+    .get(`http://${this.props.hostName}:8080/api/nurses`)
     .then(results => {
       results.data.forEach(item => {
         if (item.is_nurse) {
@@ -44,7 +44,7 @@ class PatientNewForm extends React.Component {
     let bedList = [{name: 'Choose a Bed', value: null}];
 
     axios
-    .get('http://localhost:8080/api/beds')
+    .get(`http://${this.props.hostName}:8080/api/beds`)
     .then(results => {
       results.data.forEach(item => {
         if (!item.patient_id) {
@@ -98,7 +98,7 @@ class PatientNewForm extends React.Component {
     if (nurse_id === '') {nurse_id = null}
 
     axios
-    .post('http://localhost:8080/api/patients/', {
+    .post(`http://${this.props.hostName}:8080/api/patients/`, {
       first_name: first_name,
       last_name: last_name,
       doctor: doctor,

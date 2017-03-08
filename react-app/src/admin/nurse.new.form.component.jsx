@@ -32,7 +32,7 @@ class NurseNewForm extends React.Component {
     if (password === '') {password = null}
 
     axios
-    .post('http://localhost:8080/api/nurses/', {
+    .post(`http://${this.props.hostName}:8080/api/nurses/`, {
       first_name: first_name,
       last_name: last_name,
       image: image,
