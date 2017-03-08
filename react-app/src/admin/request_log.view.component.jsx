@@ -50,17 +50,17 @@ class RequestLogView extends Component {
         <table className='table is-striped admin-table'>
           <thead className='admin-table-head'>
             <tr className='admin-table-row'>
-              <th className='admin-table-header'>ID</th>
-              <th className='admin-table-header'>Patient</th>
-              <th className='admin-table-header'>Nurse</th>
-              <th className='admin-table-header'>Bed</th>
-              <th className='admin-table-header'>Room</th>
-              <th className='admin-table-header'>Request Type</th>
-              <th className='admin-table-header'>Created</th>
-              <th className='admin-table-header'>Finished</th>
-              <th className='admin-table-header'>Request Description</th>
-              <th className='admin-table-header'>Nurse's Notes</th>
-              <th className='admin-table-header'>Status</th>
+              <th className='request-header small-header'>ID</th>
+              <th className='request-header'>Patient</th>
+              <th className='request-header'>Nurse</th>
+              <th className='request-header small-header'>Bed</th>
+              <th className='request-header small-header'>Room</th>
+              <th className='request-header'>Request Type</th>
+              <th className='request-header'>Created</th>
+              <th className='request-header'>Finished</th>
+              <th className='request-header large-header'>Request Description</th>
+              <th className='request-header large-header'>Nurse's Notes</th>
+              <th className='request-header'>Status</th>
             </tr>
           </thead>
           <tbody className='admin-table-body'>

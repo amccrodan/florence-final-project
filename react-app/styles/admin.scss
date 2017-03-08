@@ -20,6 +20,18 @@
   width: 25%;
 }
 
+th.request-header {
+  padding: .3vw;
+  text-align: left;
+  width: 9%;
+}
+
+td.request-data {
+  padding: .3vw;
+  text-align: left;
+  width: 9%;
+}
+
 .admin-table-body {
   min-width: 100%;
   display: block;
@@ -30,4 +42,20 @@
 .admin-table-head {
   display: block;
   min-width: 100%;
+}
+
+th.small-header {
+  width: 6%;
+}
+
+th.large-header {
+  width: 13.5%;
+}
+
+td.small-header {
+  width: 6%;
+}
+
+td.large-header {
+  width: 13.5%;
 }
