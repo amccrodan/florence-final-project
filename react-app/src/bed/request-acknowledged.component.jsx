@@ -83,8 +83,8 @@ class RequestAcknowledged extends Component {
                     <img className='is-focused big-circle' src={this.props.nurseInfo.image} />
                 </div>
                 <div className='container has-text-centered'>
-                  <p className='title'>{this.state.time}</p>
                   <h1 className='title is-2'> {this.props.nurseInfo.first_name} is coming to help you.</h1>
+                  <p className='title'>{this.state.time}</p>
                 </div>
             </div>
           </ReactCSSTransitionGroup>

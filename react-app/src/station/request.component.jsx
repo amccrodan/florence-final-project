@@ -88,7 +88,7 @@ class Request extends Component {
         case 2:
           return (
             <div style={{backgroundColor:'#F5B278', color: 'white'}} className='request-category-border has-text-centered'>
-              <i className='patient-request fa fa-male' aria-hidden='true'></i><i className='patient-request fa fa-female' aria-hidden='true'></i>
+              <p className='patient-request'><img className='patient-request-img' src='http://localhost:8080/images/toilet.png' /></p>
             </div>
           )
           break
