@@ -76,6 +76,8 @@ class Request extends Component {
       }
     };
 
+    const hostName = this.props.hostName;
+
     function reqCategory(request_type_id){
       switch (request_type_id){
         case 1:
@@ -88,7 +90,7 @@ class Request extends Component {
         case 2:
           return (
             <div style={{backgroundColor:'#F5B278', color: 'white'}} className='request-category-border has-text-centered'>
-              <p className='patient-request'><img className='patient-request-img' src='http://localhost:8080/images/toilet.png' /></p>
+              <p className='patient-request'><img className='patient-request-img' src={`http://${hostName}:8080/images/toilet.png`} /></p>
             </div>
           )
           break

@@ -22,7 +22,7 @@ class RequestAcknowledged extends Component {
     const password = document.getElementsByClassName('verifyPass')[0].value;
     const nurse_log = document.getElementsByClassName('nurse-log')[0].value;
 
-    axios.post('http://localhost:8080/api/authenticate', {
+    axios.post(`http://${this.props.hostName}:8080/api/authenticate`, {
       first_name: first_name,
       last_name: last_name,
       password: password

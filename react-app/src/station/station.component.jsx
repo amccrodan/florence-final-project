@@ -26,7 +26,7 @@ class Station extends Component {
     this.assignStaffToRequest = this.assignStaffToRequest.bind(this);
     this.clickOnStaff = this.clickOnStaff.bind(this);
     this.serverRequest = axios.create({
-      baseURL: 'http://localhost:8080/api/',
+      baseURL: `http://${this.props.route.hostName}:8080/api/`,
       responseType: 'json', // default
       withCredentials: false, // default
       headers: {'x-access-token': cookie.load('session')}
@@ -137,6 +137,7 @@ class Station extends Component {
             respondToRequest={this.respondToRequest}
             staffSelected={this.state.staffSelected}
             requestsAssigned={this.state.requestsAssigned}
+            hostName={this.props.route.hostName}
             />
           <div className='tile is-vertical is-parent staff-list'>
             <h1 className='title has-text-centered'>Care-aides</h1>

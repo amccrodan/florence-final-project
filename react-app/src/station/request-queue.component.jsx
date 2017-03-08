@@ -38,6 +38,7 @@ class RequestQueue extends Component {
             assignStaffToRequest={this.props.assignStaffToRequest}
             staffSelected={this.props.staffSelected}
             requestsAssigned={this.props.requestsAssigned}
+            hostName={this.props.hostName}
             />
         }
         )}

@@ -86,7 +86,7 @@ class RequestForm extends Component {
             <div className='column'>
               <div className={(this.state.typeSelected === 2) ? 'type-selected' : ''}>
                 <span className='button is-large options bathroom' onClick={this.handleTypeButton}>
-                  <p className='request-category-img-container'><img className='request-category-img' src='http://localhost:8080/images/toilet.png' /></p>
+                  <p className='request-category-img-container'><img className='request-category-img' src={`http://${this.props.hostName}:8080/images/toilet.png`} /></p>
 
                 </span>
               </div>
