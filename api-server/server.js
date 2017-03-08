@@ -19,12 +19,18 @@ const patientRoutes = require('./routes/patients');
 const requestRoutes = require('./routes/requests');
 const authenticateRoutes = require('./routes/authenticate');
 
+app.set('superSecret', 'secret');
+
+app.use(function(req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, x-access-token');
+  res.header('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT');
+  next();
+});
 app.use(cookieSession({
   name: 'session',
   secret: 'SuperSecureSecret'
 }));
-app.set('superSecret', 'secret');
-
 app.use(morgan('dev'));
 app.use(knexLogger(knex));
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -35,12 +41,6 @@ app.use('/api/nurses', nurseRoutes(knex));
 app.use('/api/patients', patientRoutes(knex));
 app.use('/api/requests', requestRoutes(knex));
 app.use('/api/authenticate', authenticateRoutes(knex, jwt, app));
-app.use(function(req, res, next) {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept, x-access-token');
-  res.header('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT');
-  next();
-});
 
 app.listen(PORT, () => {
   console.log('Example app listening on port ' + PORT);
