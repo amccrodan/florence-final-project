@@ -1,10 +1,10 @@
-import React, { PropTypes } from 'react';
+import React, { Component } from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import Patient from './patient.component.jsx';
 import axios from 'axios';
 import cookie from 'react-cookie';
 
-class PatientView extends React.Component {
+class PatientView extends Component {
   constructor(props){
     super(props);
     this.state = {

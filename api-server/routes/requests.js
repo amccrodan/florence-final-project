@@ -13,6 +13,7 @@ module.exports = (knex) => {
        'requests.created_at',
        'requests.updated_at',
        'requests.description',
+       'requests.nurse_log',
        'requests.nurse_id AS nurse_id',
        'patients.id as patient_id',
        'status_id',
