@@ -10,7 +10,7 @@ import NurseView from './nurse.view.component.jsx';
 import PatientNewForm from './patient.new.form.component.jsx';
 import PatientView from './patient.view.component.jsx';
 import Charts from './charts.component.jsx';
-import RequestLog from './request_log.component.jsx';
+import RequestLogView from './request_log.view.component.jsx';
 
 class Admin extends Component {
   constructor(props){
