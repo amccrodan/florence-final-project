@@ -1,10 +1,10 @@
-import React, { PropTypes } from 'react';
+import React, { Component } from 'react';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import CareAide from './care-aide.component.jsx';
 import axios from 'axios';
 import cookie from 'react-cookie';
 
-class CareAideView extends React.Component {
+class CareAideView extends Component {
   constructor(props){
     super(props);
     this.state = {
@@ -42,7 +42,7 @@ class CareAideView extends React.Component {
   render () {
     return (
       <ReactCSSTransitionGroup
-        transitionName="fadeTransition"
+        transitionName='fadeTransition'
         transitionAppear={true}
         transitionAppearTimeout={500}
         transitionEnterTimeout={500}
