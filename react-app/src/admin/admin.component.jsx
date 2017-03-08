@@ -25,13 +25,13 @@ class Admin extends Component {
         <NurseNewForm />,
         <CareAideView />,
         <CareAideNewForm />,
-        <Charts />,
-        <RequestLogView/>
+        <Charts hostName={this.props.route.hostName}/>,
+        <RequestLogView />
       ]
     };
 
     this.serverRequest = axios.create({
-      baseURL: 'http://localhost:8080/api/',
+      baseURL: `http://${this.props.route.hostName}:8080/api/`,
       withCredentials: false, // default
       headers: {'x-access-token': cookie.load('session')}
     });

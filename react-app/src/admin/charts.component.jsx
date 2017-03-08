@@ -18,7 +18,7 @@ class Charts extends React.Component {
 
   componentDidMount () {
     this.getNewData();
-    this.webSocket = new WebSocket('ws://localhost:4000');
+    this.webSocket = new WebSocket(`ws://${this.props.hostName}:4000`);
 
     this.webSocket.onopen = () => {
       this.assignWebSocketId(this.state.stationId);
@@ -42,7 +42,7 @@ class Charts extends React.Component {
   }
 
   getNewData() {
-    axios.get('http://localhost:8080/api/requests')
+    axios.get(`http://${this.props.hostName}:8080/api/requests`)
     .then((results) => {
       this.setState({data: results.data});
     })
